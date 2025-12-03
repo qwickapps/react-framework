@@ -1,0 +1,17 @@
+/**
+ * CoverImageHeader Styles
+ * 
+ * Minimal styles since we're using MUI components primarily
+ */
+
+/* Mobile responsive adjustments for action buttons */
+@media (max-width: 600px) {
+  .cover-image-header .MuiButton-root .MuiButton-startIcon + * {
+    display: none;
+  }
+  
+  .cover-image-header .MuiButton-root {
+    min-width: 36px;
+    padding: 6px 8px;
+  }
+}

@@ -1,0 +1,193 @@
+/**
+ * Tests for createDataDrivenComponent factory
+ * 
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ */
+
+import React from 'react';
+import { render, waitFor } from '@testing-library/react';
+import { createDataDrivenComponent } from '../createDataDrivenComponent';
+import { DataProvider } from '../../contexts/DataContext';
+import { JsonDataProvider } from '../../providers/JsonDataProvider';
+
+// Simple test component
+interface TestProps {
+  html?: string;
+  placeholder?: string;
+  testProp?: string;
+}
+
+const BaseTestComponent: React.FC<TestProps> = ({ html, placeholder, testProp, ...otherProps }) => (
+  <div data-testid="base-component" {...otherProps}>
+    <div data-testid="html">{html}</div>
+    <div data-testid="placeholder">{placeholder}</div>
+    <div data-testid="test-prop">{testProp}</div>
+  </div>
+);
+
+describe('createDataDrivenComponent', () => {
+  const testData = {
+    'company.description': [
+      {
+        html: '<p>QwickApps React Framework</p>',
+        placeholder: 'Loading...',
+        testProp: 'data-driven-value'
+      }
+    ]
+  };
+
+  const dataProvider = new JsonDataProvider(testData);
+
+  it('should create a component that works without dataSource', () => {
+    const DataDrivenTest = createDataDrivenComponent(BaseTestComponent, undefined);
+
+    const { getByTestId } = render(
+      <DataDrivenTest html="<p>Direct prop</p>" placeholder="Direct placeholder" testProp="direct-value" />
+    );
+
+    expect(getByTestId('html')).toHaveTextContent('Direct prop');
+    expect(getByTestId('placeholder')).toHaveTextContent('Direct placeholder');
+    expect(getByTestId('test-prop')).toHaveTextContent('direct-value');
+  });
+
+  it('should resolve props from dataSource when provided', async () => {
+    const DataDrivenTest = createDataDrivenComponent(BaseTestComponent, undefined);
+
+    const { getByTestId } = render(
+      <DataProvider dataSource={dataProvider}>
+        <DataDrivenTest dataSource="company.description" />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      expect(getByTestId('html')).toHaveTextContent('QwickApps React Framework');
+      expect(getByTestId('placeholder')).toHaveTextContent('Loading...');
+      expect(getByTestId('test-prop')).toHaveTextContent('data-driven-value');
+    });
+  });
+
+  it('should merge dataSource props with direct props', async () => {
+    const DataDrivenTest = createDataDrivenComponent(BaseTestComponent, undefined);
+
+    const { getByTestId } = render(
+      <DataProvider dataSource={dataProvider}>
+        <DataDrivenTest 
+          dataSource="company.description" 
+          testProp="override-value" // This should be overridden by dataSource
+          placeholder="direct-placeholder" // This should be overridden by dataSource
+        />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      expect(getByTestId('html')).toHaveTextContent('QwickApps React Framework');
+      // dataSource should override direct props
+      expect(getByTestId('placeholder')).toHaveTextContent('Loading...');
+      expect(getByTestId('test-prop')).toHaveTextContent('data-driven-value');
+    });
+  });
+
+  it('should add data attributes to the component', async () => {
+    const DataDrivenTest = createDataDrivenComponent(BaseTestComponent, undefined);
+
+    const { getByTestId } = render(
+      <DataProvider dataSource={dataProvider}>
+        <DataDrivenTest dataSource="company.description" />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      const component = getByTestId('base-component');
+      expect(component).toHaveAttribute('data-component', 'SafeSpan');
+      expect(component).toHaveAttribute('data-data-source', 'company.description');
+      expect(component).toHaveAttribute('data-cached', 'false');
+    });
+  });
+
+  it('should show loading state when data is loading', () => {
+    const DataDrivenTest = createDataDrivenComponent(BaseTestComponent, undefined);
+
+    const { getByText } = render(
+      <DataProvider dataSource={dataProvider}>
+        <DataDrivenTest dataSource="nonexistent.data" />
+      </DataProvider>
+    );
+
+    // Should show loading initially
+    expect(getByText('Loading SafeSpan...')).toBeInTheDocument();
+  });
+
+  it('should handle fallback options', async () => {
+    const DataDrivenTest = createDataDrivenComponent(
+      BaseTestComponent, 
+      undefined,
+      {
+        fallback: {
+          html: '<p>Fallback content</p>',
+          placeholder: 'Fallback placeholder'
+        }
+      }
+    );
+
+    const { getByTestId } = render(
+      <DataProvider dataSource={dataProvider}>
+        <DataDrivenTest dataSource="nonexistent.data" />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      expect(getByTestId('html')).toHaveTextContent('Fallback content');
+      expect(getByTestId('placeholder')).toHaveTextContent('Fallback placeholder');
+    });
+  });
+
+  it('should support custom binding options per component instance', async () => {
+    const DataDrivenTest = createDataDrivenComponent(BaseTestComponent, undefined);
+
+    const customOptions = {
+      fallback: {
+        html: '<p>Custom fallback</p>',
+        placeholder: 'Custom placeholder'
+      },
+      strict: true
+    };
+
+    const { getByTestId } = render(
+      <DataProvider dataSource={dataProvider}>
+        <DataDrivenTest 
+          dataSource="nonexistent.data" 
+          bindingOptions={customOptions}
+        />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      expect(getByTestId('html')).toHaveTextContent('Custom fallback');
+      expect(getByTestId('placeholder')).toHaveTextContent('Custom placeholder');
+    });
+  });
+
+  it('should set correct display name', () => {
+    const DataDrivenTest = createDataDrivenComponent(BaseTestComponent, undefined);
+    expect(DataDrivenTest.displayName).toBe('DataDriven(BaseTestComponent)');
+  });
+
+  it('should attach schema to the component', () => {
+    const DataDrivenTest = createDataDrivenComponent(BaseTestComponent, undefined);
+    expect((DataDrivenTest as any).schema).toBe(undefined);
+  });
+
+  it('should forward refs correctly', () => {
+    const DataDrivenTest = createDataDrivenComponent(BaseTestComponent, undefined);
+    const ref = React.createRef<HTMLDivElement>();
+
+    render(
+      <DataDrivenTest 
+        ref={ref}
+        html="<p>Test content</p>" 
+      />
+    );
+
+    expect(ref.current).toBeInstanceOf(HTMLElement);
+  });
+});

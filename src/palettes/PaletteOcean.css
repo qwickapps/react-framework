@@ -1,0 +1,172 @@
+/**
+ * Ocean Color Palette
+ * 
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ * 
+ * Deep blues, aqua teals, and seafoam greens - inspired by ocean depths
+ */
+
+/* ===== OCEAN PALETTE - LIGHT THEME ===== */
+html[data-palette="ocean"]:not([data-theme="dark"]), 
+html[data-palette="ocean"][data-theme="light"] {
+  /* Primary palette - Deep ocean */
+  --palette-primary-main: #0891b2;
+  --palette-primary-light: #22d3ee;
+  --palette-primary-dark: #164e63;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary palette - Deep teal */
+  --palette-secondary-main: #0f766e;
+  --palette-secondary-light: #14b8a6;
+  --palette-secondary-dark: #134e4a;
+  --palette-on-secondary: #ffffff;
+
+  /* Surface palette - Sea foam */
+  --palette-surface-main: #f0fdfa;
+  --palette-surface-variant: #ccfbf1;
+  --palette-surface-elevated: #ffffff;
+  --palette-on-surface: #164e63;
+
+  /* Background palette - Shallow water */
+  --palette-background-main: #ecfeff;
+  --palette-background-dark: #cffafe;
+  --palette-background-overlay: rgba(236, 254, 255, 0.95);
+  --palette-on-background: #0f766e;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(236, 254, 255, 0.98);
+  --palette-header-bg-end: rgba(236, 254, 255, 0.95);
+  --palette-header-collapsed-bg-start: rgba(236, 254, 255, 0.99);
+  --palette-header-collapsed-bg-end: rgba(236, 254, 255, 0.96);
+  
+  /* Text palette - Deep sea */
+  --palette-text-primary: #164e63;
+  --palette-text-secondary: #0891b2;
+  --palette-text-disabled: rgba(22, 78, 99, 0.38);
+  --palette-text-inverted: #ffffff;
+  
+  /* Border palette - Tide line */
+  --palette-border-main: #a7f3d0;
+  --palette-border-light: rgba(22, 78, 99, 0.12);
+  --palette-border-lighter: rgba(22, 78, 99, 0.05);
+  --palette-border-medium: #67e8f9;
+  
+  /* Success palette - Kelp green */
+  --palette-success-main: #059669;
+  --palette-success-light: #d1fae5;
+  --palette-success-dark: #065f46;
+  --palette-success-border: #a7f3d0;
+  
+  /* Error palette - Coral */
+  --palette-error-main: #ef4444;
+  --palette-error-light: #fee2e2;
+  --palette-error-dark: #7f1d1d;
+  --palette-error-border: #fecaca;
+  
+  /* Warning palette - Sandy yellow */
+  --palette-warning-main: #f59e0b;
+  --palette-warning-light: #fef3c7;
+  --palette-warning-dark: #78350f;
+  --palette-warning-border: #fde68a;
+  
+  /* Info palette - Crystal blue */
+  --palette-info-main: #0ea5e9;
+  --palette-info-light: #e0f2fe;
+  --palette-info-dark: #0c4a6e;
+  --palette-on-info: #ffffff;
+  --palette-info-border: #7dd3fc;
+  
+  /* Accent palette - Coral reef */
+  --palette-accent-main: #f97316;
+  --palette-accent-light: #fb923c;
+  --palette-accent-dark: #ea580c;
+  --palette-on-accent: #ffffff;
+  
+  /* Control palette - Depth */
+  --palette-control-main: #0c4a6e;
+  --palette-control-light: #075985;
+  --palette-control-text: #cffafe;
+  --palette-control-border: #0891b2;
+}
+
+/* ===== OCEAN PALETTE - DARK THEME ===== */
+html[data-palette="ocean"][data-theme="dark"] {
+  /* Primary palette - Bioluminescent */
+  --palette-primary-main: #22d3ee;
+  --palette-primary-light: #67e8f9;
+  --palette-primary-dark: #0891b2;
+  --palette-on-primary: #0a1a1f;
+
+  /* Secondary palette - Deep current */
+  --palette-secondary-main: #5eead4;
+  --palette-secondary-light: #99f6e4;
+  --palette-secondary-dark: #14b8a6;
+  --palette-on-secondary: #0a1a1f;
+
+  /* Surface palette - Abyss */
+  --palette-surface-main: #0a1a1f;
+  --palette-surface-variant: #164e63;
+  --palette-surface-elevated: #0e7490;
+  --palette-on-surface: #cffafe;
+
+  /* Background palette - Ocean floor */
+  --palette-background-main: #020617;
+  --palette-background-dark: #0c1821;
+  --palette-background-overlay: rgba(10, 26, 31, 0.95);
+  --palette-on-background: #5eead4;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(2, 6, 23, 0.98);
+  --palette-header-bg-end: rgba(2, 6, 23, 0.95);
+  --palette-header-collapsed-bg-start: rgba(2, 6, 23, 0.99);
+  --palette-header-collapsed-bg-end: rgba(2, 6, 23, 0.96);
+  
+  /* Text palette - Phosphorescent */
+  --palette-text-primary: #cffafe;
+  --palette-text-secondary: #a5f3fc;
+  --palette-text-disabled: rgba(207, 250, 254, 0.38);
+  --palette-text-inverted: #020617;
+  
+  /* Border palette - Deep current */
+  --palette-border-main: #155e75;
+  --palette-border-light: rgba(207, 250, 254, 0.12);
+  --palette-border-lighter: rgba(207, 250, 254, 0.05);
+  --palette-border-medium: #0c4a6e;
+  
+  /* Success palette - Algae glow */
+  --palette-success-main: #34d399;
+  --palette-success-light: #065f46;
+  --palette-success-dark: #10b981;
+  --palette-success-border: #047857;
+  
+  /* Error palette - Red tide */
+  --palette-error-main: #f87171;
+  --palette-error-light: #7f1d1d;
+  --palette-error-dark: #ef4444;
+  --palette-error-border: #991b1b;
+  
+  /* Warning palette - Sunset reflection */
+  --palette-warning-main: #fb7185;
+  --palette-warning-light: #881337;
+  --palette-warning-dark: #e11d48;
+  --palette-warning-border: #be123c;
+  
+  /* Info palette - Electric blue */
+  --palette-info-main: #0ea5e9;
+  --palette-info-light: #0c4a6e;
+  --palette-info-dark: #38bdf8;
+  --palette-on-info: #020617;
+  --palette-info-border: #0284c7;
+  
+  /* Accent palette - Warm coral */
+  --palette-accent-main: #ea580c;
+  --palette-accent-light: #fb923c;
+  --palette-accent-dark: #c2410c;
+  --palette-on-accent: #cffafe;
+  
+  /* Control palette - Midnight depth */
+  --palette-control-main: #164e63;
+  --palette-control-light: #0e7490;
+  --palette-control-text: #ecfeff;
+  --palette-control-border: #155e75;
+}

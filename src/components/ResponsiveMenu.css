@@ -1,0 +1,416 @@
+/**
+ * ResponsiveMenu Styles
+ * 
+ * Provides responsive navigation styling that adapts to different screen sizes
+ * with theme-aware colors and smooth transitions.
+ */
+
+/* Base menu styles */
+.responsive-menu {
+  --menu-bg: var(--theme-surface);
+  --menu-text: var(--theme-on-surface);
+  --menu-hover: var(--theme-surface-variant);
+  --menu-active: var(--theme-primary);
+  --menu-active-text: var(--theme-on-primary);
+  --menu-border: var(--theme-outline-variant);
+  --menu-shadow: rgba(0, 0, 0, 0.1);
+  
+  font-family: var(--theme-font-family, 'Segoe UI', sans-serif);
+  font-size: var(--theme-font-size-body, 14px);
+  line-height: 1.5;
+}
+
+/* Menu item common styles */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  color: var(--menu-text);
+  text-decoration: none;
+  border: none;
+  border-radius: var(--theme-border-radius, 8px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: inherit;
+  font-family: inherit;
+  position: relative;
+  min-height: 48px; /* Accessibility: minimum touch target */
+}
+
+.menu-item:hover:not(.disabled) {
+  background: var(--menu-hover);
+  transform: translateY(-1px);
+}
+
+.menu-item:active:not(.disabled) {
+  transform: translateY(0);
+}
+
+.menu-item.active {
+  background: transparent;
+  color: var(--menu-active);
+  font-weight: 600;
+}
+
+.menu-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.menu-item-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-item-label {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-item-badge {
+  background: var(--theme-error, #dc2626);
+  color: var(--theme-on-error, white);
+  border-radius: 12px;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Hamburger icon */
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 20px;
+  height: 16px;
+  cursor: pointer;
+  
+  span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: currentColor;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+  }
+}
+
+/* Mobile: Bottom Navigation */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--menu-bg);
+  border-top: 1px solid var(--menu-border);
+  box-shadow: 0 -2px 10px var(--menu-shadow);
+  z-index: 1000;
+  
+  .mobile-nav-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem 0;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .mobile-nav-items::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .menu-item {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    min-width: 0;
+    flex: 1;
+    max-width: 100px;
+    text-align: center;
+    
+    .menu-item-icon {
+      margin: 0 auto;
+    }
+    
+    .menu-item-label {
+      font-size: 0.75rem;
+      text-align: center;
+    }
+  }
+}
+
+/* Tablet: Nav Rail */
+.tablet-nav-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: var(--menu-bg);
+  border-right: 1px solid var(--menu-border);
+  box-shadow: 2px 0 10px var(--menu-shadow);
+  z-index: 1000;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  
+  &.collapsed {
+    width: 72px;
+  }
+  
+  &.expanded {
+    width: 280px;
+  }
+  
+  .nav-rail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid var(--menu-border);
+    min-height: 72px;
+  }
+  
+  .nav-rail-logo {
+    flex: 1;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+  }
+  
+  .nav-rail-toggle {
+    background: transparent;
+    border: none;
+    color: var(--menu-text);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--theme-border-radius, 8px);
+  }
+  
+  .nav-rail-toggle:hover {
+    background: var(--menu-hover);
+  }
+  
+  .nav-rail-items {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+    height: calc(100vh - 72px);
+  }
+  
+  &.collapsed {
+    .nav-rail-logo {
+      opacity: 0;
+    }
+    
+    .menu-item {
+      justify-content: center;
+      
+      .menu-item-label {
+        display: none;
+      }
+    }
+  }
+}
+
+/* Desktop: Top Navigation */
+.desktop-top-nav {
+  position: sticky;
+  top: 0;
+  background: var(--menu-bg);
+  border-bottom: 1px solid var(--menu-border);
+  box-shadow: 0 2px 10px var(--menu-shadow);
+  z-index: 1000;
+  
+  .top-nav-content {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+  }
+  
+  .top-nav-logo {
+    &.logo-left {
+      margin-right: 2rem;
+    }
+    
+    &.logo-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    &.logo-right {
+      margin-left: 2rem;
+    }
+  }
+  
+  .top-nav-items {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: center;
+    
+    .logo-left ~ & {
+      justify-content: flex-start;
+    }
+    
+    .logo-right ~ & {
+      justify-content: flex-end;
+    }
+  }
+  
+  .menu-toggle {
+    background: transparent;
+    border: none;
+    color: var(--menu-text);
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: var(--theme-border-radius, 8px);
+  }
+  
+  .menu-toggle:hover {
+    background: var(--menu-hover);
+  }
+}
+
+/* Menu Drawer */
+.menu-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  animation: fadeIn 0.2s ease;
+}
+
+.menu-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 320px;
+  max-width: 90vw;
+  background: var(--menu-bg);
+  box-shadow: -5px 0 20px var(--menu-shadow);
+  animation: slideInRight 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--menu-border);
+    
+    h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--menu-text);
+    }
+  }
+  
+  .drawer-close {
+    background: transparent;
+    border: none;
+    color: var(--menu-text);
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.25rem;
+    border-radius: var(--theme-border-radius, 8px);
+  }
+  
+  .drawer-close:hover {
+    background: var(--menu-hover);
+  }
+  
+  .drawer-items {
+    flex: 1;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 80px; /* Space for bottom nav */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  body {
+    margin-left: 72px; /* Space for collapsed nav rail */
+  }
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  .responsive-menu {
+    --menu-shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Dark theme improvements using proper CSS variables */
+html[data-theme="dark"] .responsive-menu {
+  --menu-hover: var(--theme-surface-elevated, #353535);
+  --menu-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Enhanced dark theme visibility for menu items */
+html[data-theme="dark"] .menu-item {
+  color: var(--theme-on-surface, #ffffff);
+}
+
+html[data-theme="dark"] .menu-item:hover:not(.disabled) {
+  background: var(--theme-surface-elevated, #353535);
+  color: var(--theme-on-surface, #ffffff);
+}
+
+html[data-theme="dark"] .menu-item.active {
+  background: transparent;
+  color: var(--theme-primary-light, #87ceeb);
+}
+
+html[data-theme="dark"] .menu-item-icon {
+  color: inherit;
+  opacity: 0.9;
+}
+
+html[data-theme="dark"] .menu-item-label {
+  color: inherit;
+  font-weight: 500;
+}

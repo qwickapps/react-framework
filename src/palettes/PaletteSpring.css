@@ -1,0 +1,160 @@
+/**
+ * Spring Color Palette
+ * 
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ * 
+ * Fresh greens, soft pinks, and bright yellows - inspired by spring blooms
+ */
+
+/* ===== SPRING PALETTE - LIGHT THEME ===== */
+html[data-palette="spring"]:not([data-theme="dark"]), 
+html[data-palette="spring"][data-theme="light"] {
+  /* Primary palette - Fresh green */
+  --palette-primary-main: #16a34a;
+  --palette-primary-light: #4ade80;
+  --palette-primary-dark: #15803d;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary palette - Blossom pink */
+  --palette-secondary-main: #ec4899;
+  --palette-secondary-light: #f472b6;
+  --palette-secondary-dark: #be185d;
+  --palette-on-secondary: #ffffff;
+
+  /* Surface palette - Soft white */
+  --palette-surface-main: #f7fee7;
+  --palette-surface-variant: #d9f7be; /* Improved contrast with subtle green tint */
+  --palette-surface-elevated: #ffffff;
+  --palette-on-surface: #14532d;
+
+  /* Background palette - Morning dew */
+  --palette-background-main: #f0fdf4;
+  --palette-background-dark: #dcfce7;
+  --palette-background-overlay: rgba(240, 253, 244, 0.95);
+  --palette-on-background: #166534;
+
+  /* Text palette - Deep forest */
+  --palette-text-primary: #14532d;
+  --palette-text-secondary: #166534;
+  --palette-text-disabled: rgba(20, 83, 45, 0.38);
+  --palette-text-inverted: #ffffff;
+  
+  /* Border palette - Sage */
+  --palette-border-main: #bbf7d0;
+  --palette-border-light: rgba(20, 83, 45, 0.12);
+  --palette-border-lighter: rgba(20, 83, 45, 0.05);
+  --palette-border-medium: #86efac;
+  
+  /* Success palette - Vibrant green */
+  --palette-success-main: #22c55e;
+  --palette-success-light: #dcfce7;
+  --palette-success-dark: #15803d;
+  --palette-success-border: #bbf7d0;
+  
+  /* Error palette - Cherry blossom */
+  --palette-error-main: #f43f5e;
+  --palette-error-light: #ffe4e6;
+  --palette-error-dark: #881337;
+  --palette-error-border: #fecdd3;
+  
+  /* Warning palette - Daffodil */
+  --palette-warning-main: #eab308;
+  --palette-warning-light: #fefce8;
+  --palette-warning-dark: #713f12;
+  --palette-warning-border: #fef08a;
+  
+  /* Info palette - Sky blue */
+  --palette-info-main: #0ea5e9;
+  --palette-info-light: #e0f2fe;
+  --palette-info-dark: #0c4a6e;
+  --palette-on-info: #14532d;
+  --palette-info-border: #7dd3fc;
+  
+  /* Accent palette - Cherry blossom */
+  --palette-accent-main: #ec4899;
+  --palette-accent-light: #fce7f3;
+  --palette-accent-dark: #be185d;
+  --palette-on-accent: #ffffff;
+  
+  /* Control palette - Rich earth */
+  --palette-control-main: #365314;
+  --palette-control-light: #4d7c0f;
+  --palette-control-text: #ecfdf5;
+  --palette-control-border: #65a30d;
+}
+
+/* ===== SPRING PALETTE - DARK THEME ===== */
+html[data-palette="spring"][data-theme="dark"] {
+  /* Primary palette - Neon leaf */
+  --palette-primary-main: #4ade80;
+  --palette-primary-light: #86efac;
+  --palette-primary-dark: #16a34a;
+  --palette-on-primary: #0f1f0f;
+
+  /* Secondary palette - Neon bloom */
+  --palette-secondary-main: #f472b6;
+  --palette-secondary-light: #f9a8d4;
+  --palette-secondary-dark: #ec4899;
+  --palette-on-secondary: #0f1f0f;
+
+  /* Surface palette - Dark moss */
+  --palette-surface-main: #0f1f0f;
+  --palette-surface-variant: #1a2e1a;
+  --palette-surface-elevated: #2d4a2d;
+  --palette-on-surface: #dcfce7;
+
+  /* Background palette - Deep forest */
+  --palette-background-main: #0a120a;
+  --palette-background-dark: #0f1f0f;
+  --palette-background-overlay: rgba(15, 31, 15, 0.95);
+  --palette-on-background: #bbf7d0;
+
+  /* Text palette - Moonlit green */
+  --palette-text-primary: #dcfce7;
+  --palette-text-secondary: #bbf7d0;
+  --palette-text-disabled: rgba(220, 252, 231, 0.38);
+  --palette-text-inverted: #0a120a;
+  
+  /* Border palette - Night vine */
+  --palette-border-main: #166534;
+  --palette-border-light: rgba(220, 252, 231, 0.12);
+  --palette-border-lighter: rgba(220, 252, 231, 0.05);
+  --palette-border-medium: #14532d;
+  
+  /* Success palette - Electric green */
+  --palette-success-main: #22c55e;
+  --palette-success-light: #14532d;
+  --palette-success-dark: #4ade80;
+  --palette-success-border: #166534;
+  
+  /* Error palette - Neon pink */
+  --palette-error-main: #f472b6;
+  --palette-error-light: #881337;
+  --palette-error-dark: #ec4899;
+  --palette-error-border: #be185d;
+  
+  /* Warning palette - Electric yellow */
+  --palette-warning-main: #facc15;
+  --palette-warning-light: #713f12;
+  --palette-warning-dark: #eab308;
+  --palette-warning-border: #a16207;
+  
+  /* Info palette - Electric cyan */
+  --palette-info-main: #06b6d4;
+  --palette-info-light: #164e63;
+  --palette-info-dark: #22d3ee;
+  --palette-on-info: #0a120a;
+  --palette-info-border: #0891b2;
+  
+  /* Accent palette - Electric bloom */
+  --palette-accent-main: #f472b6;
+  --palette-accent-light: #fce7f3;
+  --palette-accent-dark: #db2777;
+  --palette-on-accent: #dcfce7;
+  
+  /* Control palette - Deep forest */
+  --palette-control-main: #1a2e1a;
+  --palette-control-light: #2d4a2d;
+  --palette-control-text: #dcfce7;
+  --palette-control-border: #166534;
+}

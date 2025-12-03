@@ -1,0 +1,451 @@
+/**
+ * Global Theme Variables - Modular Palette-based Color System
+ *
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ *
+ * This file implements a modular two-tier color system:
+ * 1. Palette Variables: Define the core color values (--palette-*) loaded on-demand from separate files
+ * 2. Theme Variables: Semantic colors that reference palette values (--theme-*)
+ *
+ * Benefits:
+ * - Modular palette files for easy organization
+ * - On-demand loading to reduce bundle size
+ * - Easy theme customization by switching palettes
+ * - Consistent color usage across components
+ * - Reduced duplication and easier maintenance
+ * - Semantic naming for better understanding
+ *
+ * Available palettes (loaded on-demand):
+ * - default: Classic blue and neutral (inlined below for immediate availability)
+ * - winter: Cool blues, icy whites, and frosty grays
+ * - autumn: Warm oranges, golden yellows, and earthy browns
+ * - spring: Fresh greens, soft pinks, and bright yellows
+ * - ocean: Deep blues, aqua teals, and seafoam greens
+ * - cosmic: Modern purple gradient for creative and tech brands
+ *
+ * Note: Only the default palette is inlined for immediate availability.
+ * Other palettes are loaded dynamically when selected to reduce initial bundle size.
+ */
+
+/* ===== DEFAULT PALETTE (inlined for immediate availability) ===== */
+
+/**
+ * Default Color Palette
+ *
+ * Classic blue and neutral color scheme - the original QwickApps palette
+ */
+
+/* ===== DEFAULT PALETTE - LIGHT THEME ===== */
+html[data-palette="default"]:not([data-theme="dark"]),
+html[data-palette="default"][data-theme="light"] {
+  /* Primary */
+  --palette-primary-main: #007bff;
+  --palette-primary-light: #4a90e2;
+  --palette-primary-dark: #0056b3;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary */
+  --palette-secondary-main: #6c757d;
+  --palette-secondary-light: #868e96;
+  --palette-secondary-dark: #495057;
+  --palette-on-secondary: #ffffff;
+
+  /* Surface */
+  --palette-surface-main: #ffffff;
+  --palette-surface-variant: #f5f5f5; /* Improved contrast from #fafafa */
+  --palette-surface-elevated: #ffffff;
+  --palette-on-surface: #000000;
+
+  /* Background */
+  --palette-background-main: #ffffff;
+  --palette-background-dark: #fafafa;
+  --palette-background-overlay: rgba(255, 255, 255, 0.95);
+  --palette-on-background: #000000;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(255, 255, 255, 0.98);
+  --palette-header-bg-end: rgba(255, 255, 255, 0.95);
+  --palette-header-collapsed-bg-start: rgba(255, 255, 255, 0.99);
+  --palette-header-collapsed-bg-end: rgba(255, 255, 255, 0.96);
+
+  /* Text palette */
+  --palette-text-primary: #000000;
+  --palette-text-secondary: #666666;
+  --palette-text-disabled: rgba(0, 0, 0, 0.38);
+  --palette-text-inverted: #ffffff;
+
+  /* Border palette */
+  --palette-border-main: #e0e0e0;
+  --palette-border-light: rgba(0, 0, 0, 0.12);
+  --palette-border-lighter: rgba(0, 0, 0, 0.05);
+  --palette-border-medium: #ccc;
+
+  /* Success palette */
+  --palette-success-main: #28a745;
+  --palette-success-light: #d4edda;
+  --palette-success-dark: #155724;
+  --palette-on-success: #ffffff;
+  --palette-success-border: #c3e6cb;
+
+  /* Error palette */
+  --palette-error-main: #dc3545;
+  --palette-error-light: #f8d7da;
+  --palette-error-dark: #721c24;
+  --palette-on-error: #ffffff;
+  --palette-error-border: #f5c6cb;
+
+  /* Warning palette */
+  --palette-warning-main: #ffc107;
+  --palette-warning-light: #fff3cd;
+  --palette-warning-dark: #856404;
+  --palette-on-warning: #000000;
+  --palette-warning-border: #ffeeba;
+
+  /* Info palette */
+  --palette-info-main: #007acc;
+  --palette-info-light: #f0f8ff;
+  --palette-info-dark: #005588;
+  --palette-on-info: #ffffff;
+  --palette-info-border: #007acc;
+
+  /* Accent palette for highlights and branding */
+  --palette-accent-main: #ff6b35;
+  --palette-accent-light: #ffb3a0;
+  --palette-accent-dark: #cc5429;
+  --palette-on-accent: #ffffff;
+
+  /* Control palette */
+  --palette-control-main: #1a1a1a;
+  --palette-control-light: #2a2a2a;
+  --palette-control-text: #ccc;
+  --palette-control-border: #333;
+}
+
+/* ===== DEFAULT PALETTE - DARK THEME ===== */
+html[data-palette="default"][data-theme="dark"] {
+  /* Primary */
+  --palette-primary-main: #4a90e2;
+  --palette-primary-light: #87ceeb;
+  --palette-primary-dark: #1a365d;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary */
+  --palette-secondary-main: #868e96;
+  --palette-secondary-light: #adb5bd;
+  --palette-secondary-dark: #6c757d;
+  --palette-on-secondary: #ffffff;
+
+  /* Surface */
+  --palette-surface-main: #1e1e1e;
+  --palette-surface-variant: #2a2a2a;
+  --palette-surface-elevated: #353535;
+  --palette-on-surface: #ffffff;
+
+  /* Background */
+  --palette-background-main: #121212;
+  --palette-background-dark: #2a2a2a;
+  --palette-background-overlay: rgba(30, 30, 30, 0.95);
+  --palette-on-background: #ffffff;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(18, 18, 18, 0.98);
+  --palette-header-bg-end: rgba(18, 18, 18, 0.95);
+  --palette-header-collapsed-bg-start: rgba(18, 18, 18, 0.99);
+  --palette-header-collapsed-bg-end: rgba(18, 18, 18, 0.96);
+
+  /* Text palette */
+  --palette-text-primary: #ffffff;
+  --palette-text-secondary: #b0b0b0;
+  --palette-text-disabled: rgba(255, 255, 255, 0.38);
+  --palette-text-inverted: #000000;
+
+  /* Border palette */
+  --palette-border-main: #555;
+  --palette-border-light: rgba(255, 255, 255, 0.12);
+  --palette-border-lighter: rgba(255, 255, 255, 0.05);
+  --palette-border-medium: #333;
+
+  /* Success palette */
+  --palette-success-main: #4ade80;
+  --palette-success-light: #064e3b;
+  --palette-success-dark: #22c55e;
+  --palette-on-success: #ffffff;
+  --palette-success-border: #065f46;
+
+  /* Error palette */
+  --palette-error-main: #f87171;
+  --palette-error-light: #7f1d1d;
+  --palette-error-dark: #ef4444;
+  --palette-on-error: #ffffff;
+  --palette-error-border: #991b1b;
+
+  /* Warning palette */
+  --palette-warning-main: #fbbf24;
+  --palette-warning-light: #78350f;
+  --palette-warning-dark: #f59e0b;
+  --palette-on-warning: #000000;
+  --palette-warning-border: #92400e;
+
+  /* Info palette */
+  --palette-info-main: #60a5fa;
+  --palette-info-light: #1e3a8a;
+  --palette-info-dark: #3b82f6;
+  --palette-on-info: #ffffff;
+  --palette-info-border: #1d4ed8;
+
+  /* Accent palette for highlights and branding */
+  --palette-accent-main: #ff8a65;
+  --palette-accent-light: #ffcc9c;
+  --palette-accent-dark: #cc6e52;
+  --palette-on-accent: #ffffff;
+
+  /* Control palette */
+  --palette-control-main: #2a2a2a;
+  --palette-control-light: #3a3a3a;
+  --palette-control-text: #e0e0e0;
+  --palette-control-border: #555;
+}
+
+/* ===== THEME VARIABLES (derived from palette) ===== */
+/* These variables reference palette variables and adapt automatically */
+:root {
+  /* Primary brand colors */
+  --theme-primary: var(--palette-primary-main);
+  --theme-primary-light: var(--palette-primary-light);
+  --theme-primary-dark: var(--palette-primary-dark);
+  --theme-on-primary: var(--palette-on-primary);
+
+  /* Secondary brand colors */
+  --theme-secondary: var(--palette-secondary-main);
+  --theme-secondary-light: var(--palette-secondary-light);
+  --theme-secondary-dark: var(--palette-secondary-dark);
+  --theme-on-secondary: var(--palette-on-secondary);
+
+  /* Accent colors */
+  --theme-accent: var(--palette-accent-main);
+  --theme-accent-light: var(--palette-accent-light);
+  --theme-accent-dark: var(--palette-accent-dark);
+  --theme-on-accent: var(--palette-on-accent);
+
+  /* Status colors */
+  --theme-success: var(--palette-success-main);
+  --theme-success-light: var(--palette-success-light);
+  --theme-success-dark: var(--palette-success-dark);
+  --theme-on-success: var(--palette-on-success);
+  --theme-success-border: var(--palette-success-border);
+
+  --theme-warning: var(--palette-warning-main);
+  --theme-warning-light: var(--palette-warning-light);
+  --theme-warning-dark: var(--palette-warning-dark);
+  --theme-on-warning: var(--palette-on-warning);
+  --theme-warning-border: var(--palette-warning-border);
+
+  --theme-error: var(--palette-error-main);
+  --theme-error-light: var(--palette-error-light);
+  --theme-error-dark: var(--palette-error-dark);
+  --theme-on-error: var(--palette-on-error);
+  --theme-error-border: var(--palette-error-border);
+
+  --theme-info: var(--palette-info-main);
+  --theme-info-light: var(--palette-info-light);
+  --theme-info-dark: var(--palette-info-dark);
+  --theme-on-info: var(--palette-on-info);
+  --theme-info-border: var(--palette-info-border);
+
+  /* Background colors */
+  --theme-background: var(--palette-background-main);
+  --theme-background-dark: var(--palette-background-dark);
+  --theme-background-overlay: var(--palette-background-overlay);
+  --theme-on-background: var(--palette-on-background);
+
+  /* Surface colors */
+  --theme-surface: var(--palette-surface-main);
+  --theme-surface-variant: var(--palette-surface-variant);
+  --theme-surface-elevated: var(--palette-surface-elevated);
+  --theme-on-surface: var(--palette-on-surface);
+
+  /* Border colors */
+  --theme-border-main: var(--palette-border-main);
+  --theme-border-light: var(--palette-border-light);
+  --theme-border-lighter: var(--palette-border-lighter);
+  --theme-border-medium: var(--palette-border-medium);
+  --theme-border-dark: var(--palette-border-medium);
+
+  /* Text colors */
+  --theme-text-primary: var(--palette-text-primary);
+  --theme-text-secondary: var(--palette-text-secondary);
+  --theme-text-disabled: var(--palette-text-disabled);
+  --theme-text-inverted: var(--palette-text-inverted);
+
+  /* Control colors */
+  --theme-control-bg: var(--palette-control-main);
+  --theme-control-text: var(--palette-control-text);
+  --theme-control-border: var(--palette-control-border);
+  --theme-control-hover-bg: var(--palette-control-light);
+  --theme-control-hover-text: var(--palette-text-inverted);
+  --theme-control-hover-border: var(--palette-control-border);
+
+  /* Panel colors */
+  --theme-panel-bg-start: var(--palette-control-main);
+  --theme-panel-bg-end: var(--palette-surface-elevated);
+  --theme-panel-border: var(--palette-control-border);
+  --theme-panel-shadow: rgba(0, 0, 0, 0.6);
+
+  /* Floating surface colors */
+  --theme-floating-bg: var(--palette-background-overlay);
+  --theme-floating-border: var(--palette-border-light);
+
+  /* Option/Choice colors */
+  --theme-option-bg: var(--palette-surface-variant);
+  --theme-option-text: var(--palette-text-primary);
+  --theme-option-border: var(--palette-border-main);
+  --theme-option-hover-bg: var(--palette-surface-variant);
+  --theme-option-selected-bg: var(--palette-primary-light);
+  --theme-option-selected-border: var(--palette-primary-main);
+  --theme-option-selected-text: var(--palette-on-primary);
+  --theme-option-correct-bg: var(--palette-success-light);
+  --theme-option-correct-border: var(--palette-success-border);
+  --theme-option-correct-text: var(--palette-success-dark);
+  --theme-option-incorrect-bg: var(--palette-error-light);
+  --theme-option-incorrect-border: var(--palette-error-border);
+  --theme-option-incorrect-text: var(--palette-error-dark);
+
+  /* Explanation/Info colors */
+  --theme-explanation-bg: var(--palette-info-light);
+  --theme-explanation-border: var(--palette-info-main);
+
+  /* Link colors */
+  --theme-link-color: var(--palette-info-main);
+  --theme-link-hover: var(--palette-info-dark);
+
+  /* Code colors */
+  --theme-code-bg: var(--palette-surface-main);
+  --theme-code-text: var(--palette-primary);
+
+  /* MUI integration */
+  --theme-mui-label-bg: var(--palette-surface-main);
+
+  /* Additional semantic colors for Material Design components */
+  --theme-outline: var(--palette-border-main);
+  --theme-outline-variant: var(--palette-border-light);
+
+  /* Design tokens for consistent dimensions */
+  --theme-border-radius: 12px;
+  --theme-border-radius-small: 8px;
+  --theme-border-radius-large: 16px;
+
+  /* Elevation shadows */
+  --theme-elevation-1: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --theme-elevation-2: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --theme-elevation-3: 0 6px 12px rgba(0, 0, 0, 0.2);
+  --theme-elevation-4: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== THEME-SPECIFIC ADAPTATIONS ===== */
+/* Light theme specific adjustments */
+html[data-theme="light"] {
+  /* Header/Surface colors with transparency - use palette-specific header colors */
+  --theme-header-bg-start: var(--palette-header-bg-start);
+  --theme-header-bg-end: var(--palette-header-bg-end);
+  --theme-header-collapsed-bg-start: var(--palette-header-collapsed-bg-start);
+  --theme-header-collapsed-bg-end: var(--palette-header-collapsed-bg-end);
+
+  /* Control hover colors */
+  --theme-control-hover-text: var(--palette-text-inverted);
+  --theme-control-hover-border: #555;
+
+  /* Panel colors */
+  --theme-panel-bg-end: #252525;
+  --theme-panel-shadow: rgba(0, 0, 0, 0.6);
+
+  /* Floating surface colors */
+  --theme-floating-border: rgba(255, 255, 255, 0.5);
+
+  /* Option colors for light theme */
+  --theme-option-text: #222;
+  --theme-option-hover-bg: #e0e0e0;
+  --theme-option-selected-bg: #d0e0ff;
+  --theme-option-selected-text: var(--palette-primary-dark);
+
+  /* Code colors */
+  --theme-code-text: var(--palette-primary-dark);
+}
+
+/* Dark theme specific adjustments */
+html[data-theme="dark"] {
+  /* Header/Surface colors with transparency - use palette-specific header colors */
+  --theme-header-bg-start: var(--palette-header-bg-start);
+  --theme-header-bg-end: var(--palette-header-bg-end);
+  --theme-header-collapsed-bg-start: var(--palette-header-collapsed-bg-start);
+  --theme-header-collapsed-bg-end: var(--palette-header-collapsed-bg-end);
+
+  /* Control hover colors */
+  --theme-control-hover-text: var(--palette-text-primary);
+  --theme-control-hover-border: #777;
+
+  /* Panel colors */
+  --theme-panel-bg-end: var(--palette-surface-elevated);
+  --theme-panel-shadow: rgba(0, 0, 0, 0.8);
+
+  /* Floating surface colors */
+  --theme-floating-border: rgba(255, 255, 255, 0.2);
+
+  /* Option colors for dark theme */
+  --theme-option-text: var(--palette-text-secondary);
+  --theme-option-hover-bg: var(--palette-surface-elevated);
+  --theme-option-selected-bg: var(--palette-primary-dark);
+  --theme-option-selected-text: var(--palette-primary-light);
+
+  /* Code colors */
+  --theme-code-text: var(--palette-primary-light);
+
+  /* MUI integration */
+  --theme-mui-label-bg: rgb(41, 41, 41);
+
+  /* Dark theme elevation shadows */
+  --theme-elevation-1: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --theme-elevation-2: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --theme-elevation-3: 0 6px 12px rgba(0, 0, 0, 0.4);
+  --theme-elevation-4: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== SMOOTH TRANSITIONS ===== */
+/* Apply smooth transitions for theme/palette changes */
+* {
+  transition:
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Disable transitions for interactive elements to maintain responsiveness */
+*:focus,
+*:hover,
+*:active,
+input:focus,
+textarea:focus,
+select:focus,
+button:focus,
+.MuiButton-root:focus,
+.MuiIconButton-root:focus,
+.MuiMenuItem-root:hover,
+.MuiFab-root:hover {
+  transition: none;
+}
+
+/* Improve standard element appearances */
+html, body, #root {
+  background-color: var(--theme-surface) !important;
+  color: var(--theme-on-surface) !important;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+}
+
+code, code.inline-code, pre.code-block {
+  font-family: 'Source Code Pro', monospace;
+  background-color: var(--theme-code-bg) !important;
+  color: var(--theme-code-text) !important;
+  padding: 2px 4px;
+  border-radius: 4px;
+}

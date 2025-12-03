@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QwickApps Palette Manifest",
+  "description": "Manifest file describing available color palettes for QwickApps React Framework",
+  "type": "object",
+  "required": ["version", "palettes"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Version of the manifest/framework",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "palettes": {
+      "type": "array",
+      "description": "List of available color palettes",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description", "version", "file", "primaryColor"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the palette (kebab-case)",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the palette"
+          },
+          "description": {
+            "type": "string",
+            "description": "Brief description of the palette theme"
+          },
+          "author": {
+            "type": "string",
+            "description": "Author or organization that created the palette"
+          },
+          "license": {
+            "type": "string",
+            "description": "License under which the palette is distributed"
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of the palette",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+          },
+          "file": {
+            "type": "string",
+            "description": "Filename of the palette CSS (unminified)",
+            "pattern": "^palette-[a-z][a-z0-9-]*\\.\\d+\\.\\d+\\.\\d+\\.css$"
+          },
+          "fileMinified": {
+            "type": "string",
+            "description": "Filename of the minified palette CSS",
+            "pattern": "^palette-[a-z][a-z0-9-]*\\.\\d+\\.\\d+\\.\\d+\\.min\\.css$"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "Filename of the palette thumbnail image"
+          },
+          "primaryColor": {
+            "type": "string",
+            "description": "Primary color of the palette (hex format)",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "inlined": {
+            "type": "boolean",
+            "description": "Whether this palette is inlined in the main CSS bundle",
+            "default": false
+          }
+        }
+      }
+    }
+  }
+}

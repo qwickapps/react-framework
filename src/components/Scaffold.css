@@ -1,0 +1,555 @@
+/**
+ * Scaffold Styles - Material UI Compliant Navigation
+ * 
+ * Follows Material Design guidelines for navigation patterns:
+ * - 48px minimum touch targets
+ * - Proper spacing and elevation
+ * - Responsive breakpoints
+ * - Accessibility considerations
+ */
+
+.app-scaffold {
+  --appbar-height: 64px;
+  --bottom-nav-height: 80px;
+  --rail-width-collapsed: 80px;
+  --rail-width-expanded: 280px;
+  --touch-target-size: 48px;
+  
+  --menu-bg: var(--theme-surface);
+  --menu-text: var(--theme-on-surface);
+  --menu-hover: var(--theme-surface-variant);
+  --menu-active: var(--theme-primary);
+  --menu-active-text: var(--theme-on-primary);
+  --menu-border: var(--theme-outline-variant);
+  --menu-shadow: rgba(0, 0, 0, 0.1);
+  
+  --scaffold-background: var(--theme-background);
+  --scaffold-surface: var(--theme-surface);
+  --scaffold-on-surface: var(--theme-on-surface);
+  --scaffold-primary: var(--theme-primary);
+  --scaffold-on-primary: var(--theme-on-primary);
+  --scaffold-outline: var(--theme-border-main);
+  --scaffold-shadow: var(--theme-elevation-2);
+  
+  font-family: var(--theme-font-family, 'Segoe UI', sans-serif);
+  position: relative;
+  min-height: 100vh;
+  background: var(--scaffold-background);
+}
+
+/* =================== APP BAR =================== */
+
+.app-scaffold-appbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--scaffold-surface);
+  border-bottom: 1px solid var(--scaffold-outline);
+  box-shadow: var(--scaffold-shadow);
+  z-index: 1100;
+}
+
+.appbar-content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.appbar-left,
+.appbar-center,
+.appbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.appbar-left {
+  flex: 0 0 auto;
+}
+
+.appbar-center {
+  flex: 1;
+  justify-content: center;
+  position: relative;
+}
+
+.appbar-right {
+  flex: 0 0 auto;
+}
+
+.appbar-logo {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.appbar-navigation {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.appbar-page-actions,
+.appbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.appbar-theme-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Menu button */
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target-size);
+  height: var(--touch-target-size);
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--scaffold-on-surface);
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+  
+  &:active {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 20px;
+  height: 16px;
+  
+  span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: currentColor;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+  }
+}
+
+/* =================== MENU ITEMS =================== */
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--touch-target-size);
+  min-width: var(--touch-target-size);
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  color: var(--scaffold-on-surface);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 12px;
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  
+  &:hover:not(.disabled) {
+    background: rgba(0, 0, 0, 0.04);
+  }
+  
+  &:active:not(.disabled) {
+    background: rgba(0, 0, 0, 0.08);
+  }
+  
+  &.active {
+    background: var(--scaffold-primary);
+    color: var(--scaffold-on-primary);
+  }
+  
+  &.disabled {
+    opacity: 0.38;
+    cursor: default;
+  }
+}
+
+.menu-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.menu-item-label {
+  font-size: inherit;
+  font-weight: inherit;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.menu-item-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: var(--theme-error, #dc2626);
+  color: var(--theme-on-error, white);
+  border-radius: 10px;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* =================== APP BAR MENU ITEMS =================== */
+
+.menu-item-appbar {
+  flex-direction: row;
+  gap: 8px;
+  padding: 8px 16px;
+  min-width: auto;
+}
+
+.menu-item-icon-appbar {
+  width: 20px;
+  height: 20px;
+}
+
+.menu-item-label-appbar {
+  font-size: 14px;
+}
+
+/* =================== BOTTOM NAVIGATION =================== */
+
+.bottom-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-nav-height);
+  background: var(--scaffold-surface);
+  border-top: 1px solid var(--scaffold-outline);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.bottom-nav-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  max-width: 600px; /* Limit width on larger screens */
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+.menu-item-bottom {
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 12px;
+  min-width: 64px;
+  max-width: 120px;
+  flex: 1;
+  text-align: center;
+}
+
+.menu-item-icon-bottom {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+}
+
+.menu-item-label-bottom {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* =================== NAVIGATION RAIL =================== */
+
+.navigation-rail {
+  position: fixed;
+  top: var(--appbar-height);
+  left: 0;
+  bottom: 0;
+  background: var(--scaffold-surface);
+  border-right: 1px solid var(--scaffold-outline);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  
+  &.collapsed {
+    width: var(--rail-width-collapsed);
+  }
+  
+  &.expanded {
+    width: var(--rail-width-expanded);
+  }
+}
+
+.rail-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.menu-item-rail {
+  flex-direction: row;
+  gap: 12px;
+  justify-content: flex-start;
+  padding: 12px 16px;
+  min-width: var(--touch-target-size);
+  
+  .collapsed & {
+    justify-content: center;
+    padding: 12px;
+    
+    .menu-item-label {
+      display: none;
+    }
+  }
+}
+
+.menu-item-icon-rail {
+  width: 24px;
+  height: 24px;
+}
+
+.menu-item-label-rail {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* =================== NAVIGATION DRAWER =================== */
+
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1200;
+  animation: fadeIn 0.2s ease;
+}
+
+.navigation-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 80vw;
+  background: var(--scaffold-surface, #fff);
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+  animation: slideInRight 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--scaffold-outline);
+  min-height: var(--appbar-height);
+  
+  h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--scaffold-on-surface);
+  }
+}
+
+.drawer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target-size);
+  height: var(--touch-target-size);
+  border: none;
+  background: transparent;
+  color: var(--scaffold-on-surface);
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.drawer-items {
+  flex: 1;
+  padding: 8px;
+  overflow-y: auto;
+}
+
+.drawer-section {
+  margin-bottom: 16px;
+  
+  h4 {
+    margin: 0 0 8px 0;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--scaffold-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.menu-item-drawer {
+  flex-direction: row;
+  gap: 16px;
+  justify-content: flex-start;
+  padding: 12px 16px;
+  margin: 2px 0;
+  width: 100%;
+}
+
+.menu-item-icon-drawer {
+  width: 24px;
+  height: 24px;
+}
+
+.menu-item-label-drawer {
+  font-size: 16px;
+  font-weight: 400;
+  flex: 1;
+  text-align: left;
+}
+
+/* =================== MAIN CONTENT =================== */
+
+.app-scaffold-content {
+  min-height: 100vh;
+  background: var(--scaffold-background);
+  transition: padding 0.3s ease;
+  padding-top: var(--appbar-height, 64px);
+  padding-bottom: var(--bottom-nav-height, 80px);
+}
+
+/* =================== ANIMATIONS =================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* =================== RESPONSIVE ADJUSTMENTS =================== */
+
+/* Mobile specific adjustments */
+@media (max-width: 599px) {
+  .appbar-content {
+    padding: 0 8px;
+  }
+  
+  .menu-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .bottom-nav-items {
+    padding: 0 4px;
+  }
+  
+  .menu-item-bottom {
+    min-width: 56px;
+  }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 600px) and (max-width: 1023px) {
+  .appbar-content {
+    padding: 0 12px;
+  }
+}
+
+/* Desktop specific adjustments */
+@media (min-width: 1024px) {
+  .appbar-content {
+    padding: 0 16px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .menu-item:hover:not(.disabled) {
+    background: rgba(0, 0, 0, 0.1);
+    outline: 2px solid var(--scaffold-on-surface);
+  }
+  
+  .menu-item.active {
+    outline: 2px solid var(--scaffold-on-primary);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .app-scaffold-content,
+  .navigation-rail,
+  .menu-item,
+  .hamburger-icon span {
+    transition: none;
+  }
+  
+  .drawer-overlay,
+  .navigation-drawer {
+    animation: none;
+  }
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  .app-scaffold {
+    --scaffold-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .menu-item:hover:not(.disabled) {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .menu-item:active:not(.disabled) {
+    background: rgba(255, 255, 255, 0.12);
+  }
+  
+  .menu-button:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .menu-button:active {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}

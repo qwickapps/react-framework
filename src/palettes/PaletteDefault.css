@@ -1,0 +1,178 @@
+/**
+ * Default Color Palette
+ * 
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ * 
+ * Classic blue and neutral color scheme - the original QwickApps palette
+ */
+
+/* ===== DEFAULT PALETTE - LIGHT THEME ===== */
+html[data-palette="default"]:not([data-theme="dark"]), 
+html[data-palette="default"][data-theme="light"] {
+  /* Primary */
+  --palette-primary-main: #007bff;
+  --palette-primary-light: #4a90e2;
+  --palette-primary-dark: #0056b3;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary */
+  --palette-secondary-main: #6c757d;
+  --palette-secondary-light: #868e96;
+  --palette-secondary-dark: #495057;
+  --palette-on-secondary: #ffffff;
+
+  /* Surface */
+  --palette-surface-main: #ffffff;
+  --palette-surface-variant: #f5f5f5; /* Improved contrast from #fafafa */
+  --palette-surface-elevated: #ffffff;
+  --palette-on-surface: #000000;
+
+  /* Background */
+  --palette-background-main: #ffffff;
+  --palette-background-dark: #fafafa;
+  --palette-background-overlay: rgba(255, 255, 255, 0.95);
+  --palette-on-background: #000000;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(255, 255, 255, 0.98);
+  --palette-header-bg-end: rgba(255, 255, 255, 0.95);
+  --palette-header-collapsed-bg-start: rgba(255, 255, 255, 0.99);
+  --palette-header-collapsed-bg-end: rgba(255, 255, 255, 0.96);
+
+  /* Text palette */
+  --palette-text-primary: #000000;
+  --palette-text-secondary: #666666;
+  --palette-text-disabled: rgba(0, 0, 0, 0.38);
+  --palette-text-inverted: #ffffff;
+
+  /* Border palette */
+  --palette-border-main: #e0e0e0;
+  --palette-border-light: rgba(0, 0, 0, 0.12);
+  --palette-border-lighter: rgba(0, 0, 0, 0.05);
+  --palette-border-medium: #ccc;
+
+  /* Success palette */
+  --palette-success-main: #28a745;
+  --palette-success-light: #d4edda;
+  --palette-success-dark: #155724;
+  --palette-on-success: #ffffff;
+  --palette-success-border: #c3e6cb;
+
+  /* Error palette */
+  --palette-error-main: #dc3545;
+  --palette-error-light: #f8d7da;
+  --palette-error-dark: #721c24;
+  --palette-on-error: #ffffff;
+  --palette-error-border: #f5c6cb;
+
+  /* Warning palette */
+  --palette-warning-main: #ffc107;
+  --palette-warning-light: #fff3cd;
+  --palette-warning-dark: #856404;
+  --palette-on-warning: #000000;
+  --palette-warning-border: #ffeeba;
+
+  /* Info palette */
+  --palette-info-main: #007acc;
+  --palette-info-light: #f0f8ff;
+  --palette-info-dark: #005588;
+  --palette-on-info: #ffffff;
+  --palette-info-border: #007acc;
+
+  /* Accent palette for highlights and branding */
+  --palette-accent-main: #ff6b35;
+  --palette-accent-light: #ffb3a0;
+  --palette-accent-dark: #cc5429;
+  --palette-on-accent: #ffffff;
+
+  /* Control palette */
+  --palette-control-main: #1a1a1a;
+  --palette-control-light: #2a2a2a;
+  --palette-control-text: #ccc;
+  --palette-control-border: #333;
+}
+
+/* ===== DEFAULT PALETTE - DARK THEME ===== */
+html[data-palette="default"][data-theme="dark"] {
+  /* Primary */
+  --palette-primary-main: #4a90e2;
+  --palette-primary-light: #87ceeb;
+  --palette-primary-dark: #1a365d;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary */
+  --palette-secondary-main: #868e96;
+  --palette-secondary-light: #adb5bd;
+  --palette-secondary-dark: #6c757d;
+  --palette-on-secondary: #ffffff;
+
+  /* Surface */
+  --palette-surface-main: #1e1e1e;
+  --palette-surface-variant: #2a2a2a;
+  --palette-surface-elevated: #353535;
+  --palette-on-surface: #ffffff;
+
+  /* Background */
+  --palette-background-main: #121212;
+  --palette-background-dark: #2a2a2a;
+  --palette-background-overlay: rgba(30, 30, 30, 0.95);
+  --palette-on-background: #ffffff;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(18, 18, 18, 0.98);
+  --palette-header-bg-end: rgba(18, 18, 18, 0.95);
+  --palette-header-collapsed-bg-start: rgba(18, 18, 18, 0.99);
+  --palette-header-collapsed-bg-end: rgba(18, 18, 18, 0.96);
+
+  /* Text palette */
+  --palette-text-primary: #ffffff;
+  --palette-text-secondary: #b0b0b0;
+  --palette-text-disabled: rgba(255, 255, 255, 0.38);
+  --palette-text-inverted: #000000;
+
+  /* Border palette */
+  --palette-border-main: #555;
+  --palette-border-light: rgba(255, 255, 255, 0.12);
+  --palette-border-lighter: rgba(255, 255, 255, 0.05);
+  --palette-border-medium: #333;
+
+  /* Success palette */
+  --palette-success-main: #4ade80;
+  --palette-success-light: #064e3b;
+  --palette-success-dark: #22c55e;
+  --palette-on-success: #ffffff;
+  --palette-success-border: #065f46;
+
+  /* Error palette */
+  --palette-error-main: #f87171;
+  --palette-error-light: #7f1d1d;
+  --palette-error-dark: #ef4444;
+  --palette-on-error: #ffffff;
+  --palette-error-border: #991b1b;
+
+  /* Warning palette */
+  --palette-warning-main: #fbbf24;
+  --palette-warning-light: #78350f;
+  --palette-warning-dark: #f59e0b;
+  --palette-on-warning: #000000;
+  --palette-warning-border: #92400e;
+
+  /* Info palette */
+  --palette-info-main: #60a5fa;
+  --palette-info-light: #1e3a8a;
+  --palette-info-dark: #3b82f6;
+  --palette-on-info: #ffffff;
+  --palette-info-border: #1d4ed8;
+
+  /* Accent palette for highlights and branding */
+  --palette-accent-main: #ff8a65;
+  --palette-accent-light: #ffcc9c;
+  --palette-accent-dark: #cc6e52;
+  --palette-on-accent: #ffffff;
+
+  /* Control palette */
+  --palette-control-main: #2a2a2a;
+  --palette-control-light: #3a3a3a;
+  --palette-control-text: #e0e0e0;
+  --palette-control-border: #555;
+}

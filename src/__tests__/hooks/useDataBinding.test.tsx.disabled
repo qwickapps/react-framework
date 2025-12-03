@@ -1,0 +1,229 @@
+/**
+ * Tests for useDataBinding hook
+ * 
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ */
+
+import React from 'react';
+import { render, waitFor } from '@testing-library/react';
+import { useDataBinding } from '../useDataBinding';
+import { DataProvider } from '../../contexts/DataContext';
+import { JsonDataProvider } from '../../providers/JsonDataProvider';
+import { ComponentSchema } from '../../schemas/types';
+
+// Test component that uses useDataBinding
+interface TestComponentProps {
+  html?: string;
+  placeholder?: string;
+}
+
+const TestComponent: React.FC<{
+  dataSource?: string;
+  fallbackProps?: TestComponentProps;
+  schema?: ComponentSchema;
+  strict?: boolean;
+}> = ({ dataSource, fallbackProps, schema, strict = false }) => {
+  const resolvedProps = useDataBinding<TestComponentProps>(
+    dataSource,
+    fallbackProps,
+    schema,
+    { strict }
+  );
+
+  return (
+    <div data-testid="test-component">
+      <div data-testid="html">{resolvedProps.html || ''}</div>
+      <div data-testid="placeholder">{resolvedProps.placeholder || ''}</div>
+      <div data-testid="loading">{resolvedProps.loading ? 'loading' : 'ready'}</div>
+      <div data-testid="error">{resolvedProps.error?.message || 'none'}</div>
+      <div data-testid="data-source">{resolvedProps.dataSource || 'none'}</div>
+    </div>
+  );
+};
+
+describe('useDataBinding', () => {
+  const testData = {
+    'company.description': [
+      {
+        html: '<p>QwickApps helps you <strong>build apps faster</strong> with our comprehensive framework.</p>',
+        placeholder: 'Loading company description...'
+      }
+    ],
+    'pages.home.tagline': [
+      {
+        html: '<h1>Welcome to QwickApps</h1>',
+        placeholder: 'Loading tagline...'
+      }
+    ]
+  };
+
+  const dataProvider = new JsonDataProvider(testData);
+
+  it('should return fallback props when no dataSource is provided', () => {
+    const fallbackProps = { html: '<p>Fallback content</p>', placeholder: 'Fallback placeholder' };
+    
+    const { getByTestId } = render(
+      <TestComponent fallbackProps={fallbackProps} />
+    );
+
+    expect(getByTestId('html')).toHaveTextContent('Fallback content');
+    expect(getByTestId('placeholder')).toHaveTextContent('Fallback placeholder');
+    expect(getByTestId('loading')).toHaveTextContent('ready');
+    expect(getByTestId('data-source')).toHaveTextContent('none');
+  });
+
+  it('should resolve data from dataSource when provided', async () => {
+    const { getByTestId } = render(
+      <DataProvider dataSource={dataProvider}>
+        <TestComponent dataSource="company.description" />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      expect(getByTestId('html')).toHaveTextContent('QwickApps helps you build apps faster with our comprehensive framework.');
+      expect(getByTestId('placeholder')).toHaveTextContent('Loading company description...');
+      expect(getByTestId('data-source')).toHaveTextContent('company.description');
+    });
+  });
+
+  it('should merge dataSource data with fallback props', async () => {
+    const fallbackProps = { placeholder: 'Default placeholder' };
+    
+    const { getByTestId } = render(
+      <DataProvider dataSource={dataProvider}>
+        <TestComponent 
+          dataSource="company.description" 
+          fallbackProps={fallbackProps}
+        />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      // Data source should override fallback
+      expect(getByTestId('html')).toHaveTextContent('QwickApps helps you build apps faster with our comprehensive framework.');
+      expect(getByTestId('placeholder')).toHaveTextContent('Loading company description...');
+    });
+  });
+
+  it('should use fallback props when dataSource returns no data', async () => {
+    const fallbackProps = { html: '<p>Fallback content</p>', placeholder: 'Fallback placeholder' };
+    
+    const { getByTestId } = render(
+      <DataProvider dataSource={dataProvider}>
+        <TestComponent 
+          dataSource="nonexistent.data" 
+          fallbackProps={fallbackProps}
+        />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      expect(getByTestId('html')).toHaveTextContent('Fallback content');
+      expect(getByTestId('placeholder')).toHaveTextContent('Fallback placeholder');
+    });
+  });
+
+  it('should validate data against schema in strict mode', async () => {
+    const incompleteData = {
+      'test.incomplete': [
+        {
+          html: '<p>Missing required field</p>'
+          // Missing placeholder which is not required, but let's test custom validation
+        }
+      ]
+    };
+
+    const strictProvider = new JsonDataProvider(incompleteData);
+    const fallbackProps = { html: '<p>Fallback</p>', placeholder: 'Fallback placeholder' };
+
+    // Create schema with custom validation
+    const strictSchema: ComponentSchema = {
+      ...undefined,
+      fields: {
+        ...undefined.fields,
+        html: {
+          ...undefined.fields.html,
+          required: true,
+          validation: {
+            custom: (value: string) => value.includes('<p>') || 'HTML must contain paragraph tags'
+          }
+        }
+      }
+    };
+
+    const { getByTestId } = render(
+      <DataProvider dataSource={strictProvider}>
+        <TestComponent 
+          dataSource="test.incomplete" 
+          fallbackProps={fallbackProps}
+          schema={strictSchema}
+          strict={true}
+        />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      // Should pass validation since HTML contains <p>
+      expect(getByTestId('html')).toHaveTextContent('Missing required field');
+    });
+  });
+
+  it('should handle validation failures in strict mode', async () => {
+    const invalidData = {
+      'test.invalid': [
+        {
+          html: '<div>Invalid HTML structure</div>', // Will fail custom validation
+          placeholder: 'Test placeholder'
+        }
+      ]
+    };
+
+    const strictProvider = new JsonDataProvider(invalidData);
+    const fallbackProps = { html: '<p>Fallback</p>', placeholder: 'Fallback placeholder' };
+
+    // Create schema with failing validation
+    const strictSchema: ComponentSchema = {
+      ...undefined,
+      fields: {
+        ...undefined.fields,
+        html: {
+          ...undefined.fields.html,
+          validation: {
+            custom: (value: string) => value.includes('<p>') || 'HTML must contain paragraph tags'
+          }
+        }
+      }
+    };
+
+    const { getByTestId } = render(
+      <DataProvider dataSource={strictProvider}>
+        <TestComponent 
+          dataSource="test.invalid" 
+          fallbackProps={fallbackProps}
+          schema={strictSchema}
+          strict={true}
+        />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      // Should fall back due to validation failure
+      expect(getByTestId('html')).toHaveTextContent('Fallback');
+      expect(getByTestId('placeholder')).toHaveTextContent('Fallback placeholder');
+    });
+  });
+
+  it('should include metadata in returned props', async () => {
+    const { getByTestId } = render(
+      <DataProvider dataSource={dataProvider}>
+        <TestComponent dataSource="company.description" schema={undefined} />
+      </DataProvider>
+    );
+
+    await waitFor(() => {
+      expect(getByTestId('loading')).toHaveTextContent('ready');
+      expect(getByTestId('error')).toHaveTextContent('none');
+      expect(getByTestId('data-source')).toHaveTextContent('company.description');
+    });
+  });
+});

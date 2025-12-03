@@ -1,0 +1,172 @@
+/**
+ * Winter Color Palette
+ * 
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ * 
+ * Cool blues, icy whites, and frosty grays - inspired by winter landscapes
+ */
+
+/* ===== WINTER PALETTE - LIGHT THEME ===== */
+html[data-palette="winter"]:not([data-theme="dark"]), 
+html[data-palette="winter"][data-theme="light"] {
+  /* Primary palette - Ice blue */
+  --palette-primary-main: #0077be;
+  --palette-primary-light: #5ba3d0;
+  --palette-primary-dark: #005082;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary palette - Steel blue */
+  --palette-secondary-main: #4682b4;
+  --palette-secondary-light: #7ba7cc;
+  --palette-secondary-dark: #2e5984;
+  --palette-on-secondary: #ffffff;
+
+  /* Surface palette - Snow white */
+  --palette-surface-main: #fafbfc;
+  --palette-surface-variant: #e2e8f0; /* Improved contrast with cooler tone */
+  --palette-surface-elevated: #ffffff;
+  --palette-on-surface: #0f172a;
+
+  /* Background palette - Frosty */
+  --palette-background-main: #f8fafc;
+  --palette-background-dark: #f1f5f9;
+  --palette-background-overlay: rgba(248, 250, 252, 0.95);
+  --palette-on-background: #475569;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(248, 250, 252, 0.98);
+  --palette-header-bg-end: rgba(248, 250, 252, 0.95);
+  --palette-header-collapsed-bg-start: rgba(248, 250, 252, 0.99);
+  --palette-header-collapsed-bg-end: rgba(248, 250, 252, 0.96);
+  
+  /* Text palette - Winter tones */
+  --palette-text-primary: #0f172a;
+  --palette-text-secondary: #475569;
+  --palette-text-disabled: rgba(15, 23, 42, 0.38);
+  --palette-text-inverted: #ffffff;
+  
+  /* Border palette - Icy */
+  --palette-border-main: #cbd5e1;
+  --palette-border-light: rgba(15, 23, 42, 0.12);
+  --palette-border-lighter: rgba(15, 23, 42, 0.05);
+  --palette-border-medium: #94a3b8;
+  
+  /* Success palette - Pine green */
+  --palette-success-main: #059669;
+  --palette-success-light: #d1fae5;
+  --palette-success-dark: #064e3b;
+  --palette-success-border: #a7f3d0;
+  
+  /* Error palette - Winter berry */
+  --palette-error-main: #dc2626;
+  --palette-error-light: #fee2e2;
+  --palette-error-dark: #7f1d1d;
+  --palette-error-border: #fecaca;
+  
+  /* Warning palette - Amber frost */
+  --palette-warning-main: #d97706;
+  --palette-warning-light: #fef3c7;
+  --palette-warning-dark: #92400e;
+  --palette-warning-border: #fde68a;
+  
+  /* Info palette - Arctic blue */
+  --palette-info-main: #0284c7;
+  --palette-info-light: #e0f2fe;
+  --palette-info-dark: #0c4a6e;
+  --palette-on-info: #ffffff;
+  --palette-info-border: #7dd3fc;
+  
+  /* Accent palette - Aurora colors */
+  --palette-accent-main: #ec4899;
+  --palette-accent-light: #fce7f3;
+  --palette-accent-dark: #be185d;
+  --palette-on-accent: #ffffff;
+  
+  /* Control palette - Charcoal */
+  --palette-control-main: #1e293b;
+  --palette-control-light: #334155;
+  --palette-control-text: #e2e8f0;
+  --palette-control-border: #475569;
+}
+
+/* ===== WINTER PALETTE - DARK THEME ===== */
+html[data-palette="winter"][data-theme="dark"] {
+  /* Primary palette - Arctic glow */
+  --palette-primary-main: #7dd3fc;
+  --palette-primary-light: #bae6fd;
+  --palette-primary-dark: #0369a1;
+  --palette-on-primary: #020617;
+
+  /* Secondary palette - Moonlight */
+  --palette-secondary-main: #94a3b8;
+  --palette-secondary-light: #cbd5e1;
+  --palette-secondary-dark: #64748b;
+  --palette-on-secondary: #020617;
+
+  /* Surface palette - Dark frost */
+  --palette-surface-main: #0f172a;
+  --palette-surface-variant: #1e293b;
+  --palette-surface-elevated: #334155;
+  --palette-on-surface: #f8fafc;
+
+  /* Background palette - Winter night */
+  --palette-background-main: #020617;
+  --palette-background-dark: #0f172a;
+  --palette-background-overlay: rgba(15, 23, 42, 0.95);
+  --palette-on-background: #cbd5e1;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(2, 6, 23, 0.98);
+  --palette-header-bg-end: rgba(2, 6, 23, 0.95);
+  --palette-header-collapsed-bg-start: rgba(2, 6, 23, 0.99);
+  --palette-header-collapsed-bg-end: rgba(2, 6, 23, 0.96);
+  
+  /* Text palette - Snow and ice */
+  --palette-text-primary: #f8fafc;
+  --palette-text-secondary: #cbd5e1;
+  --palette-text-disabled: rgba(248, 250, 252, 0.38);
+  --palette-text-inverted: #020617;
+  
+  /* Border palette - Dark ice */
+  --palette-border-main: #475569;
+  --palette-border-light: rgba(248, 250, 252, 0.12);
+  --palette-border-lighter: rgba(248, 250, 252, 0.05);
+  --palette-border-medium: #334155;
+  
+  /* Success palette - Aurora green */
+  --palette-success-main: #34d399;
+  --palette-success-light: #064e3b;
+  --palette-success-dark: #10b981;
+  --palette-success-border: #065f46;
+  
+  /* Error palette - Northern lights red */
+  --palette-error-main: #f87171;
+  --palette-error-light: #7f1d1d;
+  --palette-error-dark: #ef4444;
+  --palette-error-border: #991b1b;
+  
+  /* Warning palette - Aurora orange */
+  --palette-warning-main: #fb923c;
+  --palette-warning-light: #9a3412;
+  --palette-warning-dark: #f97316;
+  --palette-warning-border: #c2410c;
+  
+  /* Info palette - Polar blue */
+  --palette-info-main: #38bdf8;
+  --palette-info-light: #0c4a6e;
+  --palette-info-dark: #0ea5e9;
+  --palette-on-info: #020617;
+  --palette-info-border: #0284c7;
+  
+  /* Accent palette - Northern lights */
+  --palette-accent-main: #f472b6;
+  --palette-accent-light: #fce7f3;
+  --palette-accent-dark: #db2777;
+  --palette-on-accent: #f8fafc;
+  
+  /* Control palette - Midnight */
+  --palette-control-main: #1e293b;
+  --palette-control-light: #334155;
+  --palette-control-text: #e2e8f0;
+  --palette-control-border: #475569;
+}

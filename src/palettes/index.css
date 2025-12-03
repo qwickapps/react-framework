@@ -1,0 +1,12 @@
+/**
+ * All Available Color Palettes
+ * 
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ */
+
+@import './PaletteDefault.css';
+@import './PaletteAutumn.css';
+@import './PaletteOcean.css';
+@import './PaletteSpring.css';
+@import './PaletteWinter.css';
+@import './PaletteCosmic.css';

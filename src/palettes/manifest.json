@@ -1,0 +1,72 @@
+{
+  "$schema": "./manifest.schema.json",
+  "version": "1.4.9",
+  "palettes": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Classic blue and neutral color scheme - the original QwickApps palette",
+      "author": "QwickApps",
+      "license": "PolyForm-Shield-1.0.0",
+      "version": "1.4.9",
+      "file": "PaletteDefault.css",
+      "primaryColor": "#007bff",
+      "inlined": true
+    },
+    {
+      "id": "autumn",
+      "name": "Autumn",
+      "description": "Warm oranges, golden yellows, and earthy browns - inspired by fall foliage",
+      "author": "QwickApps",
+      "license": "PolyForm-Shield-1.0.0",
+      "version": "1.4.9",
+      "file": "PaletteAutumn.css",
+      "primaryColor": "#ea580c",
+      "inlined": false
+    },
+    {
+      "id": "cosmic",
+      "name": "Cosmic",
+      "description": "Modern purple gradient for creative and tech brands - inspired by cosmic nebulae",
+      "author": "QwickApps",
+      "license": "PolyForm-Shield-1.0.0",
+      "version": "1.4.9",
+      "file": "PaletteCosmic.css",
+      "primaryColor": "#8b5cf6",
+      "inlined": false
+    },
+    {
+      "id": "ocean",
+      "name": "Ocean",
+      "description": "Deep blues, aqua teals, and seafoam greens - inspired by ocean depths",
+      "author": "QwickApps",
+      "license": "PolyForm-Shield-1.0.0",
+      "version": "1.4.9",
+      "file": "PaletteOcean.css",
+      "primaryColor": "#0891b2",
+      "inlined": false
+    },
+    {
+      "id": "spring",
+      "name": "Spring",
+      "description": "Fresh greens, soft pinks, and bright yellows - inspired by spring blooms",
+      "author": "QwickApps",
+      "license": "PolyForm-Shield-1.0.0",
+      "version": "1.4.9",
+      "file": "PaletteSpring.css",
+      "primaryColor": "#16a34a",
+      "inlined": false
+    },
+    {
+      "id": "winter",
+      "name": "Winter",
+      "description": "Cool blues, icy whites, and frosty grays - inspired by winter landscapes",
+      "author": "QwickApps",
+      "license": "PolyForm-Shield-1.0.0",
+      "version": "1.4.9",
+      "file": "PaletteWinter.css",
+      "primaryColor": "#0077be",
+      "inlined": false
+    }
+  ]
+}

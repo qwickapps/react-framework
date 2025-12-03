@@ -1,0 +1,217 @@
+/**
+ * Dynamic Logo Styles - Theme-aware colors for generic logo
+ * 
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ */
+
+.dynamic-logo {
+  transition: all 0.3s ease;
+}
+
+.dynamic-logo:hover {
+  transform: scale(1.05);
+}
+
+/* Logo text styling using theme colors - now vibrant by default */
+.logo-first-part {
+  fill: var(--theme-primary);
+  transition: fill 0.3s ease;
+}
+
+.logo-second-part {
+  fill: var(--theme-accent);
+  transition: fill 0.3s ease;
+}
+
+/* Animated badge elements using warning color for vibrancy */
+.logo-badge {
+  fill: var(--theme-warning);
+  transition: fill 0.3s ease;
+}
+
+/* Badge shape specific styles */
+.logo-badge-circle {
+  opacity: 0.9;
+}
+
+.logo-badge-star {
+  opacity: 0.8;
+  fill: var(--theme-accent, var(--theme-warning));
+}
+
+.logo-badge-square {
+  opacity: 0.7;
+  fill: var(--theme-info, var(--theme-warning));
+}
+
+.logo-badge-heart {
+  fill: var(--theme-error, var(--theme-warning));
+  opacity: 0.8;
+}
+
+/* Logo size variations */
+.logo-tiny {
+  font-size: 16px;
+}
+
+.logo-tiny .logo-first-part,
+.logo-tiny .logo-second-part {
+  font-size: 16px;
+}
+
+.logo-small {
+  font-size: 20px;
+}
+
+.logo-small .logo-first-part,
+.logo-small .logo-second-part {
+  font-size: 20px;
+}
+
+.logo-medium {
+  font-size: 28px;
+}
+
+.logo-medium .logo-first-part,
+.logo-medium .logo-second-part {
+  font-size: 28px;
+}
+
+.logo-large {
+  font-size: 36px;
+}
+
+.logo-large .logo-first-part,
+.logo-large .logo-second-part {
+  font-size: 36px;
+}
+
+.logo-extra-large {
+  font-size: 48px;
+}
+
+.logo-extra-large .logo-first-part,
+.logo-extra-large .logo-second-part {
+  font-size: 48px;
+}
+
+.dynamic-logo.logo-high-contrast .logo-first-part {
+  opacity: 1;
+  filter: drop-shadow(0 0 2px var(--theme-accent));
+}
+
+.dynamic-logo.logo-high-contrast .logo-second-part {
+  opacity: 1;
+  filter: drop-shadow(0 0 2px var(--theme-warning));
+}
+
+.dynamic-logo.logo-high-contrast .logo-badge {
+  opacity: 1;
+  filter: drop-shadow(0 0 2px var(--theme-primary));
+}
+
+/* Monochrome version - pure black/white for maximum contrast */
+.dynamic-logo.logo-monochrome .logo-first-part {
+  fill: #000000;
+  font-weight: 900;
+}
+
+.dynamic-logo.logo-monochrome .logo-second-part {
+  fill: #000000;
+  font-weight: 900;
+}
+
+.dynamic-logo.logo-monochrome .logo-badge {
+  fill: #000000;
+  opacity: 0.8;
+}
+
+/* Dark theme monochrome */
+html[data-theme="dark"] .dynamic-logo.logo-monochrome .logo-first-part {
+  fill: #ffffff;
+}
+
+html[data-theme="dark"] .dynamic-logo.logo-monochrome .logo-second-part {
+  fill: #ffffff;
+}
+
+html[data-theme="dark"] .dynamic-logo.logo-monochrome .logo-badge {
+  fill: #ffffff;
+}
+
+/* On primary background - designed for use on primary color backgrounds */
+.dynamic-logo.logo-on-primary .logo-first-part {
+  fill: var(--theme-text-inverted, #ffffff);
+  font-weight: 700;
+}
+
+.dynamic-logo.logo-on-primary .logo-second-part {
+  fill: var(--theme-accent-light, #60a5fa);
+  font-weight: 700;
+}
+
+.dynamic-logo.logo-on-primary .logo-badge {
+  fill: var(--theme-warning, #ffb020);
+  opacity: 0.9;
+}
+
+/* Alternative colorway for different contexts */
+.dynamic-logo.colorway-accent .logo-first-part {
+  fill: var(--theme-accent, var(--theme-success));
+}
+
+.dynamic-logo.colorway-accent .logo-second-part {
+  fill: var(--theme-info);
+}
+
+.dynamic-logo.colorway-accent .logo-badge {
+  fill: var(--theme-error);
+}
+
+/* Vibrant colorway for cards and content areas */
+.dynamic-logo.colorway-vibrant .logo-first-part {
+  fill: var(--theme-primary);
+}
+
+.dynamic-logo.colorway-vibrant .logo-second-part {
+  fill: var(--theme-accent, var(--theme-success));
+}
+
+.dynamic-logo.colorway-vibrant .logo-badge {
+  fill: var(--theme-warning);
+}
+
+/* Ensure default variant has consistent styling */
+.dynamic-logo.logo-default .logo-first-part {
+  fill: var(--theme-primary, #3b82f6);
+}
+
+.dynamic-logo.logo-default .logo-second-part {
+  fill: var(--theme-accent, var(--theme-secondary, #6366f1));
+}
+
+.dynamic-logo.logo-default .logo-badge {
+  fill: var(--theme-warning, #f59e0b);
+}
+
+/* Example custom classes for demonstration */
+.custom-first-part {
+  fill: #ff6b35 !important;
+  font-weight: 900 !important;
+}
+
+.custom-second-part {
+  fill: #004e89 !important;
+  font-weight: 200 !important;
+}
+
+.custom-styling {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 0 3px rgba(255, 107, 53, 0.4));
+}
+
+/* Example gradient text effect (for modern browsers) */
+.gradient-text {
+  fill: url(#textGradient);
+  font-weight: 600;
+}

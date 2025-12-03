@@ -1,0 +1,172 @@
+/**
+ * Autumn Color Palette
+ * 
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ * 
+ * Warm oranges, golden yellows, and earthy browns - inspired by fall foliage
+ */
+
+/* ===== AUTUMN PALETTE - LIGHT THEME ===== */
+html[data-palette="autumn"]:not([data-theme="dark"]), 
+html[data-palette="autumn"][data-theme="light"] {
+  /* Primary palette - Burnt orange */
+  --palette-primary-main: #ea580c;
+  --palette-primary-light: #fb923c;
+  --palette-primary-dark: #c2410c;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary palette - Rich amber */
+  --palette-secondary-main: #b45309;
+  --palette-secondary-light: #d97706;
+  --palette-secondary-dark: #92400e;
+  --palette-on-secondary: #ffffff;
+
+  /* Surface palette - Cream */
+  --palette-surface-main: #fffbeb;
+  --palette-surface-variant: #fef3c7;
+  --palette-surface-elevated: #ffffff;
+  --palette-on-surface: #451a03;
+
+  /* Background palette - Warm ivory */
+  --palette-background-main: #fefce8;
+  --palette-background-dark: #fef3c7;
+  --palette-background-overlay: rgba(254, 252, 232, 0.95);
+  --palette-on-background: #78350f;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(254, 252, 232, 0.98);
+  --palette-header-bg-end: rgba(254, 252, 232, 0.95);
+  --palette-header-collapsed-bg-start: rgba(254, 252, 232, 0.99);
+  --palette-header-collapsed-bg-end: rgba(254, 252, 232, 0.96);
+  
+  /* Text palette - Rich brown */
+  --palette-text-primary: #451a03;
+  --palette-text-secondary: #78350f;
+  --palette-text-disabled: rgba(69, 26, 3, 0.38);
+  --palette-text-inverted: #ffffff;
+  
+  /* Border palette - Tan */
+  --palette-border-main: #d4d4aa;
+  --palette-border-light: rgba(69, 26, 3, 0.12);
+  --palette-border-lighter: rgba(69, 26, 3, 0.05);
+  --palette-border-medium: #a8a29e;
+  
+  /* Success palette - Forest green */
+  --palette-success-main: #16a34a;
+  --palette-success-light: #dcfce7;
+  --palette-success-dark: #14532d;
+  --palette-success-border: #bbf7d0;
+  
+  /* Error palette - Crimson */
+  --palette-error-main: #dc2626;
+  --palette-error-light: #fee2e2;
+  --palette-error-dark: #7f1d1d;
+  --palette-error-border: #fecaca;
+  
+  /* Warning palette - Amber */
+  --palette-warning-main: #f59e0b;
+  --palette-warning-light: #fef3c7;
+  --palette-warning-dark: #78350f;
+  --palette-warning-border: #fde68a;
+  
+  /* Info palette - Teal */
+  --palette-info-main: #0891b2;
+  --palette-info-light: #e6fffa;
+  --palette-info-dark: #164e63;
+  --palette-on-info: #ffffff;
+  --palette-info-border: #67e8f9;
+  
+  /* Accent palette - Deep crimson */
+  --palette-accent-main: #dc2626;
+  --palette-accent-light: #f87171;
+  --palette-accent-dark: #991b1b;
+  --palette-on-accent: #ffffff;
+
+  /* Control palette - Walnut */
+  --palette-control-main: #451a03;
+  --palette-control-light: #78350f;
+  --palette-control-text: #fef3c7;
+  --palette-control-border: #92400e;
+}
+
+/* ===== AUTUMN PALETTE - DARK THEME ===== */
+html[data-palette="autumn"][data-theme="dark"] {
+  /* Primary palette - Glowing ember */
+  --palette-primary-main: #fb923c;
+  --palette-primary-light: #fdba74;
+  --palette-primary-dark: #ea580c;
+  --palette-on-primary: #1c1917;
+
+  /* Secondary palette - Golden glow */
+  --palette-secondary-main: #fbbf24;
+  --palette-secondary-light: #fcd34d;
+  --palette-secondary-dark: #f59e0b;
+  --palette-on-secondary: #1c1917;
+
+  /* Surface palette - Dark wood */
+  --palette-surface-main: #1c1917;
+  --palette-surface-variant: #292524;
+  --palette-surface-elevated: #44403c;
+  --palette-on-surface: #fef3c7;
+
+  /* Background palette - Deep earth */
+  --palette-background-main: #0c0a09;
+  --palette-background-dark: #1c1917;
+  --palette-background-overlay: rgba(28, 25, 23, 0.95);
+  --palette-on-background: #d6d3d1;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(12, 10, 9, 0.98);
+  --palette-header-bg-end: rgba(12, 10, 9, 0.95);
+  --palette-header-collapsed-bg-start: rgba(12, 10, 9, 0.99);
+  --palette-header-collapsed-bg-end: rgba(12, 10, 9, 0.96);
+  
+  /* Text palette - Warm light */
+  --palette-text-primary: #fef3c7;
+  --palette-text-secondary: #d6d3d1;
+  --palette-text-disabled: rgba(254, 243, 199, 0.38);
+  --palette-text-inverted: #0c0a09;
+  
+  /* Border palette - Copper */
+  --palette-border-main: #78716c;
+  --palette-border-light: rgba(254, 243, 199, 0.12);
+  --palette-border-lighter: rgba(254, 243, 199, 0.05);
+  --palette-border-medium: #57534e;
+  
+  /* Success palette - Pine */
+  --palette-success-main: #4ade80;
+  --palette-success-light: #14532d;
+  --palette-success-dark: #22c55e;
+  --palette-success-border: #166534;
+  
+  /* Error palette - Fire */
+  --palette-error-main: #f87171;
+  --palette-error-light: #7f1d1d;
+  --palette-error-dark: #ef4444;
+  --palette-error-border: #991b1b;
+  
+  /* Warning palette - Harvest gold */
+  --palette-warning-main: #eab308;
+  --palette-warning-light: #78350f;
+  --palette-warning-dark: #ca8a04;
+  --palette-warning-border: #a16207;
+  
+  /* Info palette - River teal */
+  --palette-info-main: #22d3ee;
+  --palette-info-light: #164e63;
+  --palette-info-dark: #06b6d4;
+  --palette-on-info: #0c0a09;
+  --palette-info-border: #0891b2;
+  
+  /* Accent palette - Harvest crimson */
+  --palette-accent-main: #b91c1c;
+  --palette-accent-light: #dc2626;
+  --palette-accent-dark: #7f1d1d;
+  --palette-on-accent: #fef3c7;
+
+  /* Control palette - Charcoal */
+  --palette-control-main: #292524;
+  --palette-control-light: #44403c;
+  --palette-control-text: #f5f5f4;
+  --palette-control-border: #57534e;
+}

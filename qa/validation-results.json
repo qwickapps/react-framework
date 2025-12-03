@@ -1,0 +1,70 @@
+{
+  "storybook": {
+    "status": "pass",
+    "message": "Storybook accessible at http://localhost:6006"
+  },
+  "registration": {
+    "status": "pass",
+    "components": [
+      "Container",
+      "Code",
+      "Section",
+      "Button",
+      "Image",
+      "Text",
+      "HeroBlock",
+      "GridLayout",
+      "GridCell",
+      "TextInputField",
+      "SelectInputField",
+      "HtmlInputField",
+      "ChoiceInputField",
+      "SwitchInputField",
+      "FormBlock"
+    ],
+    "missing": []
+  },
+  "serialization": {
+    "status": "warning",
+    "demos": [
+      "Button",
+      "ChoiceInputField",
+      "Code",
+      "Container",
+      "FormBlock",
+      "FormComponents",
+      "GridCell",
+      "GridLayout",
+      "HeroBlock",
+      "HtmlInputField",
+      "Image",
+      "Section",
+      "SelectInputField",
+      "Text",
+      "TextInputField"
+    ],
+    "errors": [
+      "FormComponents: Not using makeSerializationStory template"
+    ]
+  },
+  "security": {
+    "status": "pass",
+    "checks": [
+      "✅ Code component uses content-prop strategy",
+      "✅ Container component uses react-children strategy (default)",
+      "✅ Section component uses react-children strategy (default)"
+    ]
+  },
+  "roundTrip": {
+    "status": "pass",
+    "tests": [
+      "Text: Ready for browser testing",
+      "Button: Ready for browser testing",
+      "Image: Ready for browser testing"
+    ]
+  },
+  "overall": {
+    "score": 94,
+    "status": "production-ready"
+  }
+}

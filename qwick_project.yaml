@@ -1,0 +1,69 @@
+name: QwickApps React Framework
+description: >
+  Core React component library and theme system for QwickApps platform.
+  Provides standardized UI components, theming system, and design tokens
+  for consistent user experiences across all QwickApps products.
+
+type: framework
+category: ui-library
+framework: react
+language: typescript
+
+architecture:
+  type: component-library
+  components:
+    - theme-system
+    - ui-components
+    - design-tokens
+    - storybook-docs
+  patterns:
+    - atomic-design
+    - theme-provider
+    - component-composition
+
+dependencies:
+  runtime:
+    - react
+    - emotion
+    - typescript
+  development:
+    - storybook
+    - jest
+    - react-testing-library
+  internal:
+    - "@qwickapps/logging"
+    - "@qwickapps/schema"
+
+integrations:
+  - storybook
+  - jest
+  - webpack
+  - npm-registry
+
+capabilities:
+  - component-library
+  - theme-system
+  - design-tokens
+  - accessibility-support
+  - responsive-design
+
+outputs:
+  - dist/
+  - storybook-static/
+  - docs/
+
+quality:
+  linting: eslint
+  formatting: prettier
+  testing: jest
+  coverage_threshold: 90
+  accessibility: wcag-2.1-aa
+  bundle_analysis: enabled
+
+deployment:
+  type: npm-package
+  registry: npmjs
+  storybook: vercel
+
+status: released
+priority: critical

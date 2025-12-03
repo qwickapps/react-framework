@@ -1,0 +1,432 @@
+/**
+ * Page Component Styles - Clean Architecture
+ * 
+ * Separation of concerns:
+ * - Normal view: Only content styling, no print assumptions
+ * - Print view: Clean print defaults with CSS variable-driven customization
+ * - No hardcoded colors, margins, or paddings
+ */
+
+/* =================== CSS VARIABLE DEFAULTS =================== */
+
+.page {
+  /* Normal view variables - theme-based */
+  --page-background: var(--theme-surface, #ffffff);
+  --page-text-color: var(--theme-on-surface, #000000);
+  
+  /* Padding system - no hardcoded values */
+  --page-padding-none: 0;
+  --page-padding-small: var(--theme-spacing-small, 1rem);
+  --page-padding-medium: var(--theme-spacing-medium, 1.5rem);
+  --page-padding-large: var(--theme-spacing-large, 2rem);
+  
+  /* Print variables - configurable defaults */
+  --print-page-size: A4;
+  --print-page-margins: 12mm; /* Standard default */
+  --print-background: transparent;
+  --print-background-first-page: var(--print-background, transparent);
+  --print-header-height: 0px; /* No header by default */
+  --print-footer-height: 0px; /* No footer by default */
+  
+  /* Base page setup */
+  min-height: 100%;
+  width: 100%;
+  background: var(--page-background);
+  color: var(--page-text-color);
+}
+
+/* =================== NORMAL VIEW - CONTENT ONLY =================== */
+
+.page-content {
+  /* Content has no default margin/padding - completely controlled by props */
+  margin: 0;
+  padding: 0;
+  background: transparent; /* Never assume background - inherit from page or theme */
+  color: inherit;
+  line-height: var(--theme-line-height, 1.6);
+  overflow-y: auto;
+}
+
+/* =================== PAGE VARIANTS (NORMAL VIEW) =================== */
+
+
+.page-variant-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.page-variant-narrow {
+  max-width: var(--page-max-width-narrow, 600px);
+  margin: 0 auto;
+}
+
+.page-variant-wide {
+  max-width: var(--page-max-width-wide, 1400px);
+  margin: 0 auto;
+}
+
+.page-variant-fullwidth {
+  max-width: none;
+  width: 100%;
+}
+
+/* =================== PADDING (CONFIGURABLE) =================== */
+
+.page-padding-none {
+  padding: var(--page-padding-none);
+}
+
+.page-padding-small {
+  padding: var(--page-padding-small);
+}
+
+.page-padding-medium {
+  padding: var(--page-padding-medium);
+}
+
+.page-padding-large {
+  padding: var(--page-padding-large);
+}
+
+/* =================== BACKGROUND (THEME-BASED) =================== */
+
+.page-background-default {
+  background: transparent;
+}
+
+.page-background-surface {
+  background: var(--theme-surface);
+}
+
+.page-background-alternate {
+  background: var(--theme-surface-variant);
+}
+
+/* =================== MAX WIDTH (CONFIGURABLE) =================== */
+
+.page-max-width-small {
+  max-width: var(--page-max-width-small, 600px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-max-width-medium {
+  max-width: var(--page-max-width-medium, 800px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-max-width-large {
+  max-width: var(--page-max-width-large, 1200px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-max-width-extra-large {
+  max-width: var(--page-max-width-extra-large, 1400px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-max-width-none {
+  max-width: none;
+}
+
+/* =================== PRINT STYLES - CLEAN DEFAULTS =================== */
+
+@media print {
+  /* Default @page - use standard margins */
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+  
+  /* Zero margins for borderless/edge-to-edge printing */
+  .page-print-mode.page-print-borderless {
+    @page {
+      margin: 0mm;
+    }
+  }
+  
+  /* Page margin variants with explicit values (CSS variables don't work reliably in @page) */
+  .page-print-mode.page-print-compact:not(.page-print-borderless) {
+    @page {
+      margin: 6mm;
+    }
+  }
+  
+  .page-print-mode.page-print-large:not(.page-print-borderless) {
+    @page {
+      margin: 20mm;
+    }
+  }
+  
+  .page-print-mode.page-print-formal:not(.page-print-borderless) {
+    @page {
+      margin: 25mm;
+    }
+  }
+  
+  /* Base print page setup */
+  .page-print-mode {
+    /* Clean print defaults */
+    background: var(--print-background, transparent);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100vw;
+    max-width: none !important;
+    box-sizing: border-box;
+    overflow: visible;
+    
+    /* Ensure colors print */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* Edge-to-edge background support */
+  .page-print-mode.has-background::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--print-background, transparent);
+    background-size: var(--print-background-size, cover);
+    background-position: var(--print-background-position, center);
+    background-repeat: var(--print-background-repeat, no-repeat);
+    z-index: -1;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* First page background override */
+  .page-print-mode.has-background:first-child::before {
+    background: var(--print-background-first-page, var(--print-background, transparent));
+  }
+  
+  /* =================== HEADERS AND FOOTERS - OPTIONAL =================== */
+  
+  /* Headers - positioned at page top */
+  .page-print-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    
+    /* Completely configurable dimensions */
+    height: var(--print-header-height, 0px);
+    min-height: var(--print-header-height, 0px);
+    max-height: var(--print-header-height, 0px);
+    
+    /* Headers/footers positioned at true edges - no margin/padding */
+    margin: 0;
+    padding: 0;
+    background: var(--print-header-background, transparent);
+    
+    /* Overflow handling */
+    overflow: var(--print-header-overflow, hidden);
+    box-sizing: border-box;
+    
+    /* Layout - configurable */
+    display: var(--print-header-display, flex);
+    align-items: var(--print-header-align-items, center);
+    justify-content: var(--print-header-justify-content, flex-start);
+  }
+  
+  /* First-page-only placeholder containers are hidden by default; app can override */
+  .page-print-header-first-page,
+  .page-print-footer-first-page {
+    display: none !important;
+  }
+  
+  /* Footers - positioned at page bottom */
+  .page-print-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    
+    /* Completely configurable dimensions */
+    height: var(--print-footer-height, 0px);
+    min-height: var(--print-footer-height, 0px);
+    max-height: var(--print-footer-height, 0px);
+    
+    /* Headers/footers positioned at true edges - no margin/padding */
+    margin: 0;
+    padding: 0;
+    background: var(--print-footer-background, transparent);
+    
+    /* Overflow handling */
+    overflow: var(--print-footer-overflow, hidden);
+    box-sizing: border-box;
+    
+    /* Layout - configurable */
+    display: var(--print-footer-display, flex);
+    align-items: var(--print-footer-align-items, center);
+    justify-content: var(--print-footer-justify-content, center);
+  }
+  
+  /* Ensure header/footer content respects dimensions */
+  .page-print-header *,
+  .page-print-footer * {
+    box-sizing: border-box;
+    max-height: 100%;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* =================== CONTENT MARGINS - DYNAMIC =================== */
+  
+  .page-print-mode .page-content {
+    /* Use box-sizing to ensure consistent behavior across all pages */
+    box-sizing: border-box !important;
+    
+    /* Offset content for header/footer */
+    margin: 0 !important;
+    padding: 0 !important;
+    
+    /* Add a repeatable top gap for header and bottom gap for footer per fragmented page */
+    padding-top: var(--print-header-height, 0) !important;
+    padding-bottom: var(--print-footer-height, 0) !important;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    
+    /* Content has transparent background */
+    background: transparent !important;
+    
+    /* Allow content to flow across pages */
+    overflow: visible;
+    width: 100%;
+    
+    /* Remove any debug outlines in print */
+    outline: none !important;
+  }
+  
+  /* Force all child elements to respect parent margins */
+  .page-print-mode .page-content * {
+    position: relative !important;
+  }
+  
+  /* Ensure no child element has negative margins that could cause bleed */
+  .page-print-mode .page-content > * {
+    margin-top: 0 !important;
+  }
+  
+  /* Content positioning is handled above */
+  
+  /* =================== CLEAN PRINT OVERRIDES =================== */
+  
+  /* Remove interactive elements */
+  .page-print-mode .page-header-actions,
+  .page-print-mode button:not(.page-print-header button):not(.page-print-footer button),
+  .page-print-mode .page-loading,
+  .page-print-mode .page-error,
+  .page-print-mode [data-print-hide="true"] {
+    display: none !important;
+  }
+  
+  /* Remove app-level elements */
+  .page-print-mode ~ .app-footer,
+  .page-print-mode ~ footer,
+  .page-print-mode ~ [data-testid="footer"] {
+    display: none !important;
+  }
+  
+  /* Clean link styles */
+  .page-print-mode a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Ensure all content prints with colors */
+  .page-print-mode,
+  .page-print-mode * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Better page break handling */
+  .page-print-mode * {
+    box-sizing: border-box;
+  }
+  
+  /* Allow controlled page breaking */
+  .page-break-before {
+    page-break-before: always;
+    break-before: page;
+  }
+  
+  .page-break-after {
+    page-break-after: always;
+    break-after: page;
+  }
+  
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  .page-break-inside-auto {
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+  
+  /* Additional content flow control for page breaks */
+  .page-print-mode .page-content::before {
+    content: '';
+    display: block;
+  }
+  
+  /* Additional content flow control for page breaks */
+  .page-print-mode .page-content::after {
+    content: '';
+    display: block;
+  }
+}
+
+/* =================== RESPONSIVE ADJUSTMENTS (NORMAL VIEW ONLY) =================== */
+
+@media screen and (max-width: 768px) {
+  .page-padding-medium {
+    padding: var(--page-padding-small);
+  }
+  
+  .page-padding-large {
+    padding: var(--page-padding-medium);
+  }
+  
+  /* Adjust max widths on mobile */
+  .page-max-width-small,
+  .page-max-width-medium,
+  .page-max-width-large,
+  .page-max-width-extra-large {
+    margin-left: var(--theme-spacing-small, 1rem);
+    margin-right: var(--theme-spacing-small, 1rem);
+    max-width: calc(100% - 2 * var(--theme-spacing-small, 1rem));
+  }
+}
+
+/* =================== ACCESSIBILITY =================== */
+
+@media (prefers-contrast: high) {
+  .page {
+    /* High contrast adjustments use theme variables */
+    background: var(--theme-surface-high-contrast, var(--theme-surface));
+    color: var(--theme-on-surface-high-contrast, var(--theme-on-surface));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Remove animations - no hardcoded transitions to disable */
+  .page * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

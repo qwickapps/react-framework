@@ -1,0 +1,172 @@
+/**
+ * Cosmic Color Palette
+ * 
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ * 
+ * Modern purple gradient for creative and tech brands - inspired by cosmic nebulae
+ */
+
+/* ===== COSMIC PALETTE - LIGHT THEME ===== */
+html[data-palette="cosmic"]:not([data-theme="dark"]), 
+html[data-palette="cosmic"][data-theme="light"] {
+  /* Primary palette - Deep cosmic purple */
+  --palette-primary-main: #8b5cf6;
+  --palette-primary-light: #a78bfa;
+  --palette-primary-dark: #7c3aed;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary palette - Violet accents */
+  --palette-secondary-main: #8b5cf6;
+  --palette-secondary-light: #c4b5fd;
+  --palette-secondary-dark: #6d28d9;
+  --palette-on-secondary: #ffffff;
+
+  /* Surface palette - Stardust */
+  --palette-surface-main: #faf7ff;
+  --palette-surface-variant: #f3e8ff;
+  --palette-surface-elevated: #ffffff;
+  --palette-on-surface: #4c1d95;
+
+  /* Background palette - Galaxy mist */
+  --palette-background-main: #fef7ff;
+  --palette-background-dark: #fae8ff;
+  --palette-background-overlay: rgba(254, 247, 255, 0.95);
+  --palette-on-background: #6b21a8;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(254, 247, 255, 0.98);
+  --palette-header-bg-end: rgba(254, 247, 255, 0.95);
+  --palette-header-collapsed-bg-start: rgba(254, 247, 255, 0.99);
+  --palette-header-collapsed-bg-end: rgba(254, 247, 255, 0.96);
+  
+  /* Text palette - Deep space */
+  --palette-text-primary: #4c1d95;
+  --palette-text-secondary: #7c3aed;
+  --palette-text-disabled: rgba(76, 29, 149, 0.38);
+  --palette-text-inverted: #ffffff;
+  
+  /* Border palette - Aurora */
+  --palette-border-main: #c4b5fd;
+  --palette-border-light: rgba(76, 29, 149, 0.12);
+  --palette-border-lighter: rgba(76, 29, 149, 0.05);
+  --palette-border-medium: #a78bfa;
+  
+  /* Success palette - Emerald nebula */
+  --palette-success-main: #10b981;
+  --palette-success-light: #d1fae5;
+  --palette-success-dark: #047857;
+  --palette-success-border: #6ee7b7;
+  
+  /* Error palette - Red giant */
+  --palette-error-main: #ef4444;
+  --palette-error-light: #fee2e2;
+  --palette-error-dark: #b91c1c;
+  --palette-error-border: #fecaca;
+  
+  /* Warning palette - Solar flare */
+  --palette-warning-main: #f59e0b;
+  --palette-warning-light: #fef3c7;
+  --palette-warning-dark: #b45309;
+  --palette-warning-border: #fde68a;
+  
+  /* Info palette - Cosmic blue */
+  --palette-info-main: #3b82f6;
+  --palette-info-light: #dbeafe;
+  --palette-info-dark: #1d4ed8;
+  --palette-on-info: #ffffff;
+  --palette-info-border: #93c5fd;
+  
+  /* Accent palette - Pink nebula */
+  --palette-accent-main: #ec4899;
+  --palette-accent-light: #f472b6;
+  --palette-accent-dark: #be185d;
+  --palette-on-accent: #ffffff;
+  
+  /* Control palette - Void */
+  --palette-control-main: #1e1b4b;
+  --palette-control-light: #3730a3;
+  --palette-control-text: #e0e7ff;
+  --palette-control-border: #8b5cf6;
+}
+
+/* ===== COSMIC PALETTE - DARK THEME ===== */
+html[data-palette="cosmic"][data-theme="dark"] {
+  /* Primary palette - Neon purple */
+  --palette-primary-main: #a78bfa;
+  --palette-primary-light: #c4b5fd;
+  --palette-primary-dark: #8b5cf6;
+  --palette-on-primary: #1e1b4b;
+
+  /* Secondary palette - Electric violet */
+  --palette-secondary-main: #c4b5fd;
+  --palette-secondary-light: #ddd6fe;
+  --palette-secondary-dark: #a78bfa;
+  --palette-on-secondary: #1e1b4b;
+
+  /* Surface palette - Dark matter */
+  --palette-surface-main: #1e1b4b;
+  --palette-surface-variant: #312e81;
+  --palette-surface-elevated: #3730a3;
+  --palette-on-surface: #e0e7ff;
+
+  /* Background palette - Deep space */
+  --palette-background-main: #0f0c29;
+  --palette-background-dark: #1a1625;
+  --palette-background-overlay: rgba(15, 12, 41, 0.95);
+  --palette-on-background: #c4b5fd;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(15, 12, 41, 0.98);
+  --palette-header-bg-end: rgba(15, 12, 41, 0.95);
+  --palette-header-collapsed-bg-start: rgba(15, 12, 41, 0.99);
+  --palette-header-collapsed-bg-end: rgba(15, 12, 41, 0.96);
+  
+  /* Text palette - Starlight */
+  --palette-text-primary: #e0e7ff;
+  --palette-text-secondary: #c4b5fd;
+  --palette-text-disabled: rgba(224, 231, 255, 0.38);
+  --palette-text-inverted: #0f0c29;
+  
+  /* Border palette - Cosmic rays */
+  --palette-border-main: #4338ca;
+  --palette-border-light: rgba(224, 231, 255, 0.12);
+  --palette-border-lighter: rgba(224, 231, 255, 0.05);
+  --palette-border-medium: #312e81;
+  
+  /* Success palette - Green pulsar */
+  --palette-success-main: #34d399;
+  --palette-success-light: #047857;
+  --palette-success-dark: #10b981;
+  --palette-success-border: #065f46;
+  
+  /* Error palette - Red dwarf */
+  --palette-error-main: #f87171;
+  --palette-error-light: #b91c1c;
+  --palette-error-dark: #ef4444;
+  --palette-error-border: #991b1b;
+  
+  /* Warning palette - Orange giant */
+  --palette-warning-main: #fb7185;
+  --palette-warning-light: #881337;
+  --palette-warning-dark: #e11d48;
+  --palette-warning-border: #be123c;
+  
+  /* Info palette - Blue supergiant */
+  --palette-info-main: #60a5fa;
+  --palette-info-light: #1d4ed8;
+  --palette-info-dark: #3b82f6;
+  --palette-on-info: #0f0c29;
+  --palette-info-border: #2563eb;
+  
+  /* Accent palette - Magenta quasar */
+  --palette-accent-main: #f472b6;
+  --palette-accent-light: #f9a8d4;
+  --palette-accent-dark: #ec4899;
+  --palette-on-accent: #0f0c29;
+  
+  /* Control palette - Black hole */
+  --palette-control-main: #312e81;
+  --palette-control-light: #4338ca;
+  --palette-control-text: #f3f4f6;
+  --palette-control-border: #4338ca;
+}
