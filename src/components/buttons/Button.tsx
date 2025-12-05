@@ -295,16 +295,14 @@ export const Button: SerializableComponent<ButtonProps> = createSerializableView
 
     if (typeof (props as Record<string, unknown>).icon === 'string') {
       const iconComponent = getIconComponent((props as Record<string, unknown>).icon as string);
-      if (iconComponent) {
-        transformedProps.icon = iconComponent;
-      }
+      // Always transform: use the component if found, otherwise clear the string to prevent text rendering
+      transformedProps.icon = iconComponent || undefined;
     }
 
     if (typeof (props as Record<string, unknown>).endIcon === 'string') {
       const endIconComponent = getIconComponent((props as Record<string, unknown>).endIcon as string);
-      if (endIconComponent) {
-        transformedProps.endIcon = endIconComponent;
-      }
+      // Always transform: use the component if found, otherwise clear the string to prevent text rendering
+      transformedProps.endIcon = endIconComponent || undefined;
     }
 
     return transformedProps;

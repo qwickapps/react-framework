@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.3] - 2025-12-05
+
+### Fixed
+
+- **GridLayout equalHeight Fix**: Fixed `equalHeight` prop not working in MUI v6
+  - WHY: In MUI v6, Grid items using the new `size` prop don't have the `.MuiGrid-item` class, causing the equalHeight CSS selector to fail
+  - CHANGE: Updated CSS selector from `'& > .MuiGrid-item'` to `'& > .MuiGrid-root'` to target Grid children correctly in MUI v6
+  - IMPACT: GridLayout with `equalHeight={true}` now correctly makes all grid items the same height
+
+## [1.5.2] - 2025-12-05
+
+### Added
+
+- **Control Panel Icon Support**: Extended iconMap with 10 new icons for admin/control panel UIs
+  - WHY: Control panels and admin dashboards require specialized icons for keys, users, cache, and system management
+  - NEW ICONS: `key`, `vpn_key`, `person_search`, `manage_accounts`, `storage`, `refresh`, `block`, `check_circle`, `rotate_right`, `memory`
+  - All icons available via `getIconComponent()` function for consistent icon rendering
+
+### Fixed
+
+- **Scaffold Background Consistency**: Fixed visual inconsistency between navigation and content areas
+  - WHY: Admin panels had jarring color differences between nav bars and content areas in dark themes
+  - CHANGE: `--scaffold-background` now uses `--theme-surface` instead of `--theme-background` for unified appearance
+  - IMPACT: All scaffold-based layouts now have consistent background colors across all areas
+
+- **Button Icon Text Rendering Bug**: Fixed issue where unmapped icon names appeared as text in buttons
+  - WHY: When an icon string wasn't found in iconMap, the string was passed to MUI's startIcon causing text like "refresh Refresh" to appear
+  - FIX: Button finalize function now clears icon prop to `undefined` when icon is not found, preventing text rendering
+  - IMPACT: Buttons with unmapped icons now render cleanly without the icon instead of showing icon name as text
+
 ## [1.5.0] - 2025-12-02
 
 ### Added

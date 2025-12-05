@@ -163,7 +163,8 @@ function GridLayoutView({
         ...(width && { width: resolveDimension(width, 'width') }), // Override only if explicitly set
         ...(equalHeight && {
           alignItems: 'stretch',
-          '& > .MuiGrid-item': {
+          // Target direct Grid children - MUI v6 uses .MuiGrid-root for grid items with size prop
+          '& > .MuiGrid-root': {
             display: 'flex',
             '& > *': {
               width: '100%',

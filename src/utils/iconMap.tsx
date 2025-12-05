@@ -64,6 +64,17 @@ import {
   Architecture,
   Security,
   VerifiedUser,
+  // Additional icons for control panels and admin UIs
+  VpnKey,
+  Key,
+  PersonSearch,
+  ManageAccounts,
+  Storage,
+  Refresh,
+  Block,
+  CheckCircle,
+  RotateRight,
+  Memory,
 } from '@mui/icons-material';
 
 /**
@@ -166,6 +177,18 @@ export const iconMap: Record<string, IconMapping> = {
   sync: { emoji: '🔄', component: Sync },
   architecture: { emoji: '🏛️', component: Architecture },
   security: { emoji: '🔐', component: Security },
+
+  // Control Panel & Admin UI Icons
+  key: { emoji: '🔑', component: Key },
+  vpn_key: { emoji: '🔐', component: VpnKey },
+  person_search: { emoji: '🔍', component: PersonSearch },
+  manage_accounts: { emoji: '👥', component: ManageAccounts },
+  storage: { emoji: '💾', component: Storage },
+  refresh: { emoji: '🔄', component: Refresh },
+  block: { emoji: '🚫', component: Block },
+  check_circle: { emoji: '✅', component: CheckCircle },
+  rotate_right: { emoji: '🔄', component: RotateRight },
+  memory: { emoji: '🧠', component: Memory },
 };
 
 /**

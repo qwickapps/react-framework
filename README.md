@@ -4,6 +4,16 @@ A complete React framework for building modern, responsive applications with int
 
 ## What's New
 
+### December 5, 2025 - GridLayout equalHeight Fix (v1.5.3)
+
+- **GridLayout equalHeight Fix**: Fixed `equalHeight` prop not working in MUI v6 - updated CSS selector to target Grid children correctly
+
+### December 5, 2025 - Bug Fixes & Control Panel Icons (v1.5.2)
+
+- **Control Panel Icons**: 10 new icons for admin UIs (`key`, `refresh`, `storage`, `manage_accounts`, `person_search`, `block`, `check_circle`, etc.)
+- **Scaffold Background Fix**: Unified background colors between nav and content areas for consistent admin panel appearance
+- **Button Icon Bug Fix**: Fixed issue where unmapped icon names appeared as text (e.g., "refresh Refresh")
+
 ### December 2, 2025 - Major Feature Release (v1.5.0)
 
 #### New Components & Systems
