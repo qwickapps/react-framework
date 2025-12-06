@@ -98,16 +98,22 @@ html[data-palette="spring"][data-theme="dark"] {
   --palette-on-secondary: #0f1f0f;
 
   /* Surface palette - Dark moss */
-  --palette-surface-main: #0f1f0f;
-  --palette-surface-variant: #1a2e1a;
+  --palette-surface-main: #162816;
+  --palette-surface-variant: #1f351f;
   --palette-surface-elevated: #2d4a2d;
   --palette-on-surface: #dcfce7;
 
   /* Background palette - Deep forest */
-  --palette-background-main: #0a120a;
-  --palette-background-dark: #0f1f0f;
-  --palette-background-overlay: rgba(15, 31, 15, 0.95);
+  --palette-background-main: #060b06;
+  --palette-background-dark: #0c140c;
+  --palette-background-overlay: rgba(6, 11, 6, 0.95);
   --palette-on-background: #bbf7d0;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(6, 11, 6, 0.98);
+  --palette-header-bg-end: rgba(6, 11, 6, 0.95);
+  --palette-header-collapsed-bg-start: rgba(6, 11, 6, 0.99);
+  --palette-header-collapsed-bg-end: rgba(6, 11, 6, 0.96);
 
   /* Text palette - Moonlit green */
   --palette-text-primary: #dcfce7;

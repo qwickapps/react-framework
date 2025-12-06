@@ -323,18 +323,18 @@ const Scaffold: React.FC<ScaffoldProps> = ({
   };
 
   // Calculate layout spacing
+  // Base padding varies by screen size, plus extra space for nav elements
   const getLayoutSpacing = () => {
-    const paddingTop = showAppBar ? appBarHeight : 0;
-    let paddingBottom = 0;
-    let paddingLeft = 0;
+    // Base padding: 16px mobile, 24px tablet, 32px desktop
+    const basePadding = screenSize === 'mobile' ? 16 : screenSize === 'tablet' ? 24 : 32;
 
-    if (screenSize === 'mobile') {
-      paddingBottom = 80; // Bottom nav height
-    } else if (screenSize === 'tablet') {
-      paddingLeft = isRailExpanded ? 280 : 80; // Rail width
-    }
+    // Add nav element heights/widths to the appropriate side
+    const paddingTop = basePadding + (showAppBar ? appBarHeight : 0);
+    const paddingBottom = basePadding + (screenSize === 'mobile' ? 80 : 0); // Bottom nav height
+    const paddingLeft = basePadding + (screenSize === 'tablet' ? (isRailExpanded ? 280 : 80) : 0); // Rail width
+    const paddingRight = basePadding;
 
-    return { paddingTop, paddingBottom, paddingLeft };
+    return { paddingTop, paddingBottom, paddingLeft, paddingRight };
   };
 
   const layoutSpacing = getLayoutSpacing();
@@ -490,6 +490,7 @@ const Scaffold: React.FC<ScaffoldProps> = ({
           paddingTop: `${layoutSpacing.paddingTop}px`,
           paddingBottom: `${layoutSpacing.paddingBottom}px`,
           paddingLeft: `${layoutSpacing.paddingLeft}px`,
+          paddingRight: `${layoutSpacing.paddingRight}px`,
         }}
       >
         {children}

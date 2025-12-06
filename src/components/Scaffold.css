@@ -23,7 +23,7 @@
   --menu-border: var(--theme-outline-variant);
   --menu-shadow: rgba(0, 0, 0, 0.1);
   
-  --scaffold-background: var(--theme-surface);
+  --scaffold-background: var(--theme-background);
   --scaffold-surface: var(--theme-surface);
   --scaffold-on-surface: var(--theme-on-surface);
   --scaffold-primary: var(--theme-primary);
@@ -452,18 +452,7 @@
   min-height: 100vh;
   background: var(--scaffold-background);
   transition: padding 0.3s ease;
-  padding-top: var(--appbar-height, 64px);
-  padding-bottom: var(--bottom-nav-height, 80px);
   box-sizing: border-box;
-}
-
-/* Content inner wrapper for proper padding */
-.app-scaffold-content > * {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
 }
 
 /* =================== ANIMATIONS =================== */

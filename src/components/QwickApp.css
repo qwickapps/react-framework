@@ -436,6 +436,8 @@ button:focus,
 
 /* Improve standard element appearances */
 html, body, #root {
+  margin: 0;
+  padding: 0;
   background-color: var(--theme-surface) !important;
   color: var(--theme-on-surface) !important;
   font-family: 'Roboto', sans-serif;

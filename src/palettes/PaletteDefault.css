@@ -107,22 +107,22 @@ html[data-palette="default"][data-theme="dark"] {
   --palette-on-secondary: #ffffff;
 
   /* Surface */
-  --palette-surface-main: #1e1e1e;
-  --palette-surface-variant: #2a2a2a;
-  --palette-surface-elevated: #353535;
+  --palette-surface-main: #252525;
+  --palette-surface-variant: #2f2f2f;
+  --palette-surface-elevated: #3a3a3a;
   --palette-on-surface: #ffffff;
 
   /* Background */
-  --palette-background-main: #121212;
-  --palette-background-dark: #2a2a2a;
+  --palette-background-main: #0e0e0e;
+  --palette-background-dark: #1a1a1a;
   --palette-background-overlay: rgba(30, 30, 30, 0.95);
   --palette-on-background: #ffffff;
 
   /* Header background with transparency */
-  --palette-header-bg-start: rgba(18, 18, 18, 0.98);
-  --palette-header-bg-end: rgba(18, 18, 18, 0.95);
-  --palette-header-collapsed-bg-start: rgba(18, 18, 18, 0.99);
-  --palette-header-collapsed-bg-end: rgba(18, 18, 18, 0.96);
+  --palette-header-bg-start: rgba(14, 14, 14, 0.98);
+  --palette-header-bg-end: rgba(14, 14, 14, 0.95);
+  --palette-header-collapsed-bg-start: rgba(14, 14, 14, 0.99);
+  --palette-header-collapsed-bg-end: rgba(14, 14, 14, 0.96);
 
   /* Text palette */
   --palette-text-primary: #ffffff;

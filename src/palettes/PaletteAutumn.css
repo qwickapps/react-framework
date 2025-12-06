@@ -104,22 +104,22 @@ html[data-palette="autumn"][data-theme="dark"] {
   --palette-on-secondary: #1c1917;
 
   /* Surface palette - Dark wood */
-  --palette-surface-main: #1c1917;
-  --palette-surface-variant: #292524;
+  --palette-surface-main: #231f1d;
+  --palette-surface-variant: #302a27;
   --palette-surface-elevated: #44403c;
   --palette-on-surface: #fef3c7;
 
   /* Background palette - Deep earth */
-  --palette-background-main: #0c0a09;
-  --palette-background-dark: #1c1917;
+  --palette-background-main: #0a0807;
+  --palette-background-dark: #151210;
   --palette-background-overlay: rgba(28, 25, 23, 0.95);
   --palette-on-background: #d6d3d1;
 
   /* Header background with transparency */
-  --palette-header-bg-start: rgba(12, 10, 9, 0.98);
-  --palette-header-bg-end: rgba(12, 10, 9, 0.95);
-  --palette-header-collapsed-bg-start: rgba(12, 10, 9, 0.99);
-  --palette-header-collapsed-bg-end: rgba(12, 10, 9, 0.96);
+  --palette-header-bg-start: rgba(10, 8, 7, 0.98);
+  --palette-header-bg-end: rgba(10, 8, 7, 0.95);
+  --palette-header-collapsed-bg-start: rgba(10, 8, 7, 0.99);
+  --palette-header-collapsed-bg-end: rgba(10, 8, 7, 0.96);
   
   /* Text palette - Warm light */
   --palette-text-primary: #fef3c7;

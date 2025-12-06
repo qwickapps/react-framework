@@ -4,6 +4,12 @@ A complete React framework for building modern, responsive applications with int
 
 ## What's New
 
+### December 6, 2025 - Scaffold Layout & Spacing Improvements (v1.5.4)
+
+- **Scaffold Layout Spacing**: Responsive base padding (16px mobile, 24px tablet, 32px desktop) plus nav element clearance
+- **Scaffold Background Contrast**: Fixed nav/content contrast by using `--theme-background` for content areas
+- **Body Margin Reset**: Added CSS reset to eliminate browser default 8px body margin
+
 ### December 5, 2025 - GridLayout equalHeight Fix (v1.5.3)
 
 - **GridLayout equalHeight Fix**: Fixed `equalHeight` prop not working in MUI v6 - updated CSS selector to target Grid children correctly

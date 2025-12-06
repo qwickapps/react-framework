@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.4] - 2025-12-06
+
+### Fixed
+
+- **Scaffold Layout Spacing**: Improved content area padding system for consistent layouts
+  - WHY: Content area had inconsistent padding that didn't account for navigation placement
+  - CHANGE: Implemented responsive base padding (16px mobile, 24px tablet, 32px desktop) plus additional space for nav elements (app bar, rail, bottom nav)
+  - IMPACT: Content now has uniform padding on all sides with proper clearance for navigation elements
+
+- **Scaffold Background Contrast**: Fixed `--scaffold-background` to use `--theme-background` instead of `--theme-surface`
+  - WHY: Navigation and content areas had insufficient color contrast in dark themes
+  - CHANGE: Updated CSS variable mapping for proper visual separation between nav and content
+  - IMPACT: Better visual hierarchy between navigation surface and content background
+
+- **Body Margin Reset**: Added CSS reset for body margin and padding
+  - WHY: Browser default `margin: 8px` on body caused unwanted gaps around the application
+  - CHANGE: Added `margin: 0; padding: 0;` to `html, body, #root` reset in QwickApp.css
+  - IMPACT: Applications now render edge-to-edge without browser default margins
+
 ## [1.5.3] - 2025-12-05
 
 ### Fixed

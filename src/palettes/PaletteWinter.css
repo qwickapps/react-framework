@@ -104,22 +104,22 @@ html[data-palette="winter"][data-theme="dark"] {
   --palette-on-secondary: #020617;
 
   /* Surface palette - Dark frost */
-  --palette-surface-main: #0f172a;
+  --palette-surface-main: #172033;
   --palette-surface-variant: #1e293b;
   --palette-surface-elevated: #334155;
   --palette-on-surface: #f8fafc;
 
   /* Background palette - Winter night */
-  --palette-background-main: #020617;
-  --palette-background-dark: #0f172a;
+  --palette-background-main: #04080f;
+  --palette-background-dark: #0a1018;
   --palette-background-overlay: rgba(15, 23, 42, 0.95);
   --palette-on-background: #cbd5e1;
 
   /* Header background with transparency */
-  --palette-header-bg-start: rgba(2, 6, 23, 0.98);
-  --palette-header-bg-end: rgba(2, 6, 23, 0.95);
-  --palette-header-collapsed-bg-start: rgba(2, 6, 23, 0.99);
-  --palette-header-collapsed-bg-end: rgba(2, 6, 23, 0.96);
+  --palette-header-bg-start: rgba(4, 8, 15, 0.98);
+  --palette-header-bg-end: rgba(4, 8, 15, 0.95);
+  --palette-header-collapsed-bg-start: rgba(4, 8, 15, 0.99);
+  --palette-header-collapsed-bg-end: rgba(4, 8, 15, 0.96);
   
   /* Text palette - Snow and ice */
   --palette-text-primary: #f8fafc;

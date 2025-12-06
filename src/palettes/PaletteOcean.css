@@ -104,22 +104,22 @@ html[data-palette="ocean"][data-theme="dark"] {
   --palette-on-secondary: #0a1a1f;
 
   /* Surface palette - Abyss */
-  --palette-surface-main: #0a1a1f;
-  --palette-surface-variant: #164e63;
+  --palette-surface-main: #122830;
+  --palette-surface-variant: #1a3a45;
   --palette-surface-elevated: #0e7490;
   --palette-on-surface: #cffafe;
 
   /* Background palette - Ocean floor */
-  --palette-background-main: #020617;
-  --palette-background-dark: #0c1821;
+  --palette-background-main: #040a0d;
+  --palette-background-dark: #0a1418;
   --palette-background-overlay: rgba(10, 26, 31, 0.95);
   --palette-on-background: #5eead4;
 
   /* Header background with transparency */
-  --palette-header-bg-start: rgba(2, 6, 23, 0.98);
-  --palette-header-bg-end: rgba(2, 6, 23, 0.95);
-  --palette-header-collapsed-bg-start: rgba(2, 6, 23, 0.99);
-  --palette-header-collapsed-bg-end: rgba(2, 6, 23, 0.96);
+  --palette-header-bg-start: rgba(4, 10, 13, 0.98);
+  --palette-header-bg-end: rgba(4, 10, 13, 0.95);
+  --palette-header-collapsed-bg-start: rgba(4, 10, 13, 0.99);
+  --palette-header-collapsed-bg-end: rgba(4, 10, 13, 0.96);
   
   /* Text palette - Phosphorescent */
   --palette-text-primary: #cffafe;
