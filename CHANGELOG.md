@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.5] - 2025-12-06
+
+### Changed
+
+- Updated repository and homepage URLs to point to public GitHub org (https://github.com/qwickapps/react-framework)
+
 ## [1.5.4] - 2025-12-06
 
 ### Fixed

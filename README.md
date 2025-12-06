@@ -4,6 +4,10 @@ A complete React framework for building modern, responsive applications with int
 
 ## What's New
 
+### December 6, 2025 - Repository URLs Update (v1.5.5)
+
+- Updated repository and homepage URLs to point to public GitHub org
+
 ### December 6, 2025 - Scaffold Layout & Spacing Improvements (v1.5.4)
 
 - **Scaffold Layout Spacing**: Responsive base padding (16px mobile, 24px tablet, 32px desktop) plus nav element clearance

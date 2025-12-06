@@ -1,6 +1,6 @@
 {
   "name": "@qwickapps/react-framework",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "type": "module",
   "description": "Complete React framework with responsive navigation, flexible layouts, theming system, and reusable components for building modern applications.",
   "main": "dist/index.js",
@@ -178,7 +178,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/raajkumars/qwickapps.git",
-    "directory": "packages/qwickapps-react-framework"
-  }
+    "url": "https://github.com/qwickapps/react-framework.git"
+  },
+  "homepage": "https://github.com/qwickapps/react-framework#readme"
 }
