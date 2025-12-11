@@ -34,7 +34,7 @@
  * 
  * Copyright (c) 2025 QwickApps.com. All rights reserved.
  */
-import React, { cloneElement, useState } from 'react';
+import React, { cloneElement, useState, useEffect } from 'react';
 import { DataProvider, ThemeProvider, PrintModeProvider, NavigationProvider, type ThemeMode } from '../contexts';
 import { QwickAppContext, type QwickAppContextValue, type QwickAppProps } from '../contexts/QwickAppContext';
 import { type TemplateResolverConfig } from '../types';
@@ -125,6 +125,13 @@ export const QwickApp: React.FC<QwickAppComponentProps> = ({
   const updateConfig = (updates: Partial<Pick<QwickAppProps, 'logo' | 'enableScaffolding' | 'navigationItems' | 'appBar' | 'showAppBar' | 'appBarHeight' | 'showThemeSwitcher' | 'showPaletteSwitcher'>>) => {
     setAppConfig(prev => ({ ...prev, ...updates } as typeof prev));
   };
+
+  // Sync logo prop changes with internal state (for dynamic logo updates)
+  useEffect(() => {
+    if (resolvedConfig.logo !== appConfig.logo) {
+      setAppConfig(prev => ({ ...prev, logo: resolvedConfig.logo }));
+    }
+  }, [resolvedConfig.logo]);
 
   const contextValue: QwickAppContextValue = {
     appName: resolvedConfig.appName!, // Safe to use ! since we validated above
