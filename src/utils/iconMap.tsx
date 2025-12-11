@@ -75,6 +75,7 @@ import {
   CheckCircle,
   RotateRight,
   Memory,
+  LocalOffer,
 } from '@mui/icons-material';
 
 /**
@@ -189,6 +190,7 @@ export const iconMap: Record<string, IconMapping> = {
   check_circle: { emoji: '✅', component: CheckCircle },
   rotate_right: { emoji: '🔄', component: RotateRight },
   memory: { emoji: '🧠', component: Memory },
+  local_offer: { emoji: '🏷️', component: LocalOffer },
 };
 
 /**

@@ -38,7 +38,7 @@ import { usePrintMode } from '../../hooks/usePrintMode';
 import { PageTemplateSchema } from '../../schemas/PageTemplateSchema';
 import { PrintConfigSchema } from '../../schemas/PrintConfigSchema';
 import { toCssLength } from '../../utils/cssUtils';
-import { useSafeLocation } from '../../utils/reactUtils';
+import { useNavigation } from '../../contexts/NavigationContext';
 import { SafeSpan } from '../SafeSpan';
 import './Page.css';
 import { Box } from '@mui/material';
@@ -275,7 +275,7 @@ export const PageView: React.FC<PageViewProps> = ({
   }, [isPrintMode, printConfig]);
 
   // Route (fallback to current location)
-  const location = useSafeLocation();
+  const { location } = useNavigation();
   const actualRoute = resolved.route || location?.pathname || '';
 
   // Context value

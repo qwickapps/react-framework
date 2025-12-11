@@ -25,6 +25,7 @@ export * from './layout';
 export * from './pages';
 export { default as Scaffold } from './Scaffold';
 export type { ScaffoldProps, AppBarProps } from './Scaffold';
+export type { MenuItem } from './menu/MenuItem';
 export { default as ResponsiveMenu } from './ResponsiveMenu';
 export type { ResponsiveMenuProps } from './ResponsiveMenu';
 export * from './QwickApp';

@@ -35,7 +35,7 @@
  * Copyright (c) 2025 QwickApps.com. All rights reserved.
  */
 import React, { cloneElement, useState } from 'react';
-import { DataProvider, ThemeProvider, PrintModeProvider, type ThemeMode } from '../contexts';
+import { DataProvider, ThemeProvider, PrintModeProvider, NavigationProvider, type ThemeMode } from '../contexts';
 import { QwickAppContext, type QwickAppContextValue, type QwickAppProps } from '../contexts/QwickAppContext';
 import { type TemplateResolverConfig } from '../types';
 import { AppConfig } from '../config';
@@ -160,19 +160,21 @@ export const QwickApp: React.FC<QwickAppComponentProps> = ({
   const appContent = (
     <ErrorBoundary>
       <AccessibilityProvider>
-        <div className={`qwick-app ${className || ''}`} style={style}>
-          <ThemeProvider 
-            appId={resolvedConfig.appId} 
-            defaultTheme={resolvedConfig.defaultTheme} 
-            defaultPalette={resolvedConfig.defaultPalette}
-          >
-            <QwickAppContext.Provider value={contextValue}>
-              <PrintModeProvider>
-                {wrappedContent}
-              </PrintModeProvider>
-            </QwickAppContext.Provider>
-          </ThemeProvider>
-        </div>
+        <NavigationProvider>
+          <div className={`qwick-app ${className || ''}`} style={style}>
+            <ThemeProvider
+              appId={resolvedConfig.appId}
+              defaultTheme={resolvedConfig.defaultTheme}
+              defaultPalette={resolvedConfig.defaultPalette}
+            >
+              <QwickAppContext.Provider value={contextValue}>
+                <PrintModeProvider>
+                  {wrappedContent}
+                </PrintModeProvider>
+              </QwickAppContext.Provider>
+            </ThemeProvider>
+          </div>
+        </NavigationProvider>
       </AccessibilityProvider>
     </ErrorBoundary>
   );

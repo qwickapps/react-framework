@@ -7,55 +7,10 @@
 
 import { ReactNode } from 'react';
 
-/** Location type for routing */
-type LocationType = { pathname: string, search: string, hash: string };
-
-/**
- * Get the current location from browser or undefined in SSR
- * Works without relying on routing libraries
- * @returns {object | undefined} - The location object if in browser, otherwise undefined
- */
-export const useSafeLocation = (): LocationType | undefined => {
-  // Use browser location if available (works in any React app)
-  if (typeof window !== 'undefined') {
-    return {
-      pathname: window.location.pathname,
-      search: window.location.search,
-      hash: window.location.hash
-    };
-  }
-  return undefined;
-};
-
-/**
- * Navigate function type
- */
-export type NavigateFunction = (to: string | number, options?: unknown) => void;
-
-/**
- * Get a navigation function with fallback to window.location
- * Works without relying on routing libraries
- * @returns {NavigateFunction} - The navigate function
- */
-export const useSafeNavigate = (): NavigateFunction => {
-  // Return function that uses window.location
-  return (to: string | number) => {
-    if (typeof to === 'string') {
-      if (typeof window !== 'undefined') {
-        window.location.href = to;
-      }
-    } else if (typeof to === 'number') {
-      if (typeof window !== 'undefined' && window.history) {
-        window.history.go(to);
-      }
-    }
-  };
-};
-
 /**
  * Extract text content from ReactNode for code processing
  * Handles natural React usage like <Code>const x = 1;</Code>
- * 
+ *
  * @param node - The ReactNode to extract text from
  * @returns String representation of the node's text content
  */
@@ -73,7 +28,7 @@ export function extractTextFromReactNode(node: ReactNode): string {
   }
 
   if (Array.isArray(node)) {
-    return node.map(child => extractTextFromReactNode(child)).join('');
+    return node.map((child) => extractTextFromReactNode(child)).join('');
   }
 
   // For React elements, try to extract text content

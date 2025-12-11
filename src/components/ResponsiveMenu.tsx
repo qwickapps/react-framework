@@ -22,7 +22,7 @@ import { useQwickApp } from '../contexts/QwickAppContext';
 import Logo from './Logo';
 import { getIconComponent } from './buttons/Button';
 import './ResponsiveMenu.css';
-import { useSafeLocation, useSafeNavigate } from '../utils/reactUtils';
+import { useNavigation } from '../contexts/NavigationContext';
 import { loggers } from '../utils/logger';
 import type { MenuItem } from './menu/MenuItem';
 
@@ -63,9 +63,8 @@ const ResponsiveMenu: React.FC<ResponsiveMenuProps> = (props) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { appName, logo: contextLogo } = useQwickApp();
 
-  // React Router hooks (if available)
-  const navigate = useSafeNavigate();
-  const location = useSafeLocation();
+  // Navigation (uses React Router if available, falls back to window.location)
+  const { navigate, location } = useNavigation();
   const currentPath = location?.pathname;
   
   // Debug logging

@@ -3,6 +3,8 @@ export { DataProvider, t, T, useData, useDataContext, useDataProvider, useResolv
 export type { DataProviderProps } from './DataContext';
 export { DimensionsProvider, useDimensions } from './DimensionsContext';
 export type { DimensionsContextValue, DimensionTokens } from './DimensionsContext';
+export { NavigationProvider, useNavigation } from './NavigationContext';
+export type { NavigateFunction, NavigationContextValue, NavigationLocation } from './NavigationContext';
 export { PaletteProvider, usePalette } from './PaletteContext';
 export type { PaletteConfig, PaletteContextValue } from './PaletteContext';
 export { ThemeProvider, useTheme } from './ThemeContext';

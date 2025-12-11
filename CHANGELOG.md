@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.6] - 2025-12-09
+
+### Added
+
+- **NavigationContext**: New context-based navigation system that properly integrates with React Router
+  - WHY: Previous `useSafeNavigate` hook violated React's Rules of Hooks by using try/catch around hook calls, causing navigation issues especially with React Router's basename
+  - `NavigationProvider` automatically detects if running inside React Router using `UNSAFE_NavigationContext`
+  - `useNavigation()` hook returns `{ navigate, location }` that works with both React Router and fallback to `window.location`
+  - Navigation now properly respects React Router's `basename` prop for nested routing scenarios
+  - Wrapped in `QwickApp` so all apps automatically get navigation support
+
+### Removed
+
+- **useSafeNavigate and useSafeLocation**: Removed from `reactUtils.tsx` in favor of `useNavigation()` from NavigationContext
+  - WHY: These functions violated React's Rules of Hooks and caused navigation issues with React Router's basename
+
+### Changed
+
+- **QwickApp**: Now includes `NavigationProvider` wrapper to provide navigation context to all child components
+- **Scaffold**: Updated to use `useNavigation()` instead of `useSafeNavigate`/`useSafeLocation`
+- **ResponsiveMenu**: Updated to use `useNavigation()` for consistent navigation behavior
+- **Page**: Updated to use `useNavigation()` for location tracking
+
 ## [1.5.5] - 2025-12-06
 
 ### Changed

@@ -24,7 +24,7 @@ import PaletteSwitcher from './buttons/PaletteSwitcher';
 import { RadioButtonUnchecked as DefaultIcon } from '@mui/icons-material';
 import { getIconComponent } from './buttons/Button';
 import './Scaffold.css';
-import { useSafeLocation, useSafeNavigate } from '../utils/reactUtils';
+import { useNavigation } from '../contexts/NavigationContext';
 import { loggers } from '../utils/logger';
 import type { MenuItem } from './menu/MenuItem';
 
@@ -92,9 +92,8 @@ const Scaffold: React.FC<ScaffoldProps> = ({
   const [isRailExpanded, setIsRailExpanded] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  // React Router hooks (if available)
-  const location = useSafeLocation();
-  const navigate = useSafeNavigate();
+  // Navigation (uses React Router if available, falls back to window.location)
+  const { navigate, location } = useNavigation();
   const currentPath = isMounted ? location?.pathname : undefined;
   
   // Debug logging for navigation
