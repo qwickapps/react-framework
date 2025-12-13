@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **iconMap**: Added 20+ commonly used icons that were missing from the registry
+  - Users: `people`, `users`, `account_circle`
+  - Auth: `login`, `logout`, `shield`
+  - Navigation: `explore`
+  - Media: `photo_library`, `play_arrow`, `play`
+  - Status: `notifications`, `heart` (alias for favorite)
+  - Business: `workspace_premium`
+  - Tech: `rocket`, `cloud`
+  - Content: `library_books`, `mail` (alias for email)
+- **iconMap**: Added aliases for common naming variations (e.g., `users`→`people`, `mail`→`email`)
+- **iconMap tests**: 22 unit tests covering all iconMap functionality
+
+### Changed
+
+- **iconMap**: Reorganized icon definitions by category (Actions, Auth, Business, etc.) for better maintainability
+- **iconMap**: Improved fallback behavior - unmapped icons now return `HelpOutline` with console warning instead of broken Icon font reference
+
 ## [1.5.6] - 2025-12-09
 
 ### Added

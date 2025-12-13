@@ -1,81 +1,101 @@
 /**
  * Icon Mapping Utility
- * 
+ *
  * Provides centralized icon mapping for both Material-UI components and emoji representations.
  * Used across the framework for consistent icon rendering in buttons, navigation, admin UI, etc.
- * 
+ *
+ * Features:
+ * - Static map for commonly used icons with emoji support
+ * - Fallback to HelpOutline icon for unmapped icons (with console warning)
+ * - Runtime icon registration via registerIcon() for app-specific icons
+ *
  * Copyright (c) 2025 QwickApps.com. All rights reserved.
  */
 
 import React from 'react';
+
+// Material UI Icons - sorted alphabetically
 import {
+  AccountCircle,
+  Add,
+  Architecture,
+  ArrowBack,
+  ArrowForward,
   Article,
-  Home,
+  AttachMoney,
+  Autorenew,
+  Block,
   Book,
-  Download,
+  Business,
+  Check,
+  CheckCircle,
+  Close,
+  Cloud,
   CloudDownload,
   CloudUpload,
+  Code,
   Computer,
-  Settings,
+  Construction,
   Dashboard,
+  Delete,
+  Download,
+  Edit,
+  Email,
+  Explore,
+  Favorite,
+  Group,
+  Help,
+  HelpOutline,
+  Home,
   Info,
+  InsertPhoto,
+  IntegrationInstructions,
   Inventory,
   Inventory2,
-  Help,
-  Add,
-  Edit,
-  Delete,
-  Check,
-  Close,
-  ArrowForward,
-  ArrowBack,
-  Menu,
-  Search,
-  Favorite,
-  Star,
-  Share,
-  Save,
-  Send,
-  Email,
-  Phone,
-  Person,
-  Group,
-  Business,
-  ShoppingCart,
-  Speed,
-  SupportAgent,
-  Tune,
-  AttachMoney,
+  Key,
+  Layers,
+  LibraryBooks,
+  LocalOffer,
   Lock,
   LockOpen,
+  Login,
+  Logout,
+  ManageAccounts,
+  Memory,
+  Menu,
+  Notifications,
+  People,
+  Person,
+  PersonSearch,
+  Phone,
+  PhotoLibrary,
+  PlayArrow,
+  Psychology,
+  Refresh,
+  Rocket,
+  RotateRight,
+  Route,
+  Save,
+  Search,
+  Security,
+  Send,
+  Settings,
+  Share,
+  Shield,
+  ShoppingCart,
+  Speed,
+  Star,
+  Storage,
+  SupportAgent,
+  Sync,
+  TrendingUp,
+  Tune,
+  VerifiedUser,
   Visibility,
   VisibilityOff,
-  // New icons for seed content
-  Psychology,
-  Autorenew,
-  Code,
-  IntegrationInstructions,
-  Construction,
-  Work,
-  Layers,
-  TrendingUp,
-  Route,
-  Sync,
-  Architecture,
-  Security,
-  VerifiedUser,
-  // Additional icons for control panels and admin UIs
   VpnKey,
-  Key,
-  PersonSearch,
-  ManageAccounts,
-  Storage,
-  Refresh,
-  Block,
-  CheckCircle,
-  RotateRight,
-  Memory,
-  LocalOffer,
+  Work,
+  WorkspacePremium,
 } from '@mui/icons-material';
 
 /**
@@ -87,140 +107,175 @@ export interface IconMapping {
 }
 
 /**
- * Centralized icon registry mapping icon names to their representations
- * Supports both Material-UI components and emoji for different contexts
+ * Centralized icon registry mapping icon names to their representations.
+ * Sorted alphabetically by category, then by key within each category.
+ *
+ * For icons not in this map, getIconComponent() will return a HelpOutline fallback
+ * and log a warning. Use registerIcon() to add app-specific icons at runtime.
  */
 export const iconMap: Record<string, IconMapping> = {
-  // Navigation & Layout
-  home: { emoji: '🏠', component: Home },
-  menu: { emoji: '☰', component: Menu },
-  dashboard: { emoji: '📊', component: Dashboard },
-  
-  // Information & Help
-  info: { emoji: 'ℹ️', component: Info },
-  about: { emoji: 'ℹ️', component: Info },
-  help: { emoji: '❓', component: Help },
-  book: { emoji: '📖', component: Book },
-  
-  // Communication
-  email: { emoji: '📧', component: Email },
-  contact: { emoji: '📧', component: Email },
-  phone: { emoji: '📱', component: Phone },
-  send: { emoji: '📤', component: Send },
-  
-  // Actions
+  // === Actions ===
   add: { emoji: '➕', component: Add },
-  edit: { emoji: '✏️', component: Edit },
-  delete: { emoji: '🗑️', component: Delete },
-  save: { emoji: '💾', component: Save },
   check: { emoji: '✓', component: Check },
+  check_circle: { emoji: '✅', component: CheckCircle },
   close: { emoji: '✕', component: Close },
-  
-  // Navigation
-  arrowforward: { emoji: '→', component: ArrowForward },
-  arrowback: { emoji: '←', component: ArrowBack },
-  
-  // Content
+  delete: { emoji: '🗑️', component: Delete },
+  edit: { emoji: '✏️', component: Edit },
+  refresh: { emoji: '🔄', component: Refresh },
+  rotate_right: { emoji: '🔄', component: RotateRight },
+  save: { emoji: '💾', component: Save },
   search: { emoji: '🔍', component: Search },
+  send: { emoji: '📤', component: Send },
   share: { emoji: '🔗', component: Share },
-  download: { emoji: '⬇️', component: Download },
-  clouddownload: { emoji: '☁️⬇️', component: CloudDownload },
-  cloudupload: { emoji: '☁️⬆️', component: CloudUpload },
-  
-  // User & Social
-  person: { emoji: '👤', component: Person },
-  user: { emoji: '👤', component: Person },
-  group: { emoji: '👥', component: Group },
-  favorite: { emoji: '❤️', component: Favorite },
-  star: { emoji: '⭐', component: Star },
-  verified_user: { emoji: '✅', component: VerifiedUser },
-  
-  // Business
-  business: { emoji: '🏢', component: Business },
-  shoppingcart: { emoji: '🛒', component: ShoppingCart },
-  cart: { emoji: '🛒', component: ShoppingCart },
-  attachmoney: { emoji: '💰', component: AttachMoney },
-  
-  // Security
+  sync: { emoji: '🔄', component: Sync },
+
+  // === Authentication & Security ===
+  block: { emoji: '🚫', component: Block },
+  key: { emoji: '🔑', component: Key },
   lock: { emoji: '🔒', component: Lock },
-  lockopen: { emoji: '🔓', component: LockOpen },
+  lock_open: { emoji: '🔓', component: LockOpen },
+  lockopen: { emoji: '🔓', component: LockOpen }, // alias
+  login: { emoji: '🔑', component: Login },
+  logout: { emoji: '🚪', component: Logout },
+  security: { emoji: '🔐', component: Security },
+  shield: { emoji: '🛡️', component: Shield },
+  verified_user: { emoji: '✅', component: VerifiedUser },
   visibility: { emoji: '👁️', component: Visibility },
-  visibilityoff: { emoji: '🙈', component: VisibilityOff },
-  
-  // System
-  settings: { emoji: '⚙️', component: Settings },
-  computer: { emoji: '💻', component: Computer },
-  
-  // Content Types
-  article: { emoji: '📰', component: Article },
-  blog: { emoji: '📝', component: Book },
-  news: { emoji: '📰', component: Book },
-  products: { emoji: '🛍️', component: ShoppingCart },
-  services: { emoji: '⚙️', component: Settings },
-  portfolio: { emoji: '💼', component: Business },
-  gallery: { emoji: '🖼️', component: Business },
-  inventory: { emoji: '📦', component: Inventory },
-  inventory_2: { emoji: '📦', component: Inventory2 },
-  speed: { emoji: '⚡', component: Speed },
+  visibility_off: { emoji: '🙈', component: VisibilityOff },
+  visibilityoff: { emoji: '🙈', component: VisibilityOff }, // alias
+  vpn_key: { emoji: '🔐', component: VpnKey },
+
+  // === Business & Commerce ===
+  attach_money: { emoji: '💰', component: AttachMoney },
+  attachmoney: { emoji: '💰', component: AttachMoney }, // alias
+  business: { emoji: '🏢', component: Business },
+  cart: { emoji: '🛒', component: ShoppingCart }, // alias
+  shopping_cart: { emoji: '🛒', component: ShoppingCart },
+  shoppingcart: { emoji: '🛒', component: ShoppingCart }, // alias
+  work: { emoji: '💼', component: Work },
+  workspace_premium: { emoji: '⭐', component: WorkspacePremium },
+
+  // === Communication ===
+  contact: { emoji: '📧', component: Email }, // alias
+  email: { emoji: '📧', component: Email },
+  mail: { emoji: '📧', component: Email }, // alias
+  notifications: { emoji: '🔔', component: Notifications },
+  phone: { emoji: '📱', component: Phone },
   support_agent: { emoji: '🛎️', component: SupportAgent },
+
+  // === Content & Media ===
+  article: { emoji: '📰', component: Article },
+  blog: { emoji: '📝', component: Book }, // alias
+  book: { emoji: '📖', component: Book },
+  gallery: { emoji: '🖼️', component: InsertPhoto }, // alias
+  image: { emoji: '🖼️', component: InsertPhoto },
+  insert_photo: { emoji: '🖼️', component: InsertPhoto },
+  library_books: { emoji: '📚', component: LibraryBooks },
+  news: { emoji: '📰', component: Article }, // alias
+  photo_library: { emoji: '📸', component: PhotoLibrary },
+  play: { emoji: '▶️', component: PlayArrow }, // alias
+  play_arrow: { emoji: '▶️', component: PlayArrow },
+  portfolio: { emoji: '💼', component: Business }, // alias
+
+  // === Development & Technology ===
+  architecture: { emoji: '🏛️', component: Architecture },
+  autorenew: { emoji: '🔄', component: Autorenew },
+  cloud: { emoji: '☁️', component: Cloud },
+  cloud_download: { emoji: '☁️⬇️', component: CloudDownload },
+  cloud_upload: { emoji: '☁️⬆️', component: CloudUpload },
+  clouddownload: { emoji: '☁️⬇️', component: CloudDownload }, // alias
+  cloudupload: { emoji: '☁️⬆️', component: CloudUpload }, // alias
+  code: { emoji: '💻', component: Code },
+  computer: { emoji: '💻', component: Computer },
+  construction: { emoji: '🚧', component: Construction },
+  integration_instructions: { emoji: '🔌', component: IntegrationInstructions },
+  memory: { emoji: '🧠', component: Memory },
+  psychology: { emoji: '🧠', component: Psychology },
+  rocket: { emoji: '🚀', component: Rocket },
+  storage: { emoji: '💾', component: Storage },
+
+  // === Navigation & Layout ===
+  arrow_back: { emoji: '←', component: ArrowBack },
+  arrow_forward: { emoji: '→', component: ArrowForward },
+  arrowback: { emoji: '←', component: ArrowBack }, // alias
+  arrowforward: { emoji: '→', component: ArrowForward }, // alias
+  dashboard: { emoji: '📊', component: Dashboard },
+  download: { emoji: '⬇️', component: Download },
+  explore: { emoji: '🧭', component: Explore },
+  home: { emoji: '🏠', component: Home },
+  layers: { emoji: '📚', component: Layers },
+  menu: { emoji: '☰', component: Menu },
+  route: { emoji: '🗺️', component: Route },
+  settings: { emoji: '⚙️', component: Settings },
+  trending_up: { emoji: '📈', component: TrendingUp },
   tune: { emoji: '🎛️', component: Tune },
 
-  // Development & Technology
-  code: { emoji: '💻', component: Code },
-  psychology: { emoji: '🧠', component: Psychology },
-  autorenew: { emoji: '🔄', component: Autorenew },
-  integration_instructions: { emoji: '🔌', component: IntegrationInstructions },
-  construction: { emoji: '🚧', component: Construction },
-  work: { emoji: '💼', component: Work },
-  layers: { emoji: '📚', component: Layers },
-  trending_up: { emoji: '📈', component: TrendingUp },
-  route: { emoji: '🗺️', component: Route },
-  sync: { emoji: '🔄', component: Sync },
-  architecture: { emoji: '🏛️', component: Architecture },
-  security: { emoji: '🔐', component: Security },
-
-  // Control Panel & Admin UI Icons
-  key: { emoji: '🔑', component: Key },
-  vpn_key: { emoji: '🔐', component: VpnKey },
-  person_search: { emoji: '🔍', component: PersonSearch },
-  manage_accounts: { emoji: '👥', component: ManageAccounts },
-  storage: { emoji: '💾', component: Storage },
-  refresh: { emoji: '🔄', component: Refresh },
-  block: { emoji: '🚫', component: Block },
-  check_circle: { emoji: '✅', component: CheckCircle },
-  rotate_right: { emoji: '🔄', component: RotateRight },
-  memory: { emoji: '🧠', component: Memory },
+  // === Products & Inventory ===
+  inventory: { emoji: '📦', component: Inventory },
+  inventory_2: { emoji: '📦', component: Inventory2 },
   local_offer: { emoji: '🏷️', component: LocalOffer },
+  products: { emoji: '🛍️', component: ShoppingCart }, // alias
+  services: { emoji: '⚙️', component: Settings }, // alias
+  speed: { emoji: '⚡', component: Speed },
+
+  // === Status & Feedback ===
+  about: { emoji: 'ℹ️', component: Info }, // alias
+  favorite: { emoji: '❤️', component: Favorite },
+  heart: { emoji: '❤️', component: Favorite }, // alias
+  help: { emoji: '❓', component: Help },
+  info: { emoji: 'ℹ️', component: Info },
+  star: { emoji: '⭐', component: Star },
+
+  // === Users & People ===
+  account_circle: { emoji: '👤', component: AccountCircle },
+  group: { emoji: '👥', component: Group },
+  manage_accounts: { emoji: '👤', component: ManageAccounts },
+  people: { emoji: '👥', component: People },
+  person: { emoji: '👤', component: Person },
+  person_search: { emoji: '🔍', component: PersonSearch },
+  user: { emoji: '👤', component: Person }, // alias
+  users: { emoji: '👥', component: People }, // alias
 };
 
 /**
  * Get emoji representation of an icon
- * @param iconName - Icon name (case-insensitive)
+ * @param iconName - Icon name (case-insensitive, supports snake_case)
  * @param fallback - Fallback emoji if icon not found (default: 🔗)
  * @returns Emoji string
  */
 export function getIconEmoji(iconName: string | undefined, fallback: string = '🔗'): string {
   if (!iconName) return fallback;
-  const mapping = iconMap[iconName.toLowerCase()];
-  return mapping?.emoji || iconName;
+  const normalized = iconName.toLowerCase();
+  const mapping = iconMap[normalized];
+  return mapping?.emoji || fallback;
 }
 
 /**
- * Get Material-UI component representation of an icon
- * @param iconName - Icon name (case-insensitive)
- * @returns React element or null if not found
+ * Get Material-UI component representation of an icon.
+ *
+ * Uses the static iconMap for known icons. For unmapped icons,
+ * returns a HelpOutline fallback and logs a warning.
+ *
+ * @param iconName - Icon name (case-insensitive, supports snake_case)
+ * @returns React element (mapped icon or HelpOutline fallback), or null if no name provided
  */
 export function getIconComponent(iconName: string | undefined): React.ReactElement | null {
   if (!iconName) return null;
-  
-  const mapping = iconMap[iconName.toLowerCase()];
-  if (!mapping?.component) {
-    console.warn(`[IconMap] Icon "${iconName}" not found in registry`);
-    return null;
+
+  const normalized = iconName.toLowerCase();
+  const mapping = iconMap[normalized];
+
+  if (mapping?.component) {
+    const IconComponent = mapping.component;
+    return <IconComponent />;
   }
-  
-  const IconComponent = mapping.component;
-  return <IconComponent />;
+
+  // Fallback: Return HelpOutline icon and warn about unmapped icon
+  // Use registerIcon() to add app-specific icons at runtime
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(`[IconMap] Icon "${iconName}" not found. Add it to iconMap or use registerIcon().`);
+  }
+  return <HelpOutline />;
 }
 
 /**
@@ -232,14 +287,15 @@ export function registerIcon(name: string, mapping: IconMapping): void {
 }
 
 /**
- * Check if an icon is registered
+ * Check if an icon is registered in the static map
+ * If false, getIconComponent will return HelpOutline fallback
  */
 export function hasIcon(iconName: string): boolean {
   return iconName.toLowerCase() in iconMap;
 }
 
 /**
- * Get all registered icon names
+ * Get all registered icon names from the static map
  */
 export function getRegisteredIcons(): string[] {
   return Object.keys(iconMap);
