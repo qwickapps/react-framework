@@ -58,17 +58,23 @@ function ReactRouterNavigationProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // Defensive check for location - fall back to window.location if React Router's location is undefined
+  const location: NavigationLocation | undefined = reactRouterLocation
+    ? {
+        pathname: reactRouterLocation.pathname,
+        search: reactRouterLocation.search,
+        hash: reactRouterLocation.hash,
+      }
+    : typeof window !== 'undefined'
+      ? {
+          pathname: window.location.pathname,
+          search: window.location.search,
+          hash: window.location.hash,
+        }
+      : undefined;
+
   return (
-    <NavigationContext.Provider
-      value={{
-        navigate,
-        location: {
-          pathname: reactRouterLocation.pathname,
-          search: reactRouterLocation.search,
-          hash: reactRouterLocation.hash,
-        },
-      }}
-    >
+    <NavigationContext.Provider value={{ navigate, location }}>
       {children}
     </NavigationContext.Provider>
   );
