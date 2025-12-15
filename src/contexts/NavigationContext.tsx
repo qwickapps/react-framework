@@ -15,7 +15,7 @@ import { createContext, useContext, type ReactNode } from 'react';
 import {
   useNavigate,
   useLocation,
-  UNSAFE_NavigationContext as RouterContext,
+  useInRouterContext,
 } from 'react-router-dom';
 
 /**
@@ -121,11 +121,11 @@ function FallbackNavigationProvider({ children }: { children: ReactNode }) {
  * This is included automatically by QwickApp - you don't need to add it manually.
  */
 export function NavigationProvider({ children }: { children: ReactNode }) {
-  // Check if we're inside a React Router by checking its internal context
-  // useContext doesn't throw - it returns null if the context doesn't exist
-  const routerContext = useContext(RouterContext);
+  // Check if we're inside a React Router using the official hook
+  // This is more reliable than checking internal UNSAFE contexts
+  const isInRouter = useInRouterContext();
 
-  if (routerContext) {
+  if (isInRouter) {
     // We're inside a Router, use React Router's navigation
     return (
       <ReactRouterNavigationProvider>{children}</ReactRouterNavigationProvider>
