@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.7] - 2025-12-15
+
 ### Added
 
 - **iconMap**: Added 20+ commonly used icons that were missing from the registry

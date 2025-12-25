@@ -104,6 +104,7 @@ export default [
       declaration: true,
       declarationDir: 'dist',
       rootDir: 'src',
+      noEmitOnError: false,
       compilerOptions: {
         declarationDir: 'dist',
         rootDir: 'src'
@@ -169,6 +170,7 @@ export default [
         declaration: true,
         declarationDir: 'dist',
         rootDir: 'src',
+        noEmitOnError: false,
         compilerOptions: {
           declarationDir: 'dist',
           rootDir: 'src'
