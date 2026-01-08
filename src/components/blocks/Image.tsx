@@ -246,7 +246,7 @@ interface PatternRegistry {
 };
 
 // Transform img elements to Image component
-function transformImage(element: Element): unknown {
+function transformImage(element: Element): Record<string, unknown> {
   const src = element.getAttribute('src') || '';
   const alt = element.getAttribute('alt') || '';
   const width = element.getAttribute('width');
@@ -266,7 +266,7 @@ function transformImage(element: Element): unknown {
 }
 
 // Transform figure > img elements to Image component with caption support
-function transformFigureImage(element: Element): unknown {
+function transformFigureImage(element: Element): Record<string, unknown> {
   const figure = element.closest('figure');
   const figcaption = figure?.querySelector('figcaption');
   const caption = figcaption?.textContent || '';

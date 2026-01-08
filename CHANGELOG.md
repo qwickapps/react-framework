@@ -28,6 +28,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Moved server-specific plugin UI components to @qwickapps/server package
   - Improved component architecture for better separation of concerns
 
+## [1.5.9] - 2026-01-08
+
+### Fixed
+
+- **TypeScript Transform Functions**: Fixed return type mismatch in component serialization transform functions
+  - Updated return types from `unknown` to `Record<string, unknown>` to match `registerPattern` interface expectations
+  - Affected components: Markdown, SafeSpan, Article, Image, Section, Text, Button
+  - Resolves TypeScript compilation errors in builds using strict type checking
+  - Enables successful deployment of qwicksecrets and other products using this framework
+
 ## [1.5.8] - 2026-01-08
 
 ### Fixed

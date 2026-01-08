@@ -371,7 +371,7 @@ export class Article extends ModelView<ArticleProps> {
   }
 
   // Transform article elements to Article component
-  private static transformArticle(element: Element): unknown {
+  private static transformArticle(element: Element): Record<string, unknown> {
     const skipHeader = element.getAttribute('data-skip-header') === 'true';
     
     return {

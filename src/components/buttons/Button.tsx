@@ -330,7 +330,7 @@ export const Button: SerializableComponent<ButtonProps> = createSerializableView
 };
 
 // Transform button elements to Button component
-function transformButton(element: Element): unknown {
+function transformButton(element: Element): Record<string, unknown> {
   const variant = element.getAttribute('data-variant') || 
                  (element.className.includes('btn-primary') ? 'primary' : 
                   element.className.includes('btn-outlined') ? 'outlined' : 'secondary');
@@ -351,7 +351,7 @@ function transformButton(element: Element): unknown {
 }
 
 // Transform input type="button" elements to Button component
-function transformInputButton(element: Element): unknown {
+function transformInputButton(element: Element): Record<string, unknown> {
   const disabled = element.hasAttribute('disabled');
   const value = element.getAttribute('value') || 'Button';
 
@@ -366,7 +366,7 @@ function transformInputButton(element: Element): unknown {
 }
 
 // Transform input type="submit" elements to Button component
-function transformSubmitButton(element: Element): unknown {
+function transformSubmitButton(element: Element): Record<string, unknown> {
   const disabled = element.hasAttribute('disabled');
   const value = element.getAttribute('value') || 'Submit';
 

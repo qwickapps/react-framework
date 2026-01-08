@@ -135,7 +135,7 @@ export class SafeSpan extends ModelView<SafeSpanProps> {
   }
 
   // Transform span elements to SafeSpan component
-  private static transformSafeSpan(element: Element): unknown {
+  private static transformSafeSpan(element: Element): Record<string, unknown> {
     const placeholder = element.getAttribute('data-placeholder');
     
     return {

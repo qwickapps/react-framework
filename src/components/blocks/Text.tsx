@@ -123,15 +123,15 @@ export const Text: SerializableComponent<TextProps> = createSerializableView<Tex
 // Type for pattern registry with basic methods
 interface PatternRegistry {
   hasPattern(pattern: string): boolean;
-  registerPattern(pattern: string, handler: (element: Element) => unknown): void;
+  registerPattern(pattern: string, handler: (element: Element) => Record<string, unknown>): void;
 }
 
 // Type for Text component with pattern handlers
 interface TextComponentWithPatterns {
   registerPatternHandlers: (registry: PatternRegistry) => void;
-  transformParagraph: (element: Element) => unknown;
-  transformHeading: (element: Element, tagName: string) => unknown;
-  transformSpan: (element: Element) => unknown;
+  transformParagraph: (element: Element) => Record<string, unknown>;
+  transformHeading: (element: Element, tagName: string) => Record<string, unknown>;
+  transformSpan: (element: Element) => Record<string, unknown>;
 }
 
 // Register HTML patterns that Text component can handle
@@ -160,7 +160,7 @@ interface TextComponentWithPatterns {
 };
 
 // Transform paragraph elements to Text component
-(Text as unknown as TextComponentWithPatterns).transformParagraph = (element: Element): unknown => {
+(Text as unknown as TextComponentWithPatterns).transformParagraph = (element: Element): Record<string, unknown> => {
   return {
     tagName: 'Text',
     version: '1.0.0',
@@ -173,7 +173,7 @@ interface TextComponentWithPatterns {
 };
 
 // Transform heading elements to Text component
-(Text as unknown as TextComponentWithPatterns).transformHeading = (element: Element, tagName: string): unknown => {
+(Text as unknown as TextComponentWithPatterns).transformHeading = (element: Element, tagName: string): Record<string, unknown> => {
   const variantMap: { [key: string]: string } = {
     'h1': 'h1',
     'h2': 'h2',
@@ -195,7 +195,7 @@ interface TextComponentWithPatterns {
 };
 
 // Transform span elements to Text component
-(Text as unknown as TextComponentWithPatterns).transformSpan = (element: Element): unknown => {
+(Text as unknown as TextComponentWithPatterns).transformSpan = (element: Element): Record<string, unknown> => {
   return {
     tagName: 'Text',
     version: '1.0.0',

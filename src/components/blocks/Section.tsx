@@ -172,17 +172,17 @@ interface PatternRegistry {
 
   // Register section element pattern
   if (typedRegistry.hasPattern && !typedRegistry.hasPattern('section')) {
-    typedRegistry.registerPattern?.('section', (Section as unknown as { transformSection: (element: Element) => unknown }).transformSection);
+    typedRegistry.registerPattern?.('section', (Section as unknown as { transformSection: (element: Element) => Record<string, unknown> }).transformSection);
   }
 
   // Register section with specific classes
   if (typedRegistry.hasPattern && !typedRegistry.hasPattern('section.blog-section')) {
-    typedRegistry.registerPattern?.('section.blog-section', (Section as unknown as { transformBlogSection: (element: Element) => unknown }).transformBlogSection);
+    typedRegistry.registerPattern?.('section.blog-section', (Section as unknown as { transformBlogSection: (element: Element) => Record<string, unknown> }).transformBlogSection);
   }
 };
 
 // Transform generic section elements to Section component
-(Section as unknown as { transformSection: (element: Element) => unknown }).transformSection = (element: Element): unknown => {
+(Section as unknown as { transformSection: (element: Element) => Record<string, unknown> }).transformSection = (element: Element): Record<string, unknown> => {
   const padding = element.getAttribute('data-padding') || 'medium';
   const background = element.getAttribute('data-background');
   const contentMaxWidth = element.getAttribute('data-max-width') || 'lg';
@@ -200,7 +200,7 @@ interface PatternRegistry {
 };
 
 // Transform blog section elements to Section component with specific styling
-(Section as unknown as { transformBlogSection: (element: Element) => unknown }).transformBlogSection = (element: Element): unknown => {
+(Section as unknown as { transformBlogSection: (element: Element) => Record<string, unknown> }).transformBlogSection = (element: Element): Record<string, unknown> => {
   const padding = element.getAttribute('data-padding') || 'large';
   const background = element.getAttribute('data-background') || 'var(--theme-surface)';
 

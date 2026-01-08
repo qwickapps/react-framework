@@ -227,7 +227,7 @@ export class Markdown extends ModelView<MarkdownProps> {
   }
 
   // Transform div with markdown-content class to Markdown component
-  private static transformMarkdownDiv(element: Element): unknown {
+  private static transformMarkdownDiv(element: Element): Record<string, unknown> {
     const sanitize = element.getAttribute('data-sanitize') !== 'false';
     const placeholder = element.getAttribute('data-placeholder');
     
@@ -242,7 +242,7 @@ export class Markdown extends ModelView<MarkdownProps> {
   }
 
   // Transform elements with data-markdown attribute to Markdown component
-  private static transformDataMarkdown(element: Element): unknown {
+  private static transformDataMarkdown(element: Element): Record<string, unknown> {
     const markdownContent = element.getAttribute('data-markdown') || element.textContent;
     const sanitize = element.getAttribute('data-sanitize') !== 'false';
     const placeholder = element.getAttribute('data-placeholder');
