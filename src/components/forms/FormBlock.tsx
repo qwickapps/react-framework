@@ -225,7 +225,7 @@ function FormBlockView({
 }
 
 // Main component with data binding support and serialization capability
-export class FormBlock extends ModelView<FormBlockProps, FormBlockModel> {
+export class FormBlock extends ModelView<FormBlockProps> {
   // Component self-declaration for serialization
   static readonly tagName = 'FormBlock';
   static readonly version = '1.0.0';
@@ -298,9 +298,7 @@ function FormBlockWithDataBinding(props: FormBlockProps) {
   // Use data binding
   const { loading, error, ...formBlockProps } = useDataBinding<FormBlockModel>(
     dataSource!,
-    restProps as Partial<FormBlockModel>,
-    FormBlockModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<FormBlockModel>
   );
 
   // Show loading state
@@ -346,6 +344,6 @@ function FormBlockWithDataBinding(props: FormBlockProps) {
 }
 
 // Mark as QwickApp component
-(FormBlock as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+Object.assign(FormBlock, { [QWICKAPP_COMPONENT]: true });
 
 export default FormBlock;

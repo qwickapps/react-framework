@@ -295,7 +295,7 @@ export abstract class ModelView<TProps = Record<string, unknown>>
  * Helper function for creating ModelView component classes with ViewSchema support
  * Updated to work with the new ViewSchema processing system
  */
-export function createModelViewClass<TProps, TModel>(
+export function createModelViewClass<TProps>(
   config: {
     tagName: string;
     version: string;
@@ -306,7 +306,7 @@ export function createModelViewClass<TProps, TModel>(
   }
 ): unknown {
 
-  class DynamicModelView extends ModelView<TProps, TModel> {
+  class DynamicModelView extends ModelView<TProps> {
     static readonly tagName = config.tagName;
     static readonly version = config.version;
 

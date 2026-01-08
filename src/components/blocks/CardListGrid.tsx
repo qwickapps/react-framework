@@ -87,9 +87,7 @@ function CardListGrid(props: CardListGridProps) {
   // Always call hooks unconditionally
   const result = useDataBinding<CardListGridModel>(
     dataSource || '',
-    restProps as Partial<CardListGridModel>,
-    CardListGridModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<CardListGridModel>
   );
 
   // If no dataSource, use traditional props

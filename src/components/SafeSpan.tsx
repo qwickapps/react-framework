@@ -26,7 +26,7 @@ function SafeSpanView(props: SafeSpanViewProps) {
   const { styleProps, htmlProps } = useBaseProps(restProps);
   
   // Mark as QwickApp component
-  (SafeSpanView as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(SafeSpanView, { [QWICKAPP_COMPONENT]: true });
   
   // Enhanced HTML sanitization with strict security configuration
   const sanitizeOptions = {
@@ -95,7 +95,7 @@ function SafeSpanView(props: SafeSpanViewProps) {
 }
 
 // Main component with data binding support and serialization capability
-export class SafeSpan extends ModelView<SafeSpanProps, SafeSpanModel> {
+export class SafeSpan extends ModelView<SafeSpanProps> {
   // Component self-declaration for serialization
   static readonly tagName = 'SafeSpan';
   static readonly version = '1.0.0';
@@ -121,14 +121,16 @@ export class SafeSpan extends ModelView<SafeSpanProps, SafeSpanModel> {
 
   // Register HTML patterns that SafeSpan component can handle
   static registerPatternHandlers(registry: unknown): void {
+    const typedRegistry = registry as { hasPattern?: (pattern: string) => boolean; registerPattern?: (pattern: string, handler: (element: Element) => Record<string, unknown>) => void };
+
     // Register span elements with specific classes or attributes
-    if (!registry.hasPattern('span.safe-content')) {
-      registry.registerPattern('span.safe-content', SafeSpan.transformSafeSpan);
+    if (typedRegistry.hasPattern && !typedRegistry.hasPattern('span.safe-content')) {
+      typedRegistry.registerPattern?.('span.safe-content', SafeSpan.transformSafeSpan);
     }
     
     // Register span elements with data-safe attribute
-    if (!registry.hasPattern('span[data-safe]')) {
-      registry.registerPattern('span[data-safe]', SafeSpan.transformSafeSpan);
+    if (typedRegistry.hasPattern && !typedRegistry.hasPattern('span[data-safe]')) {
+      typedRegistry.registerPattern?.('span[data-safe]', SafeSpan.transformSafeSpan);
     }
   }
 
@@ -153,9 +155,7 @@ function SafeSpanWithDataBinding(props: SafeSpanProps) {
   // Use data binding
   const { loading, error, ...safeSpanProps } = useDataBinding<SafeSpanModel>(
     dataSource!,
-    restProps as Partial<SafeSpanModel>,
-    SafeSpanModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<SafeSpanModel>
   );
 
   // Show loading state

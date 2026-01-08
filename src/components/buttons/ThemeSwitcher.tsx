@@ -21,11 +21,12 @@ import {
   Tooltip,
   Typography
 } from '@mui/material';
-import {
-  DarkMode as DarkModeIcon,
-  LightMode as LightModeIcon,
-  SettingsSystemDaydream as SystemIcon
-} from '@mui/icons-material';
+import DarkMode from '@mui/icons-material/DarkMode';
+import LightMode from '@mui/icons-material/LightMode';
+import SettingsSystemDaydream from '@mui/icons-material/SettingsSystemDaydream';
+const DarkModeIcon = DarkMode;
+const LightModeIcon = LightMode;
+const SystemIcon = SettingsSystemDaydream;
 import type { WithDataBinding, SchemaProps } from '@qwickapps/schema';
 import { useState } from 'react';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -235,9 +236,7 @@ function ThemeSwitcher(props: ThemeSwitcherProps) {
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<ThemeSwitcherModel>(
     dataSource || '',
-    restProps as Partial<ThemeSwitcherModel>,
-    ThemeSwitcherModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<ThemeSwitcherModel>
   );
 
   // If no dataSource, use traditional props
@@ -282,6 +281,6 @@ function ThemeSwitcher(props: ThemeSwitcherProps) {
 }
 
 // Mark as QwickApp component
-(ThemeSwitcher as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+Object.assign(ThemeSwitcher, { [QWICKAPP_COMPONENT]: true });
 
 export default ThemeSwitcher;

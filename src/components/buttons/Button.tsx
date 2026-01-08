@@ -311,19 +311,21 @@ export const Button: SerializableComponent<ButtonProps> = createSerializableView
 
 // Register HTML patterns that Button component can handle
 (Button as Record<string, unknown>).registerPatternHandlers = (registry: Record<string, (...args: unknown[]) => unknown>): void => {
+  const typedRegistry = registry as { hasPattern?: (pattern: string) => boolean; registerPattern?: (pattern: string, handler: (element: Element) => Record<string, unknown>) => void };
+
   // Register button elements
-  if (!registry.hasPattern('button')) {
-    registry.registerPattern('button', transformButton);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('button')) {
+    typedRegistry.registerPattern?.('button', transformButton);
   }
   
   // Register input type="button" elements
-  if (!registry.hasPattern('input[type="button"]')) {
-    registry.registerPattern('input[type="button"]', transformInputButton);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('input[type="button"]')) {
+    typedRegistry.registerPattern?.('input[type="button"]', transformInputButton);
   }
   
   // Register input type="submit" elements
-  if (!registry.hasPattern('input[type="submit"]')) {
-    registry.registerPattern('input[type="submit"]', transformSubmitButton);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('input[type="submit"]')) {
+    typedRegistry.registerPattern?.('input[type="submit"]', transformSubmitButton);
   }
 };
 

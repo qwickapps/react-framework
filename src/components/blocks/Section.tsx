@@ -168,14 +168,16 @@ interface PatternRegistry {
 
 // Register HTML patterns that Section component can handle
 (Section as unknown as { registerPatternHandlers: (registry: PatternRegistry) => void }).registerPatternHandlers = (registry: PatternRegistry): void => {
+  const typedRegistry = registry as { hasPattern?: (pattern: string) => boolean; registerPattern?: (pattern: string, handler: (element: Element) => Record<string, unknown>) => void };
+
   // Register section element pattern
-  if (!registry.hasPattern('section')) {
-    registry.registerPattern('section', (Section as unknown as { transformSection: (element: Element) => unknown }).transformSection);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('section')) {
+    typedRegistry.registerPattern?.('section', (Section as unknown as { transformSection: (element: Element) => unknown }).transformSection);
   }
 
   // Register section with specific classes
-  if (!registry.hasPattern('section.blog-section')) {
-    registry.registerPattern('section.blog-section', (Section as unknown as { transformBlogSection: (element: Element) => unknown }).transformBlogSection);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('section.blog-section')) {
+    typedRegistry.registerPattern?.('section.blog-section', (Section as unknown as { transformBlogSection: (element: Element) => unknown }).transformBlogSection);
   }
 };
 

@@ -57,7 +57,7 @@ const ResponsiveMenu: React.FC<ResponsiveMenuProps> = (props) => {
   } = restProps;
   
   // Mark as QwickApp component
-  (ResponsiveMenu as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(ResponsiveMenu, { [QWICKAPP_COMPONENT]: true });
   const [screenSize, setScreenSize] = useState<ScreenSize>('desktop');
   const [isNavRailExpanded, setIsNavRailExpanded] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

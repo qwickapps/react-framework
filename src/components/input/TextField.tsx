@@ -55,7 +55,7 @@ export const TextField = React.forwardRef<HTMLDivElement, TextFieldProps>((props
   }
 
   // Mark as QwickApp component
-  (TextField as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(TextField, { [QWICKAPP_COMPONENT]: true });
 
   return (
     <MuiTextField

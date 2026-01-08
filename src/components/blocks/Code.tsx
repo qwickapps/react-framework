@@ -22,7 +22,10 @@
 
 import React, { useState } from 'react';
 import { Box, Typography, Tooltip, IconButton, Snackbar, Alert, useTheme, Paper } from '@mui/material';
-import { ContentCopy as CopyIcon, Check as CheckIcon } from '@mui/icons-material';
+import ContentCopy from '@mui/icons-material/ContentCopy';
+import Check from '@mui/icons-material/Check';
+const CopyIcon = ContentCopy;
+const CheckIcon = Check;
 import CodeSchema from '../../schemas/CodeSchema';
 import type { SchemaProps } from '@qwickapps/schema/src/types/ModelProps';
 import { ViewProps } from '../shared/viewProps';
@@ -260,17 +263,16 @@ export const Code: SerializableComponent<CodeProps> = createSerializableView<Cod
 
 // Register HTML patterns that Code component can handle
 (Code as Record<string, unknown>).registerPatternHandlers = (registry: Record<string, (...args: unknown[]) => unknown>): void => {
+  const typedRegistry = registry as { hasPattern?: (pattern: string) => boolean; registerPattern?: (pattern: string, handler: (...args: unknown[]) => unknown) => void };
+
   // Register pre + code pattern
-  if (!registry.hasPattern) {
-    return;
-  }
-  if (!registry.hasPattern('pre code')) {
-    registry.registerPattern('pre code', (Code as Record<string, unknown>).transformPreCode as (...args: unknown[]) => unknown);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('pre code')) {
+    typedRegistry.registerPattern?.('pre code', (Code as Record<string, unknown>).transformPreCode as (...args: unknown[]) => unknown);
   }
 
   // Register standalone code pattern for complex code blocks
-  if (!registry.hasPattern('code.highlight')) {
-    registry.registerPattern('code.highlight', (Code as Record<string, unknown>).transformCodeHighlight as (...args: unknown[]) => unknown);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('code.highlight')) {
+    typedRegistry.registerPattern?.('code.highlight', (Code as Record<string, unknown>).transformCodeHighlight as (...args: unknown[]) => unknown);
   }
 };
 

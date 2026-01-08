@@ -12,7 +12,8 @@
  * Copyright (c) 2025 QwickApps.com. All rights reserved.
  */
 
-import { MoreVert as MoreIcon } from '@mui/icons-material';
+import MoreVert from "@mui/icons-material/MoreVert";
+const MoreIcon = MoreVert;
 import {
   Avatar,
   Box,
@@ -387,9 +388,7 @@ function PageBannerHeader(props: PageBannerHeaderProps) {
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<PageBannerHeaderModel>(
     dataSource || '',
-    restProps as Partial<PageBannerHeaderModel>,
-    PageBannerHeaderModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<PageBannerHeaderModel>
   );
 
   // If no dataSource, use traditional props

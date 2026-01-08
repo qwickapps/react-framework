@@ -45,7 +45,7 @@ function ContentView({
   const theme = useTheme();
 
   // Mark as QwickApp component
-  (ContentView as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(ContentView, { [QWICKAPP_COMPONENT]: true });
 
   // Map spacing to padding values
   const getPadding = () => {
@@ -170,9 +170,7 @@ function Content(props: ContentProps) {
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<ContentModel>(
     dataSource || '',
-    restProps as Partial<ContentModel>,
-    ContentModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<ContentModel>
   );
 
   // If no dataSource, use traditional props

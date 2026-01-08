@@ -44,6 +44,10 @@ export interface GridLayoutProps extends ViewProps {
   maxHeight?: string;
   /** Maximum grid container width */
   maxWidth?: string;
+  /** MUI sx prop for advanced styling (explicit override for type resolution) */
+  sx?: import('@mui/material/styles').SxProps<import('@mui/material/styles').Theme>;
+  /** Inline CSS styles (explicit override for type resolution) */
+  style?: React.CSSProperties;
 }
 
 /**

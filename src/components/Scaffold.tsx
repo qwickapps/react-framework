@@ -21,7 +21,7 @@ import { useQwickApp } from '../contexts/QwickAppContext';
 import Logo from './Logo';
 import ThemeSwitcher from './buttons/ThemeSwitcher';
 import PaletteSwitcher from './buttons/PaletteSwitcher';
-import { RadioButtonUnchecked as DefaultIcon } from '@mui/icons-material';
+// DefaultIcon removed - using iconMap radio_button_unchecked instead
 import { getIconComponent } from './buttons/Button';
 import './Scaffold.css';
 import { useNavigation } from '../contexts/NavigationContext';
@@ -260,21 +260,21 @@ const Scaffold: React.FC<ScaffoldProps> = ({
       }
     };
 
-    // Transform icon string to component, or use provided ReactNode, or fallback to DefaultIcon
+    // Transform icon string to component, or use provided ReactNode, or fallback to radio_button_unchecked
     const needsIcon = variant !== 'drawer';
     let displayIcon: React.ReactNode = null;
 
     if (item.icon) {
       // If icon is a string, transform it to component
       if (typeof item.icon === 'string') {
-        displayIcon = getIconComponent(item.icon) || (needsIcon ? <DefaultIcon /> : null);
+        displayIcon = getIconComponent(item.icon) || (needsIcon ? getIconComponent('radio_button_unchecked') : null);
       } else {
         // If icon is already a React component, use it
         displayIcon = item.icon;
       }
     } else if (needsIcon) {
       // No icon provided, use default for primary navigation
-      displayIcon = <DefaultIcon />;
+      displayIcon = getIconComponent('radio_button_unchecked');
     }
 
     const content = (

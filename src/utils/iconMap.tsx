@@ -14,89 +14,108 @@
 
 import React from 'react';
 
-// Material UI Icons - sorted alphabetically
-import {
-  AccountCircle,
-  Add,
-  Architecture,
-  ArrowBack,
-  ArrowForward,
-  Article,
-  AttachMoney,
-  Autorenew,
-  Block,
-  Book,
-  Business,
-  Check,
-  CheckCircle,
-  Close,
-  Cloud,
-  CloudDownload,
-  CloudUpload,
-  Code,
-  Computer,
-  Construction,
-  Dashboard,
-  Delete,
-  Download,
-  Edit,
-  Email,
-  Explore,
-  Favorite,
-  Group,
-  Help,
-  HelpOutline,
-  Home,
-  Info,
-  InsertPhoto,
-  IntegrationInstructions,
-  Inventory,
-  Inventory2,
-  Key,
-  Layers,
-  LibraryBooks,
-  LocalOffer,
-  Lock,
-  LockOpen,
-  Login,
-  Logout,
-  ManageAccounts,
-  Memory,
-  Menu,
-  Notifications,
-  People,
-  Person,
-  PersonSearch,
-  Phone,
-  PhotoLibrary,
-  PlayArrow,
-  Psychology,
-  Refresh,
-  Rocket,
-  RotateRight,
-  Route,
-  Save,
-  Search,
-  Security,
-  Send,
-  Settings,
-  Share,
-  Shield,
-  ShoppingCart,
-  Speed,
-  Star,
-  Storage,
-  SupportAgent,
-  Sync,
-  TrendingUp,
-  Tune,
-  VerifiedUser,
-  Visibility,
-  VisibilityOff,
-  VpnKey,
-  Work,
-  WorkspacePremium,
-} from '@mui/icons-material';
+// Material UI Icons - Direct imports to avoid loading the entire barrel index
+// This prevents EMFILE errors when Node.js tries to parse thousands of icon exports
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import Add from '@mui/icons-material/Add';
+import Architecture from '@mui/icons-material/Architecture';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import ArrowForward from '@mui/icons-material/ArrowForward';
+import Article from '@mui/icons-material/Article';
+import AttachMoney from '@mui/icons-material/AttachMoney';
+import Autorenew from '@mui/icons-material/Autorenew';
+import Block from '@mui/icons-material/Block';
+import Book from '@mui/icons-material/Book';
+import Business from '@mui/icons-material/Business';
+import Check from '@mui/icons-material/Check';
+import CheckCircle from '@mui/icons-material/CheckCircle';
+import Close from '@mui/icons-material/Close';
+import Cloud from '@mui/icons-material/Cloud';
+import CloudDownload from '@mui/icons-material/CloudDownload';
+import CloudUpload from '@mui/icons-material/CloudUpload';
+import Code from '@mui/icons-material/Code';
+import Computer from '@mui/icons-material/Computer';
+import Construction from '@mui/icons-material/Construction';
+import Dashboard from '@mui/icons-material/Dashboard';
+import Delete from '@mui/icons-material/Delete';
+import Download from '@mui/icons-material/Download';
+import Edit from '@mui/icons-material/Edit';
+import Email from '@mui/icons-material/Email';
+import Explore from '@mui/icons-material/Explore';
+import Favorite from '@mui/icons-material/Favorite';
+import Group from '@mui/icons-material/Group';
+import Help from '@mui/icons-material/Help';
+import HelpOutline from '@mui/icons-material/HelpOutline';
+import Home from '@mui/icons-material/Home';
+import Info from '@mui/icons-material/Info';
+import InsertPhoto from '@mui/icons-material/InsertPhoto';
+import IntegrationInstructions from '@mui/icons-material/IntegrationInstructions';
+import Inventory from '@mui/icons-material/Inventory';
+import Inventory2 from '@mui/icons-material/Inventory2';
+import Key from '@mui/icons-material/Key';
+import Layers from '@mui/icons-material/Layers';
+import LibraryBooks from '@mui/icons-material/LibraryBooks';
+import LocalOffer from '@mui/icons-material/LocalOffer';
+import Lock from '@mui/icons-material/Lock';
+import LockOpen from '@mui/icons-material/LockOpen';
+import Login from '@mui/icons-material/Login';
+import Logout from '@mui/icons-material/Logout';
+import ManageAccounts from '@mui/icons-material/ManageAccounts';
+import Memory from '@mui/icons-material/Memory';
+import Menu from '@mui/icons-material/Menu';
+import Notifications from '@mui/icons-material/Notifications';
+import People from '@mui/icons-material/People';
+import Person from '@mui/icons-material/Person';
+import PersonSearch from '@mui/icons-material/PersonSearch';
+import Phone from '@mui/icons-material/Phone';
+import PhotoLibrary from '@mui/icons-material/PhotoLibrary';
+import PlayArrow from '@mui/icons-material/PlayArrow';
+import Psychology from '@mui/icons-material/Psychology';
+import Refresh from '@mui/icons-material/Refresh';
+import Rocket from '@mui/icons-material/Rocket';
+import RotateRight from '@mui/icons-material/RotateRight';
+import Route from '@mui/icons-material/Route';
+import Save from '@mui/icons-material/Save';
+import Search from '@mui/icons-material/Search';
+import Security from '@mui/icons-material/Security';
+import Send from '@mui/icons-material/Send';
+import Settings from '@mui/icons-material/Settings';
+import Share from '@mui/icons-material/Share';
+import Shield from '@mui/icons-material/Shield';
+import ShoppingCart from '@mui/icons-material/ShoppingCart';
+import Speed from '@mui/icons-material/Speed';
+import Star from '@mui/icons-material/Star';
+import Storage from '@mui/icons-material/Storage';
+import SupportAgent from '@mui/icons-material/SupportAgent';
+import Sync from '@mui/icons-material/Sync';
+import TrendingUp from '@mui/icons-material/TrendingUp';
+import Tune from '@mui/icons-material/Tune';
+import VerifiedUser from '@mui/icons-material/VerifiedUser';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import VpnKey from '@mui/icons-material/VpnKey';
+import Work from '@mui/icons-material/Work';
+import WorkspacePremium from '@mui/icons-material/WorkspacePremium';
+// Additional icons for components
+import Accessibility from '@mui/icons-material/Accessibility';
+import BrokenImage from '@mui/icons-material/BrokenImage';
+import Circle from '@mui/icons-material/Circle';
+import ContentCopy from '@mui/icons-material/ContentCopy';
+import DarkMode from '@mui/icons-material/DarkMode';
+import Error from '@mui/icons-material/Error';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import FormatBold from '@mui/icons-material/FormatBold';
+import FormatItalic from '@mui/icons-material/FormatItalic';
+import FormatUnderlined from '@mui/icons-material/FormatUnderlined';
+import Launch from '@mui/icons-material/Launch';
+import LightMode from '@mui/icons-material/LightMode';
+import MoreVert from '@mui/icons-material/MoreVert';
+import Palette from '@mui/icons-material/Palette';
+import RadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked';
+import Schedule from '@mui/icons-material/Schedule';
+import SettingsSystemDaydream from '@mui/icons-material/SettingsSystemDaydream';
+import Warning from '@mui/icons-material/Warning';
 
 /**
  * Icon mapping entry with both Material-UI component and emoji representation
@@ -235,6 +254,47 @@ export const iconMap: Record<string, IconMapping> = {
   person_search: { emoji: '🔍', component: PersonSearch },
   user: { emoji: '👤', component: Person }, // alias
   users: { emoji: '👥', component: People }, // alias
+
+  // === UI & Interaction ===
+  accessibility: { emoji: '♿', component: Accessibility },
+  broken_image: { emoji: '🖼️', component: BrokenImage },
+  brokenimage: { emoji: '🖼️', component: BrokenImage }, // alias
+  circle: { emoji: '⭕', component: Circle },
+  content_copy: { emoji: '📋', component: ContentCopy },
+  contentcopy: { emoji: '📋', component: ContentCopy }, // alias
+  copy: { emoji: '📋', component: ContentCopy }, // alias
+  dark_mode: { emoji: '🌙', component: DarkMode },
+  darkmode: { emoji: '🌙', component: DarkMode }, // alias
+  error: { emoji: '❌', component: Error },
+  expand_less: { emoji: '▲', component: ExpandLess },
+  expandless: { emoji: '▲', component: ExpandLess }, // alias
+  expand_more: { emoji: '▼', component: ExpandMore },
+  expandmore: { emoji: '▼', component: ExpandMore }, // alias
+  format_bold: { emoji: '𝐁', component: FormatBold },
+  formatbold: { emoji: '𝐁', component: FormatBold }, // alias
+  bold: { emoji: '𝐁', component: FormatBold }, // alias
+  format_italic: { emoji: '𝐼', component: FormatItalic },
+  formatitalic: { emoji: '𝐼', component: FormatItalic }, // alias
+  italic: { emoji: '𝐼', component: FormatItalic }, // alias
+  format_underlined: { emoji: 'U̲', component: FormatUnderlined },
+  formatunderlined: { emoji: 'U̲', component: FormatUnderlined }, // alias
+  underline: { emoji: 'U̲', component: FormatUnderlined }, // alias
+  launch: { emoji: '🚀', component: Launch },
+  open: { emoji: '🚀', component: Launch }, // alias
+  light_mode: { emoji: '☀️', component: LightMode },
+  lightmode: { emoji: '☀️', component: LightMode }, // alias
+  more_vert: { emoji: '⋮', component: MoreVert },
+  morevert: { emoji: '⋮', component: MoreVert }, // alias
+  more: { emoji: '⋮', component: MoreVert }, // alias
+  palette: { emoji: '🎨', component: Palette },
+  radio_button_unchecked: { emoji: '○', component: RadioButtonUnchecked },
+  radiobuttonunchecked: { emoji: '○', component: RadioButtonUnchecked }, // alias
+  schedule: { emoji: '📅', component: Schedule },
+  calendar: { emoji: '📅', component: Schedule }, // alias
+  settings_system_daydream: { emoji: '💻', component: SettingsSystemDaydream },
+  settingssystemdaydream: { emoji: '💻', component: SettingsSystemDaydream }, // alias
+  system: { emoji: '💻', component: SettingsSystemDaydream }, // alias
+  warning: { emoji: '⚠️', component: Warning },
 };
 
 /**

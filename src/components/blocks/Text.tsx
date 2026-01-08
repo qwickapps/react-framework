@@ -25,8 +25,14 @@ import type { SchemaProps } from '@qwickapps/schema/src/types/ModelProps';
 /**
  * Props interface for Text component
  * Uses SchemaProps<typeof TextSchema> for clean typing
+ * Explicitly includes sx and style for type resolution
  */
-export type TextProps = ViewProps & SchemaProps<typeof TextSchema>;
+export type TextProps = ViewProps & SchemaProps<typeof TextSchema> & {
+  /** MUI sx prop for advanced styling (explicit override for type resolution) */
+  sx?: import('@mui/material/styles').SxProps<import('@mui/material/styles').Theme>;
+  /** Inline CSS styles (explicit override for type resolution) */
+  style?: React.CSSProperties;
+};
 
 /**
  * TextView - Pure view component that renders the typography
@@ -130,24 +136,26 @@ interface TextComponentWithPatterns {
 
 // Register HTML patterns that Text component can handle
 (Text as unknown as TextComponentWithPatterns).registerPatternHandlers = (registry: PatternRegistry): void => {
+  const typedRegistry = registry as { hasPattern?: (pattern: string) => boolean; registerPattern?: (pattern: string, handler: (element: Element) => Record<string, unknown>) => void };
   const textComponent = Text as unknown as TextComponentWithPatterns;
 
   // Register paragraph elements
-  if (!registry.hasPattern('p')) {
-    registry.registerPattern('p', textComponent.transformParagraph);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('p')) {
+    typedRegistry.registerPattern?.('p', textComponent.transformParagraph);
   }
 
   // Register heading elements
   const headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
   headings.forEach(heading => {
-    if (!registry.hasPattern(heading)) {
-      registry.registerPattern(heading, (element: Element) => textComponent.transformHeading(element, heading));
+
+    if (typedRegistry.hasPattern && !typedRegistry.hasPattern(heading)) {
+      typedRegistry.registerPattern?.(heading, (element: Element) => textComponent.transformHeading(element, heading));
     }
   });
 
   // Register span elements
-  if (!registry.hasPattern('span')) {
-    registry.registerPattern('span', textComponent.transformSpan);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('span')) {
+    typedRegistry.registerPattern?.('span', textComponent.transformSpan);
   }
 };
 

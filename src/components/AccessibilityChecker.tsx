@@ -23,13 +23,16 @@ import {
   IconButton,
   Divider,
 } from '@mui/material';
-import {
-  Accessibility as AccessibilityIcon,
-  CheckCircle as CheckIcon,
-  Warning as WarningIcon,
-  Error as ErrorIcon,
-  Close as CloseIcon,
-} from '@mui/icons-material';
+import Accessibility from '@mui/icons-material/Accessibility';
+import CheckCircle from '@mui/icons-material/CheckCircle';
+import Warning from '@mui/icons-material/Warning';
+import Error from '@mui/icons-material/Error';
+import Close from '@mui/icons-material/Close';
+const AccessibilityIcon = Accessibility;
+const CheckIcon = CheckCircle;
+const WarningIcon = Warning;
+const ErrorIcon = Error;
+const CloseIcon = Close;
 import { getContrastRatio } from '@mui/material';
 import { getCurrentPalette } from '../utils/paletteUtils';
 import { getCurrentTheme } from '../utils/themeUtils';

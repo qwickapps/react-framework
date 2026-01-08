@@ -260,14 +260,12 @@ function FeatureCard(props: FeatureCardProps) {
   const { dataSource, bindingOptions, ...restProps } = props;
 
   // Mark as QwickApp component
-  (FeatureCard as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(FeatureCard, { [QWICKAPP_COMPONENT]: true });
 
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<FeatureCardModel>(
     dataSource || '',
-    restProps as Partial<FeatureCardModel>,
-    FeatureCardModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<FeatureCardModel>
   );
 
   // If no dataSource, use traditional props

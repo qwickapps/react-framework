@@ -39,7 +39,7 @@ function ArticleView({
   const { styleProps, htmlProps, restProps: otherProps } = useBaseProps(restProps);
 
   // Mark as QwickApp component
-  (ArticleView as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(ArticleView, { [QWICKAPP_COMPONENT]: true });
 
   // Return empty state if no HTML content
   if (!html.trim()) {
@@ -336,7 +336,7 @@ function ArticleView({
 }
 
 // Main component with data binding support and serialization capability
-export class Article extends ModelView<ArticleProps, ArticleModel> {
+export class Article extends ModelView<ArticleProps> {
   // Component self-declaration for serialization
   static readonly tagName = 'Article';
   static readonly version = '1.0.0';
@@ -362,9 +362,11 @@ export class Article extends ModelView<ArticleProps, ArticleModel> {
 
   // Register HTML patterns that Article component can handle
   static registerPatternHandlers(registry: unknown): void {
+    const typedRegistry = registry as { hasPattern?: (pattern: string) => boolean; registerPattern?: (pattern: string, handler: (element: Element) => Record<string, unknown>) => void };
+
     // Register article elements
-    if (!registry.hasPattern('article')) {
-      registry.registerPattern('article', Article.transformArticle);
+    if (typedRegistry.hasPattern && !typedRegistry.hasPattern('article')) {
+      typedRegistry.registerPattern?.('article', Article.transformArticle);
     }
   }
 
@@ -389,9 +391,7 @@ function ArticleWithDataBinding(props: ArticleProps) {
   // Use data binding
   const { loading, error, ...articleProps } = useDataBinding<ArticleModel>(
     dataSource!,
-    restProps as Partial<ArticleModel>,
-    ArticleModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<ArticleModel>
   );
 
   // Show loading state

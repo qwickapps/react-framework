@@ -26,10 +26,10 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import {
-  ExpandMore as ExpandMoreIcon,
-  ExpandLess as ExpandLessIcon,
-} from '@mui/icons-material';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+const ExpandMoreIcon = ExpandMore;
+const ExpandLessIcon = ExpandLess;
 import { QWICKAPP_COMPONENT, useBaseProps, useDataBinding } from '../../../hooks';
 import CollapsibleLayoutModel from '../../../schemas/CollapsibleLayoutSchema';
 import {
@@ -167,7 +167,7 @@ function CollapsibleLayoutView({
   const { styleProps, htmlProps, restProps: otherProps } = useBaseProps(restProps);
   
   // Mark as QwickApp component
-  (CollapsibleLayoutView as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(CollapsibleLayoutView, { [QWICKAPP_COMPONENT]: true });
 
   // Determine controlled vs uncontrolled usage
   const controlled = collapsedProp !== undefined;
@@ -500,9 +500,7 @@ function CollapsibleLayout(props: CollapsibleLayoutProps) {
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<CollapsibleLayoutModel>(
     dataSource || '',
-    restProps as Partial<CollapsibleLayoutModel>,
-    CollapsibleLayoutModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<CollapsibleLayoutModel>
   );
 
   // If no dataSource, use traditional props

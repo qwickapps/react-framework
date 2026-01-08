@@ -264,4 +264,4 @@ export function useBaseProps<T extends BaseComponentProps>(props: T) {
 /**
  * Type helper for components using base props
  */
-export type WithBaseProps<P = Record<string, never>> = P & BaseComponentProps;
+export type WithBaseProps<P = object> = P & BaseComponentProps;

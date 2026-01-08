@@ -64,7 +64,7 @@ function FeatureGridView({
   const { styleProps, htmlProps } = useBaseProps(restProps);
   
   // Mark as QwickApp component
-  (FeatureGridView as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(FeatureGridView, { [QWICKAPP_COMPONENT]: true });
 
   // Map gap to spacing value for GridLayout
   const getSpacing = (): 'none' | 'tiny' | 'small' | 'medium' | 'large' | 'huge' => {
@@ -95,9 +95,7 @@ function FeatureGrid(props: FeatureGridProps) {
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<FeatureGridModel>(
     dataSource || '',
-    restProps as Partial<FeatureGridModel>,
-    FeatureGridModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<FeatureGridModel>
   );
 
   // If no dataSource, use traditional props

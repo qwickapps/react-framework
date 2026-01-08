@@ -111,6 +111,6 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
 FormCheckbox.displayName = 'FormCheckbox';
 
 // Mark as QwickApp component
-(FormCheckbox as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+Object.assign(FormCheckbox, { [QWICKAPP_COMPONENT]: true });
 
 export default FormCheckbox;

@@ -18,7 +18,8 @@ import {
   Button,
   Typography
 } from '@mui/material';
-import { Add as AddIcon } from '@mui/icons-material';
+import Add from "@mui/icons-material/Add";
+const AddIcon = Add;
 import HtmlInputField from './HtmlInputField';
 // import ChoiceInputFieldModel from '../../schemas/ChoiceInputFieldSchema';
 import { createSerializableView, SerializableComponent } from '../shared/createSerializableView';

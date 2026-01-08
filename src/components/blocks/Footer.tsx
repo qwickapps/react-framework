@@ -81,7 +81,7 @@ function FooterView({
   const { gridProps, styleProps, htmlProps } = useBaseProps(restProps);
 
   // Mark as QwickApp component
-  (FooterView as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(FooterView, { [QWICKAPP_COMPONENT]: true });
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -292,9 +292,7 @@ function Footer(props: FooterProps) {
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<FooterModel>(
     dataSource || '',
-    restProps as Partial<FooterModel>,
-    FooterModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<FooterModel>
   );
 
   // If no dataSource, use traditional props

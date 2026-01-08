@@ -68,9 +68,9 @@ export class ErrorBoundary extends Component<Props, State> {
 
 		// Send error to logging service if available
 		if (typeof window !== 'undefined') {
-			// @ts-expect-error - Global error logging service may not be defined
-			if (window.qwickapps?.logError) {
-				window.qwickapps.logError(error, errorInfo);
+			const globalWindow = window as unknown as { qwickapps?: { logError?: (error: Error, errorInfo: React.ErrorInfo) => void } };
+			if (globalWindow.qwickapps?.logError) {
+				globalWindow.qwickapps.logError(error, errorInfo);
 			}
 		}
 	}

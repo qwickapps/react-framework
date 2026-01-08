@@ -58,12 +58,15 @@ function HtmlView({
   stripHeaders = false,
   placeholder,
   component = 'div',
+  transformConfig,
+  sanitize,
+  sanitizeOptions,
   ...restProps
 }: HtmlViewProps) {
   const { styleProps, htmlProps, restProps: otherProps } = useBaseProps(restProps);
 
   // Mark as QwickApp component
-  (HtmlView as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(HtmlView, { [QWICKAPP_COMPONENT]: true });
 
   // Return placeholder if no HTML content
   if (!children || !children.trim()) {
@@ -177,7 +180,7 @@ function HtmlView({
 }
 
 // Main component with data binding support and serialization capability
-export class Html extends ModelView<HtmlProps, HtmlModel> {
+export class Html extends ModelView<HtmlProps> {
   // Component self-declaration for serialization
   static readonly tagName = 'Html';
   static readonly version = '1.0.0';
@@ -191,9 +194,11 @@ export class Html extends ModelView<HtmlProps, HtmlModel> {
     if (version !== Html.version) {
       console.warn(`Version mismatch: Expected ${Html.version} but got ${version}`);
     }
-    
-    const { children, ...props } = data || {};
-    return <Html {...props} >{ComponentTransformer.deserialize(children)}</Html>;
+
+    const typedData = (data as Record<string, unknown>) || {};
+    const { children, ...props } = typedData;
+    // Children should be a string (HTML content), not deserialized React nodes
+    return <Html {...props}>{children as string}</Html>;
   }
 
   // Component-specific serialization properties
@@ -218,14 +223,16 @@ export class Html extends ModelView<HtmlProps, HtmlModel> {
 
   // Register HTML patterns that Html component can handle
   static registerPatternHandlers(registry: Record<string, unknown>): void {
+    const typedRegistry = registry as { hasPattern?: (pattern: string) => boolean; registerPattern?: (pattern: string, handler: (element: Element) => Record<string, unknown>) => void };
+
     // Register div elements with specific classes for Html transformation
-    if (!registry.hasPattern('div.html-content')) {
-      registry.registerPattern('div.html-content', Html.transformHtmlDiv);
+    if (typedRegistry.hasPattern && !typedRegistry.hasPattern('div.html-content')) {
+      typedRegistry.registerPattern?.('div.html-content', Html.transformHtmlDiv);
     }
 
     // Register elements with data-html attribute
-    if (!registry.hasPattern('[data-html]')) {
-      registry.registerPattern('[data-html]', Html.transformDataHtml);
+    if (typedRegistry.hasPattern && !typedRegistry.hasPattern('[data-html]')) {
+      typedRegistry.registerPattern?.('[data-html]', Html.transformDataHtml);
     }
   }
 
@@ -268,9 +275,7 @@ function HtmlWithDataBinding(props: HtmlProps) {
   // Use data binding
   const { loading, error, ...htmlProps } = useDataBinding<HtmlModel>(
     dataSource!,
-    restProps as Partial<HtmlModel>,
-    HtmlModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<HtmlModel>
   );
 
   // Show loading state

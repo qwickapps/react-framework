@@ -35,7 +35,7 @@ type MarkdownViewProps = SchemaProps<MarkdownModel> & {
   /** Custom transformation configuration for HTML conversion */
   htmlTransformConfig?: TransformConfig;
   /** Custom sanitization options */
-  sanitizeOptions?: unknown;
+  sanitizeOptions?: Record<string, unknown>;
   /** Container element type */
   component?: React.ElementType;
   /** Marked options for Markdown parsing */
@@ -78,7 +78,7 @@ function MarkdownView({
   const { styleProps, htmlProps, restProps: otherProps } = useBaseProps(restProps);
 
   // Mark as QwickApp component
-  (MarkdownView as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(MarkdownView, { [QWICKAPP_COMPONENT]: true });
 
   // Return placeholder if no Markdown content
   if (!children || !children.trim()) {
@@ -186,7 +186,7 @@ function MarkdownView({
 }
 
 // Main component with data binding support and serialization capability
-export class Markdown extends ModelView<MarkdownProps, MarkdownModel> {
+export class Markdown extends ModelView<MarkdownProps> {
   // Component self-declaration for serialization
   static readonly tagName = 'Markdown';
   static readonly version = '1.0.0';
@@ -213,14 +213,16 @@ export class Markdown extends ModelView<MarkdownProps, MarkdownModel> {
 
   // Register HTML patterns that Markdown component can handle
   static registerPatternHandlers(registry: unknown): void {
+    const typedRegistry = registry as { hasPattern?: (pattern: string) => boolean; registerPattern?: (pattern: string, handler: (element: Element) => Record<string, unknown>) => void };
+
     // Register div elements with specific classes for Markdown transformation
-    if (!registry.hasPattern('div.markdown-content')) {
-      registry.registerPattern('div.markdown-content', Markdown.transformMarkdownDiv);
+    if (typedRegistry.hasPattern && !typedRegistry.hasPattern('div.markdown-content')) {
+      typedRegistry.registerPattern?.('div.markdown-content', Markdown.transformMarkdownDiv);
     }
     
     // Register elements with data-markdown attribute
-    if (!registry.hasPattern('[data-markdown]')) {
-      registry.registerPattern('[data-markdown]', Markdown.transformDataMarkdown);
+    if (typedRegistry.hasPattern && !typedRegistry.hasPattern('[data-markdown]')) {
+      typedRegistry.registerPattern?.('[data-markdown]', Markdown.transformDataMarkdown);
     }
   }
 
@@ -263,9 +265,7 @@ function MarkdownWithDataBinding(props: MarkdownProps) {
   // Use data binding
   const { loading, error, ...markdownProps } = useDataBinding<MarkdownModel>(
     dataSource!,
-    restProps as Partial<MarkdownModel>,
-    MarkdownModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<MarkdownModel>
   );
 
   // Show loading state

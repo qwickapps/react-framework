@@ -23,6 +23,7 @@ export * from './forms';
 export * from './input';
 export * from './layout';
 export * from './pages';
+export * from './plugins';
 export { default as Scaffold } from './Scaffold';
 export type { ScaffoldProps, AppBarProps } from './Scaffold';
 export type { MenuItem } from './menu/MenuItem';

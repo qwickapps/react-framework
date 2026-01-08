@@ -175,6 +175,6 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>((props
 FormField.displayName = 'FormField';
 
 // Mark as QwickApp component
-(FormField as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+Object.assign(FormField, { [QWICKAPP_COMPONENT]: true });
 
 export default FormField;

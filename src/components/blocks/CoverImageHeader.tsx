@@ -11,7 +11,8 @@
  * Copyright (c) 2025 QwickApps.com. All rights reserved.
  */
 
-import { MoreVert as MoreIcon } from '@mui/icons-material';
+import MoreVert from "@mui/icons-material/MoreVert";
+const MoreIcon = MoreVert;
 import {
   Avatar,
   Box,
@@ -401,9 +402,7 @@ function CoverImageHeader(props: CoverImageHeaderProps) {
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<CoverImageHeaderModel>(
     dataSource || '',
-    restProps as Partial<CoverImageHeaderModel>,
-    CoverImageHeaderModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<CoverImageHeaderModel>
   );
 
   // If no dataSource, use traditional props

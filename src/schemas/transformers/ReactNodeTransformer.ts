@@ -185,7 +185,8 @@ export class ReactNodeTransformer {
     }
 
     // Use Html component to render HTML content safely
-    return createElement(Html, { key, children: props.children });
+    const typedProps = props as Record<string, unknown>;
+    return createElement(Html, { key, children: typedProps.children });
   }
 
   /**
@@ -217,22 +218,24 @@ export class ReactNodeTransformer {
    * @returns Text content or null
    */
   private static extractTextContent(props: unknown): string | null {
-    if (!props) return null;
+    if (!props || typeof props !== 'object') return null;
 
-    if (typeof props.children === 'string') {
-      return props.children;
+    const typedProps = props as Record<string, unknown>;
+
+    if (typeof typedProps.children === 'string') {
+      return typedProps.children;
     }
 
-    if (props.title && typeof props.title === 'string') {
-      return props.title;
+    if (typedProps.title && typeof typedProps.title === 'string') {
+      return typedProps.title;
     }
 
-    if (props.label && typeof props.label === 'string') {
-      return props.label;
+    if (typedProps.label && typeof typedProps.label === 'string') {
+      return typedProps.label;
     }
 
-    if (props.text && typeof props.text === 'string') {
-      return props.text;
+    if (typedProps.text && typeof typedProps.text === 'string') {
+      return typedProps.text;
     }
 
     return null;

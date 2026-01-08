@@ -286,6 +286,6 @@ export const Captcha = React.forwardRef<HTMLDivElement, CaptchaProps>((props, re
 Captcha.displayName = 'Captcha';
 
 // Mark as QwickApp component
-(Captcha as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+Object.assign(Captcha, { [QWICKAPP_COMPONENT]: true });
 
 export default Captcha;

@@ -17,3 +17,6 @@ export type { FormCheckboxProps } from './FormCheckbox';
 
 export { default as Captcha } from './Captcha';
 export type { CaptchaProps, CaptchaProvider } from './Captcha';
+
+export { SchemaFormRenderer } from './SchemaFormRenderer';
+export type { SchemaFormRendererProps } from './SchemaFormRenderer';

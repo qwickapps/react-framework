@@ -154,11 +154,11 @@ export function createSerializableView<P extends ViewProps>(
 
   // Attach static properties for serialization
   const component = SerializableViewComponent as unknown as SerializableComponent<P>;
-  
+
   // Component identification
   component.tagName = tagName;
   component.version = version;
-  component[QWICKAPP_COMPONENT] = QWICKAPP_COMPONENT;
+  Object.assign(component, { [QWICKAPP_COMPONENT]: QWICKAPP_COMPONENT });
 
   // Serialization methods
   component.fromJson = function fromJson(data: unknown): ReactElement {
@@ -178,8 +178,9 @@ export function createSerializableView<P extends ViewProps>(
     if (childrenStrategy.mode === 'content-prop') {
       const propName = childrenStrategy.propName || 'content';
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { children, ...rest } = componentData || {};
-      const contentData = { ...rest, [propName]: componentData?.[propName] || '' };
+      const typedComponentData = (componentData as Record<string, unknown>) || {};
+      const { children, ...rest } = typedComponentData;
+      const contentData = { ...rest, [propName]: typedComponentData[propName] || '' };
       return React.createElement(component as ComponentType<P>, contentData as P);
     } else {
       // For react-children strategy, recursively deserialize children
@@ -197,8 +198,9 @@ export function createSerializableView<P extends ViewProps>(
     if (childrenStrategy.mode === 'content-prop') {
       const propName = childrenStrategy.propName || 'content';
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { children, ...rest } = props || {};
-      const contentValue = (props as Record<string, unknown>)?.[propName] ?? toText((props as Record<string, unknown>)?.children as ReactNode);
+      const typedProps = (props as Record<string, unknown>) || {};
+      const { children, ...rest } = typedProps;
+      const contentValue = typedProps[propName] ?? toText(typedProps.children as ReactNode);
 
       // Clean props for content-prop serialization
       const cleanProps: Record<string, unknown> = {};

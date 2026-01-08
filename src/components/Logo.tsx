@@ -430,14 +430,7 @@ function Logo(props: LogoProps) {
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<LogoModel>(
     dataSource || '',
-    {
-      initialData: restProps,
-      schema: LogoModel.getSchema(),
-      cache: true,
-      cacheTTL: 300000,
-      strict: false,
-      ...bindingOptions
-    }
+    restProps as Partial<LogoModel>
   );
 
   // If no dataSource, use traditional props

@@ -17,7 +17,8 @@
 
 import React, { useState, useCallback } from 'react';
 import { Box, Skeleton, Typography, useTheme } from '@mui/material';
-import { BrokenImage as BrokenImageIcon } from '@mui/icons-material';
+import BrokenImage from "@mui/icons-material/BrokenImage";
+const BrokenImageIcon = BrokenImage;
 import { ImageFit, ImageLoading, ImagePosition } from '../../schemas/ImageSchema';
 import { createSerializableView, SerializableComponent } from '../shared/createSerializableView';
 import { ViewProps } from '../shared/viewProps';
@@ -231,14 +232,16 @@ interface PatternRegistry {
 
 // Register HTML patterns that Image component can handle
 (Image as unknown as { registerPatternHandlers: (registry: PatternRegistry) => void }).registerPatternHandlers = (registry: PatternRegistry): void => {
+  const typedRegistry = registry as { hasPattern?: (pattern: string) => boolean; registerPattern?: (pattern: string, handler: (element: Element) => Record<string, unknown>) => void };
+
   // Register img elements
-  if (!registry.hasPattern('img')) {
-    registry.registerPattern('img', transformImage);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('img')) {
+    typedRegistry.registerPattern?.('img', transformImage);
   }
 
   // Register figure elements with img
-  if (!registry.hasPattern('figure img')) {
-    registry.registerPattern('figure img', transformFigureImage);
+  if (typedRegistry.hasPattern && !typedRegistry.hasPattern('figure img')) {
+    typedRegistry.registerPattern?.('figure img', transformFigureImage);
   }
 };
 

@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **SchemaFormRenderer**: Reusable form generator from @qwickapps/schema models
+  - Reads @Editor metadata from Model classes to generate Material-UI form fields
+  - Maps all FieldType enum values to appropriate input components (TEXT, TEXTAREA, EMAIL, BOOLEAN, NUMBER, DATE_TIME, COLOR, IMAGE, etc.)
+  - Handles validation feedback, read-only modes, and field descriptions
+  - Improved type safety: replaced `any` with `unknown` for field values and onChange handlers
+  - Handles empty number fields correctly (returns `undefined` instead of `NaN`)
+- **DataTable tests**: Comprehensive test suite covering type safety and component rendering
+
+### Changed
+
+- **DataTable**: Improved type safety with generic type parameter
+  - Type-safe `getRowKey` function with proper handling of rows with and without id property
+  - Better TypeScript inference for column keys matching data properties
+  - Fixed type checking for id property extraction (string | number)
+- **StatCard**: Enhanced with better TypeScript types for server-specific usage
+- **Plugin Components**: Separated server-specific components from generic framework
+  - Moved server-specific plugin UI components to @qwickapps/server package
+  - Improved component architecture for better separation of concerns
+
+## [1.5.8] - 2026-01-08
+
+### Fixed
+
+- **Build System**: Resolved Vite 5 module resolution conflict
+  - Removed `"type": "module"` declaration that conflicted with dual CJS/ESM exports
+  - Renamed `rollup.config.js` to `rollup.config.mjs` for ESM support
+  - Fixes "Failed to resolve entry for package" errors in Vite 5 projects
+  - Maintains dual format support via exports field (ESM: `import`, CJS: `require`)
+
 ## [1.5.7] - 2025-12-15
 
 ### Added

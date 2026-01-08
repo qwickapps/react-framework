@@ -10,7 +10,12 @@
  * Copyright (c) 2025 QwickApps.com. All rights reserved.
  */
 
-import { Schedule as ComingSoonIcon, Launch as LaunchIcon, Visibility as PreviewIcon } from '@mui/icons-material';
+import Schedule from '@mui/icons-material/Schedule';
+import Launch from '@mui/icons-material/Launch';
+import Visibility from '@mui/icons-material/Visibility';
+const ComingSoonIcon = Schedule;
+const LaunchIcon = Launch;
+const PreviewIcon = Visibility;
 import {
   Box,
   Chip,
@@ -406,14 +411,12 @@ function ProductCard(props: ProductCardProps) {
   const { dataSource, bindingOptions, ...restProps } = props;
 
   // Mark as QwickApp component
-  (ProductCard as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+  Object.assign(ProductCard, { [QWICKAPP_COMPONENT]: true });
 
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<ProductCardModel>(
     dataSource || '',
-    restProps as Partial<ProductCardModel>,
-    ProductCardModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<ProductCardModel>
   );
 
   // If no dataSource, use traditional props

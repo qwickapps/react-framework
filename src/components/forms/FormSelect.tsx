@@ -135,6 +135,6 @@ export const FormSelect = React.forwardRef<HTMLDivElement, FormSelectProps>((pro
 FormSelect.displayName = 'FormSelect';
 
 // Mark as QwickApp component
-(FormSelect as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+Object.assign(FormSelect, { [QWICKAPP_COMPONENT]: true });
 
 export default FormSelect;

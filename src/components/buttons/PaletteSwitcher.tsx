@@ -11,10 +11,10 @@
  * Copyright (c) 2025 QwickApps.com. All rights reserved.
  */
 
-import {
-  Palette as PaletteIcon,
-  Circle as CircleIcon,
-} from '@mui/icons-material';
+import Palette from '@mui/icons-material/Palette';
+import Circle from '@mui/icons-material/Circle';
+const PaletteIcon = Palette;
+const CircleIcon = Circle;
 import {
   IconButton,
   Menu,
@@ -210,9 +210,7 @@ function PaletteSwitcher(props: PaletteSwitcherProps) {
   // Always call hooks unconditionally
   const bindingResult = useDataBinding<PaletteSwitcherModel>(
     dataSource || '',
-    restProps as Partial<PaletteSwitcherModel>,
-    PaletteSwitcherModel.getSchema(),
-    { cache: true, cacheTTL: 300000, strict: false, ...bindingOptions }
+    restProps as Partial<PaletteSwitcherModel>
   );
 
   // If no dataSource, use traditional props
@@ -266,6 +264,6 @@ function PaletteSwitcher(props: PaletteSwitcherProps) {
 }
 
 // Mark as QwickApp component
-(PaletteSwitcher as Record<string, unknown>)[QWICKAPP_COMPONENT] = true;
+Object.assign(PaletteSwitcher, { [QWICKAPP_COMPONENT]: true });
 
 export default PaletteSwitcher;

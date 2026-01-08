@@ -23,15 +23,20 @@ import {
   Alert,
   ButtonGroup,
   } from '@mui/material';
-import {
-  FormatBold as BoldIcon,
-  FormatItalic as ItalicIcon,
-  FormatUnderlined as UnderlineIcon,
-  Code as CodeIcon,
-  Visibility as PreviewIcon,
-  VisibilityOff as EditIcon,
-  Help as HelpIcon
-} from '@mui/icons-material';
+import FormatBold from '@mui/icons-material/FormatBold';
+import FormatItalic from '@mui/icons-material/FormatItalic';
+import FormatUnderlined from '@mui/icons-material/FormatUnderlined';
+import Code from '@mui/icons-material/Code';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Help from '@mui/icons-material/Help';
+const BoldIcon = FormatBold;
+const ItalicIcon = FormatItalic;
+const UnderlineIcon = FormatUnderlined;
+const CodeIcon = Code;
+const PreviewIcon = Visibility;
+const EditIcon = VisibilityOff;
+const HelpIcon = Help;
 import SafeSpan from '../SafeSpan';
 import sanitizeHtml from 'sanitize-html';
 // import HtmlInputFieldModel from '../../schemas/HtmlInputFieldSchema';
