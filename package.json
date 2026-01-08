@@ -11,13 +11,15 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
       "require": "./dist/index.js",
-      "import": "./dist/index.esm.js"
+      "default": "./dist/index.js"
     },
     "./config": {
       "types": "./dist/config.d.ts",
+      "import": "./dist/config.esm.js",
       "require": "./dist/config.js",
-      "import": "./dist/config.esm.js"
+      "default": "./dist/config.js"
     },
     "./dist/index.css": "./dist/index.css",
     "./index.css": "./dist/index.css"
@@ -129,7 +131,7 @@
     "ts-jest": "^29.4.1",
     "ts-loader": "^9.5.2",
     "typescript": "^5.9.2",
-    "vite": "^7.0.6"
+    "vite": "^6.0.0"
   },
   "publishConfig": {
     "access": "public"
