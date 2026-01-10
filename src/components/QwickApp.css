@@ -451,3 +451,11 @@ code, code.inline-code, pre.code-block {
   padding: 2px 4px;
   border-radius: 4px;
 }
+
+/* Override inline code styles for code blocks */
+pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0;
+  border-radius: 0;
+}

@@ -5,6 +5,15 @@ All notable changes to the QwickApps React Framework will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.12] - 2026-01-10
+
+### Fixed
+
+- **CSS**: Fixed code block styling where inline code styles were applied to `<code>` inside `<pre>`
+  - Added `pre code` CSS rule to override inline code background and color
+  - Code blocks now correctly display with transparent background and inherited color
+  - Fixes visual issue where code text had light background inside dark code blocks
+
 ## [Unreleased]
 
 ### Added
