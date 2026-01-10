@@ -28,6 +28,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Moved server-specific plugin UI components to @qwickapps/server package
   - Improved component architecture for better separation of concerns
 
+## [1.5.11] - 2026-01-10
+
+### Fixed
+
+- **ComponentTransformer**: Fixed React error #137 for void elements (hr, br, img, etc.)
+  - Void/self-closing elements cannot have `dangerouslySetInnerHTML` prop
+  - Now correctly renders void elements without innerHTML
+  - Completes the fix started in 1.5.10 for markdown horizontal rules (`---`)
+
 ## [1.5.10] - 2026-01-10
 
 ### Fixed

@@ -414,14 +414,23 @@ export class ComponentTransformer {
     }
 
     // Fallback - use ReactNodeTransformer to handle as unregistered HTML
+    const tagName = element.tagName.toLowerCase();
+
+    // Void elements (self-closing tags) cannot have innerHTML
+    // https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+    const voidElements = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
+                          'link', 'meta', 'param', 'source', 'track', 'wbr'];
+
+    const isVoidElement = voidElements.includes(tagName);
+
     return ReactNodeTransformer.deserialize({
       type: 'react-element',
-      elementType: element.tagName.toLowerCase(),
+      elementType: tagName,
       props: {
         key,
         className: element.className || undefined,
         id: element.id || undefined,
-        dangerouslySetInnerHTML: { __html: element.innerHTML }
+        ...(isVoidElement ? {} : { dangerouslySetInnerHTML: { __html: element.innerHTML } })
       }
     });
   }

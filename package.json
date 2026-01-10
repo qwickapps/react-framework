@@ -1,6 +1,6 @@
 {
   "name": "@qwickapps/react-framework",
-  "version": "1.5.10",
+  "version": "1.5.11",
   "description": "Complete React framework with responsive navigation, flexible layouts, theming system, and reusable components for building modern applications.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
