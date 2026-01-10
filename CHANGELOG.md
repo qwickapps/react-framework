@@ -28,6 +28,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Moved server-specific plugin UI components to @qwickapps/server package
   - Improved component architecture for better separation of concerns
 
+## [1.5.10] - 2026-01-10
+
+### Fixed
+
+- **SafeSpan**: Fixed React error #137 (invalid element nesting) when rendering markdown with block-level elements
+  - Changed from `<span>` to `<div>` element to properly contain block-level HTML elements
+  - Added support for `hr`, `table`, `thead`, `tbody`, `tr`, `th`, `td` tags in sanitization allowlist
+  - Fixes rendering of markdown horizontal rules (`---`) and tables
+
 ## [1.5.9] - 2026-01-08
 
 ### Fixed

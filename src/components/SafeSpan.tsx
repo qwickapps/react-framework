@@ -32,7 +32,7 @@ function SafeSpanView(props: SafeSpanViewProps) {
   const sanitizeOptions = {
     allowedTags: [
       'p', 'br', 'strong', 'em', 'u', 'span', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-      'ul', 'ol', 'li', 'blockquote', 'pre', 'code', 'a', 'img'
+      'ul', 'ol', 'li', 'blockquote', 'pre', 'code', 'a', 'img', 'hr', 'table', 'thead', 'tbody', 'tr', 'th', 'td'
     ],
     allowedAttributes: {
       'a': ['href', 'title', 'target'],
@@ -85,8 +85,11 @@ function SafeSpanView(props: SafeSpanViewProps) {
   }
   
   // Render sanitized HTML content
+  // Use div instead of span to allow block-level elements like <hr>, <table>, etc.
+  // This prevents React error #137 (invalid element nesting) when HTML contains
+  // block elements from markdown (e.g., --- becomes <hr>)
   return (
-    <span
+    <div
       {...htmlProps}
       {...styleProps}
       dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
