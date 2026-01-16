@@ -75,7 +75,7 @@ function ArticleView({
       {...htmlProps}
       {...otherProps}
       {...styleProps}
-      {...{
+      sx={{
         // Modern article layout
         maxWidth: '900px',
         mx: 'auto',
