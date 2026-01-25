@@ -41,6 +41,8 @@ export * from './MetadataItemSchema';
 export * from './PageBannerHeaderSchema';
 export * from './PaletteSwitcherSchema';
 export * from './ProductCardSchema';
+export * from './ImageGallerySchema';
+export * from './OptionSelectorSchema';
 export * from './SafeSpanSchema';
 export * from './SectionSchema';
 export * from './TextInputFieldSchema';

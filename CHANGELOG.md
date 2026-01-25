@@ -5,6 +5,29 @@ All notable changes to the QwickApps React Framework will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.13] - 2026-01-25
+
+### Added
+
+- **ImageGallery Component**: Professional image gallery with multiple display variants
+  - Three display modes: thumbnails (left/bottom/right), carousel, and grid
+  - Built-in zoom modal for full-screen viewing
+  - Customizable aspect ratios (1:1, 4:3, 16:9, custom)
+  - Responsive design with mobile-first approach
+  - Full theme compliance using CSS custom properties
+
+- **OptionSelector Component**: Universal option selector for e-commerce and forms
+  - Text mode: Button grid for sizes, quantities (S, M, L, XL, etc.)
+  - Color mode: Circular swatches with hex color backgrounds
+  - Image mode: Rounded rectangle pattern/texture swatches
+  - Features: availability states, disabled options, tooltips, price adjustments
+  - Dropdown fallback for accessibility
+  - Consolidates previous SizeSelector and ColorSelector into unified component
+
+### Fixed
+
+- **Article Component**: Fixed TypeScript type error in Article component
+
 ## [1.5.12] - 2026-01-10
 
 ### Fixed

@@ -4,6 +4,29 @@ A complete React framework for building modern, responsive applications with int
 
 ## What's New
 
+### January 25, 2026 - E-Commerce Components (v1.5.13)
+
+#### New Components
+
+- **ImageGallery Component**: Professional image gallery with multiple display variants
+  - Three display modes: thumbnails (left/bottom/right), carousel, and grid
+  - Built-in zoom modal for full-screen viewing
+  - Customizable aspect ratios (1:1, 4:3, 16:9, custom)
+  - Responsive design with mobile-first approach
+  - Full theme compliance using CSS custom properties
+
+- **OptionSelector Component**: Universal option selector for e-commerce and forms
+  - Text mode: Button grid for sizes, quantities (S, M, L, XL, etc.)
+  - Color mode: Circular swatches with hex color backgrounds
+  - Image mode: Rounded rectangle pattern/texture swatches
+  - Features: availability states, disabled options, tooltips, price adjustments
+  - Dropdown fallback for accessibility
+  - Consolidates previous SizeSelector and ColorSelector into unified component
+
+#### Bug Fixes
+
+- **Article Component**: Fixed TypeScript type error in Article component
+
 ### December 6, 2025 - Repository URLs Update (v1.5.5)
 
 - Updated repository and homepage URLs to point to public GitHub org

@@ -22,6 +22,8 @@ export { default as Section } from './Section';
 export { default as Image } from './Image';
 export { default as Text } from './Text';
 export { default as ProductCard } from './ProductCard';
+export { default as ImageGallery } from './ImageGallery';
+export { default as OptionSelector } from './OptionSelector';
 export { default as FeatureCard } from './FeatureCard';
 export { default as CardListGrid } from './CardListGrid';
 
@@ -37,5 +39,7 @@ export type { SectionProps } from './Section';
 export type { ImageProps } from './Image';
 export type { TextProps } from './Text';
 export type { ProductCardProps, Product, ProductCardAction } from './ProductCard';
+export type { ImageGalleryProps, GalleryImage } from './ImageGallery';
+export type { OptionSelectorProps, SelectOption } from './OptionSelector';
 export type { FeatureCardProps, FeatureItem, FeatureCardAction } from './FeatureCard';
 export type { CardListGridProps } from './CardListGrid';
