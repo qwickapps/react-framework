@@ -37,10 +37,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Code blocks now correctly display with transparent background and inherited color
   - Fixes visual issue where code text had light background inside dark code blocks
 
-## [Unreleased]
+## [1.6.0] - 2026-01-31
 
 ### Added
 
+- **Form Component Schemas**: Type-safe schema definitions for form components
+  - `CaptchaSchema`: Schema for CAPTCHA component with provider and theme configuration
+  - `FormCheckboxSchema`: Schema for checkbox form fields with label and validation
+  - `FormFieldSchema`: Schema for generic form fields with comprehensive input types
+  - `FormSelectSchema`: Schema for select dropdown fields with options support
+  - Enables CMS-driven form generation with full type safety
+  - Exported from main package for use in schema-based applications
 - **SchemaFormRenderer**: Reusable form generator from @qwickapps/schema models
   - Reads @Editor metadata from Model classes to generate Material-UI form fields
   - Maps all FieldType enum values to appropriate input components (TEXT, TEXTAREA, EMAIL, BOOLEAN, NUMBER, DATE_TIME, COLOR, IMAGE, etc.)

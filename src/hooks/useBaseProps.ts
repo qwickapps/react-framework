@@ -83,9 +83,42 @@ export interface BaseComponentProps {
 export const QWICKAPP_COMPONENT = Symbol('QwickAppComponent');
 
 /**
+ * Return type for useBaseProps hook
+ */
+export interface BasePropsResult<T extends BaseComponentProps> {
+  gridProps: {
+    span?: number | 'auto' | 'grow';
+    xs?: number | 'auto';
+    sm?: number | 'auto';
+    md?: number | 'auto';
+    lg?: number | 'auto';
+    xl?: number | 'auto';
+  } | null;
+  styleProps: {
+    className?: string;
+    sx?: SxProps<Theme>;
+    style?: React.CSSProperties;
+  };
+  htmlProps: {
+    id?: string;
+    role?: string;
+    'aria-label'?: string;
+    'aria-labelledby'?: string;
+    'aria-describedby'?: string;
+    'data-testid'?: string;
+    onClick?: React.MouseEventHandler<unknown>;
+    onMouseEnter?: React.MouseEventHandler<unknown>;
+    onMouseLeave?: React.MouseEventHandler<unknown>;
+    onFocus?: React.FocusEventHandler<unknown>;
+    onBlur?: React.FocusEventHandler<unknown>;
+  };
+  restProps: Omit<T, keyof BaseComponentProps>;
+}
+
+/**
  * Hook to process base component props
  */
-export function useBaseProps<T extends BaseComponentProps>(props: T) {
+export function useBaseProps<T extends BaseComponentProps>(props: T): BasePropsResult<T> {
   const {
     // Grid props
     span,

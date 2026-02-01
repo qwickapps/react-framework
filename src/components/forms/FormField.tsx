@@ -4,10 +4,10 @@
  * Features:
  * - Uses QwickApps CSS theme variables for consistent styling
  * - Supports text, number, password, and email input types
- * - Integrated with MUI FormControl, Input, and Select
+ * - Integrated with MUI FormControl, Input
  * - Handles readonly, disabled, and required states
  * - Support for adornments and helper text
- * - Base props support for grid behavior and styling
+ * - Schema-driven architecture with serialization support
  *
  * Copyright (c) 2025 QwickApps.com. All rights reserved.
  */
@@ -20,63 +20,54 @@ import {
   FormHelperText,
   InputAdornment,
 } from '@mui/material';
-import { useBaseProps, WithBaseProps, QWICKAPP_COMPONENT } from '../../hooks/useBaseProps';
+import type { SchemaProps } from '@qwickapps/schema';
+import FormFieldModel from '../../schemas/FormFieldSchema';
+import { ViewProps } from '../shared/viewProps';
+import { createSerializableView, SerializableComponent } from '../shared/createSerializableView';
 
-export interface FormFieldOption {
-  value: string | number;
-  label: string;
-}
-
-interface FormFieldBaseProps {
-  label: string;
-  value: string | number;
+/**
+ * Props interface for FormField component
+ * Combines schema props with callback handlers and adornments
+ */
+export interface FormFieldProps extends ViewProps, SchemaProps<typeof FormFieldModel> {
+  /** Callback when value changes */
   onChange?: (value: string | number) => void;
+  /** Raw change handler with event */
   onChangeRaw?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  type?: 'text' | 'number' | 'password' | 'email' | 'tel';
-  helperText?: string;
-  required?: boolean;
-  readOnly?: boolean;
-  disabled?: boolean;
-  disabledColor?: string;
-  fullWidth?: boolean;
-  multiline?: boolean;
-  rows?: number;
-  placeholder?: string;
+  /** Start adornment (icon, text, etc.) */
   startAdornment?: React.ReactNode;
+  /** End adornment (icon, text, etc.) */
   endAdornment?: React.ReactNode;
+  /** Additional input props */
   inputProps?: unknown;
 }
 
-export interface FormFieldProps extends WithBaseProps<FormFieldBaseProps> {}
-
-export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>((props, ref) => {
-  const { gridProps, styleProps, htmlProps, restProps } = useBaseProps(props);
-
-  const {
-    label,
-    value,
-    onChange,
-    onChangeRaw,
-    type = 'text',
-    helperText,
-    required = false,
-    readOnly = false,
-    disabled = false,
-    disabledColor,
-    fullWidth = true,
-    multiline = false,
-    rows,
-    placeholder,
-    startAdornment,
-    endAdornment,
-    inputProps,
-  } = restProps as FormFieldBaseProps;
-
-  // Generate a unique ID for the input field
+/**
+ * FormFieldView - Pure view component that renders the input field
+ */
+function FormFieldView({
+  label,
+  value,
+  onChange,
+  onChangeRaw,
+  type = 'text',
+  helperText,
+  required = false,
+  readOnly = false,
+  disabled = false,
+  disabledColor,
+  fullWidth = true,
+  multiline = false,
+  rows,
+  placeholder,
+  startAdornment,
+  endAdornment,
+  inputProps,
+  ...restProps
+}: FormFieldProps) {
   const fieldId = React.useId();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    // If onChangeRaw is provided, use it instead
     if (onChangeRaw) {
       onChangeRaw(e);
       return;
@@ -107,7 +98,6 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>((props
       color: disabledColor,
       WebkitTextFillColor: disabledColor,
     } : undefined,
-    ...styleProps.sx,
   };
 
   const labelStyles = {
@@ -122,19 +112,8 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>((props
 
   return (
     <FormControl
-      ref={ref}
       fullWidth={fullWidth}
-      {...htmlProps}
-      {...styleProps}
-      // Store grid props as data attributes for ColumnLayout to pick up
-      {...(gridProps && {
-        'data-grid-span': gridProps.span,
-        'data-grid-xs': gridProps.xs,
-        'data-grid-sm': gridProps.sm,
-        'data-grid-md': gridProps.md,
-        'data-grid-lg': gridProps.lg,
-        'data-grid-xl': gridProps.xl,
-      })}
+      {...restProps}
     >
       <InputLabel htmlFor={fieldId} sx={labelStyles} shrink>
         {label}
@@ -170,11 +149,16 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>((props
       )}
     </FormControl>
   );
+}
+
+/**
+ * Create FormField component using the factory pattern
+ */
+export const FormField: SerializableComponent<FormFieldProps> = createSerializableView<FormFieldProps>({
+  tagName: 'FormField',
+  version: '1.0.0',
+  role: 'input',
+  View: FormFieldView,
 });
-
-FormField.displayName = 'FormField';
-
-// Mark as QwickApp component
-Object.assign(FormField, { [QWICKAPP_COMPONENT]: true });
 
 export default FormField;

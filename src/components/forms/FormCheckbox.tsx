@@ -6,7 +6,7 @@
  * - Supports FormControlLabel for proper label positioning
  * - Handles required and disabled states
  * - Helper text support
- * - Base props support for grid behavior and styling
+ * - Schema-driven architecture with serialization support
  *
  * Copyright (c) 2025 QwickApps.com. All rights reserved.
  */
@@ -18,31 +18,32 @@ import {
   Checkbox,
   FormHelperText,
 } from '@mui/material';
-import { useBaseProps, WithBaseProps, QWICKAPP_COMPONENT } from '../../hooks/useBaseProps';
+import type { SchemaProps } from '@qwickapps/schema';
+import FormCheckboxModel from '../../schemas/FormCheckboxSchema';
+import { ViewProps } from '../shared/viewProps';
+import { createSerializableView, SerializableComponent } from '../shared/createSerializableView';
 
-interface FormCheckboxBaseProps {
-  label: string;
-  checked: boolean;
+/**
+ * Props interface for FormCheckbox component
+ * Combines schema props with callback handler
+ */
+export interface FormCheckboxProps extends ViewProps, SchemaProps<typeof FormCheckboxModel> {
+  /** Callback when checkbox state changes */
   onChange: (checked: boolean) => void;
-  helperText?: string;
-  required?: boolean;
-  disabled?: boolean;
 }
 
-export interface FormCheckboxProps extends WithBaseProps<FormCheckboxBaseProps> {}
-
-export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>((props, ref) => {
-  const { gridProps, styleProps, htmlProps, restProps } = useBaseProps(props);
-
-  const {
-    label,
-    checked,
-    onChange,
-    helperText,
-    required = false,
-    disabled = false,
-  } = restProps as FormCheckboxBaseProps;
-
+/**
+ * FormCheckboxView - Pure view component that renders the checkbox
+ */
+function FormCheckboxView({
+  label,
+  checked,
+  onChange,
+  helperText,
+  required = false,
+  disabled = false,
+  ...restProps
+}: FormCheckboxProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.checked);
   };
@@ -65,29 +66,15 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
     '& .MuiFormControlLabel-label.Mui-disabled': {
       color: 'var(--theme-text-disabled)',
     },
-    ...styleProps.sx,
   };
 
   const helperTextStyles = {
     color: 'var(--theme-secondary)',
-    marginLeft: '32px', // Align with checkbox + label
+    marginLeft: '32px',
   };
 
   return (
-    <FormControl
-      ref={ref}
-      {...htmlProps}
-      {...styleProps}
-      // Store grid props as data attributes for ColumnLayout to pick up
-      {...(gridProps && {
-        'data-grid-span': gridProps.span,
-        'data-grid-xs': gridProps.xs,
-        'data-grid-sm': gridProps.sm,
-        'data-grid-md': gridProps.md,
-        'data-grid-lg': gridProps.lg,
-        'data-grid-xl': gridProps.xl,
-      })}
-    >
+    <FormControl {...restProps}>
       <FormControlLabel
         control={
           <Checkbox
@@ -106,11 +93,16 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
       )}
     </FormControl>
   );
+}
+
+/**
+ * Create FormCheckbox component using the factory pattern
+ */
+export const FormCheckbox: SerializableComponent<FormCheckboxProps> = createSerializableView<FormCheckboxProps>({
+  tagName: 'FormCheckbox',
+  version: '1.0.0',
+  role: 'input',
+  View: FormCheckboxView,
 });
-
-FormCheckbox.displayName = 'FormCheckbox';
-
-// Mark as QwickApp component
-Object.assign(FormCheckbox, { [QWICKAPP_COMPONENT]: true });
 
 export default FormCheckbox;
