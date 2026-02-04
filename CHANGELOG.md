@@ -5,6 +5,38 @@ All notable changes to the QwickApps React Framework will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2026-02-04
+
+### Added
+
+- **PaletteBoutique**: New color palette for premium retail and fashion brands
+  - Sophisticated teal, bronze, and navy color scheme
+  - Light and dark theme variants
+  - Warm ivory surfaces with soft cream backgrounds
+  - Full palette implementation with all required CSS variables
+
+- **ComponentTransformer SSR**: Enhanced HTML parsing with server-side rendering support
+  - linkedom integration for SSR HTML transformation
+  - Graceful fallback to DOMParser on client-side
+  - Enables server-side rendering of markdown and HTML blocks
+
+### Fixed
+
+- **Palette Variables**: Add missing on-error and on-warning palette variables across all palettes
+- **Theme Colors**: Replace hardcoded colors with CSS theme variables for consistency
+- **Scaffold AppBar**: Fix content bleed-through in iOS PWA fullscreen mode
+
+## [1.5.14] - 2026-02-03
+
+### Fixed
+
+- **Scaffold AppBar**: Fixed content bleed-through in iOS PWA fullscreen mode
+  - Added `isolation: isolate` to create proper stacking context
+  - Added `backdrop-filter: blur(0px)` to force WebKit compositing layer
+  - Resolves issue where page content shows through app bar during scroll on iOS Safari in standalone mode
+  - No visual changes, no performance impact, works across all browsers
+  - Fixes [faabzi#1](https://github.com/qwickapps/faabzi/issues/1)
+
 ## [1.5.13] - 2026-01-25
 
 ### Added

@@ -61,12 +61,14 @@ html[data-palette="ocean"][data-theme="light"] {
   --palette-error-main: #ef4444;
   --palette-error-light: #fee2e2;
   --palette-error-dark: #7f1d1d;
+  --palette-on-error: #ffffff;
   --palette-error-border: #fecaca;
-  
+
   /* Warning palette - Sandy yellow */
   --palette-warning-main: #f59e0b;
   --palette-warning-light: #fef3c7;
   --palette-warning-dark: #78350f;
+  --palette-on-warning: #000000;
   --palette-warning-border: #fde68a;
   
   /* Info palette - Crystal blue */

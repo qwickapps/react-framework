@@ -33,8 +33,8 @@ const logger = loggers.scaffold;
 export interface AppBarProps {
   /** Title to display in the app bar */
   title?: string;
-  /** Actions to display on the right side */
-  actions?: React.ReactNode;
+  /** Actions to display on the right side - use render function for server/client boundary safety */
+  actions?: React.ReactNode | (() => React.ReactNode);
   /** Whether to show the menu button (for drawer toggle) */
   showMenuButton?: boolean;
   /** Custom logo override */
@@ -400,7 +400,9 @@ const Scaffold: React.FC<ScaffoldProps> = ({
             <div className="appbar-right">
               {enhancedAppBar?.actions && (
                 <div key="appbar-actions" className="appbar-actions">
-                  {enhancedAppBar.actions}
+                  {typeof enhancedAppBar.actions === 'function'
+                    ? enhancedAppBar.actions()
+                    : enhancedAppBar.actions}
                 </div>
               )}
               {/* Theme and Palette Switchers */}

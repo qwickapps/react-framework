@@ -1,0 +1,176 @@
+/**
+ * Boutique Color Palette
+ *
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ *
+ * Sophisticated teal, bronze, and navy - perfect for premium retail and fashion brands
+ */
+
+/* ===== BOUTIQUE PALETTE - LIGHT THEME ===== */
+html[data-palette="boutique"]:not([data-theme="dark"]),
+html[data-palette="boutique"][data-theme="light"] {
+  /* Primary palette - Teal */
+  --palette-primary-main: #3ca6b6;
+  --palette-primary-light: #6bc4d1;
+  --palette-primary-dark: #2a7a86;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary palette - Bronze */
+  --palette-secondary-main: #be765e;
+  --palette-secondary-light: #d4987e;
+  --palette-secondary-dark: #9a5742;
+  --palette-on-secondary: #ffffff;
+
+  /* Surface palette - Warm ivory */
+  --palette-surface-main: #fefcf8;
+  --palette-surface-variant: #f5f0ea;
+  --palette-surface-elevated: #ffffff;
+  --palette-on-surface: #2c2520;
+
+  /* Background palette - Soft cream */
+  --palette-background-main: #fffdf9;
+  --palette-background-dark: #f8f4ed;
+  --palette-background-overlay: rgba(255, 253, 249, 0.95);
+  --palette-on-background: #3d3530;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(255, 253, 249, 0.98);
+  --palette-header-bg-end: rgba(255, 253, 249, 0.95);
+  --palette-header-collapsed-bg-start: rgba(255, 253, 249, 0.99);
+  --palette-header-collapsed-bg-end: rgba(255, 253, 249, 0.96);
+
+  /* Text palette - Deep brown */
+  --palette-text-primary: #2c2520;
+  --palette-text-secondary: #5d5349;
+  --palette-text-disabled: rgba(44, 37, 32, 0.38);
+  --palette-text-inverted: #ffffff;
+
+  /* Border palette - Soft taupe */
+  --palette-border-main: #d4cdc4;
+  --palette-border-light: rgba(44, 37, 32, 0.12);
+  --palette-border-lighter: rgba(44, 37, 32, 0.05);
+  --palette-border-medium: #b8afa4;
+
+  /* Success palette - Emerald */
+  --palette-success-main: #10b981;
+  --palette-success-light: #d1fae5;
+  --palette-success-dark: #047857;
+  --palette-success-border: #a7f3d0;
+
+  /* Error palette - Rose */
+  --palette-error-main: #f43f5e;
+  --palette-error-light: #ffe4e6;
+  --palette-error-dark: #9f1239;
+  --palette-on-error: #ffffff;
+  --palette-error-border: #fecdd3;
+
+  /* Warning palette - Amber */
+  --palette-warning-main: #f59e0b;
+  --palette-warning-light: #fef3c7;
+  --palette-warning-dark: #d97706;
+  --palette-on-warning: #000000;
+  --palette-warning-border: #fde68a;
+
+  /* Info palette - Sky blue */
+  --palette-info-main: #0284c7;
+  --palette-info-light: #e0f2fe;
+  --palette-info-dark: #075985;
+  --palette-on-info: #ffffff;
+  --palette-info-border: #7dd3fc;
+
+  /* Accent palette - Navy */
+  --palette-accent-main: #0a1a3e;
+  --palette-accent-light: #1e3a73;
+  --palette-accent-dark: #050d1f;
+  --palette-on-accent: #ffffff;
+
+  /* Control palette - Deep teal */
+  --palette-control-main: #2a7a86;
+  --palette-control-light: #3ca6b6;
+  --palette-control-text: #ffffff;
+  --palette-control-border: #217380;
+}
+
+/* ===== BOUTIQUE PALETTE - DARK THEME ===== */
+html[data-palette="boutique"][data-theme="dark"] {
+  /* Primary palette - Bright teal */
+  --palette-primary-main: #6bc4d1;
+  --palette-primary-light: #8fd5de;
+  --palette-primary-dark: #3ca6b6;
+  --palette-on-primary: #0a1a1d;
+
+  /* Secondary palette - Warm bronze */
+  --palette-secondary-main: #d4987e;
+  --palette-secondary-light: #e3b9a4;
+  --palette-secondary-dark: #be765e;
+  --palette-on-secondary: #1a1210;
+
+  /* Surface palette - Charcoal */
+  --palette-surface-main: #1a1614;
+  --palette-surface-variant: #252220;
+  --palette-surface-elevated: #332f2c;
+  --palette-on-surface: #f5f0ea;
+
+  /* Background palette - Deep slate */
+  --palette-background-main: #0f0d0c;
+  --palette-background-dark: #1a1614;
+  --palette-background-overlay: rgba(26, 22, 20, 0.95);
+  --palette-on-background: #e8e4de;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(15, 13, 12, 0.98);
+  --palette-header-bg-end: rgba(15, 13, 12, 0.95);
+  --palette-header-collapsed-bg-start: rgba(15, 13, 12, 0.99);
+  --palette-header-collapsed-bg-end: rgba(15, 13, 12, 0.96);
+
+  /* Text palette - Warm light */
+  --palette-text-primary: #f5f0ea;
+  --palette-text-secondary: #cdc5bc;
+  --palette-text-disabled: rgba(245, 240, 234, 0.38);
+  --palette-text-inverted: #0f0d0c;
+
+  /* Border palette - Warm gray */
+  --palette-border-main: #4a4440;
+  --palette-border-light: rgba(245, 240, 234, 0.12);
+  --palette-border-lighter: rgba(245, 240, 234, 0.05);
+  --palette-border-medium: #3d3833;
+
+  /* Success palette - Bright emerald */
+  --palette-success-main: #34d399;
+  --palette-success-light: #064e3b;
+  --palette-success-dark: #10b981;
+  --palette-success-border: #065f46;
+
+  /* Error palette - Bright rose */
+  --palette-error-main: #fb7185;
+  --palette-error-light: #4c0519;
+  --palette-error-dark: #f43f5e;
+  --palette-on-error: #ffffff;
+  --palette-error-border: #881337;
+
+  /* Warning palette - Bright amber */
+  --palette-warning-main: #fbbf24;
+  --palette-warning-light: #451a03;
+  --palette-warning-dark: #f59e0b;
+  --palette-on-warning: #1c1917;
+  --palette-warning-border: #78350f;
+
+  /* Info palette - Bright sky */
+  --palette-info-main: #38bdf8;
+  --palette-info-light: #0c4a6e;
+  --palette-info-dark: #0284c7;
+  --palette-on-info: #ffffff;
+  --palette-info-border: #075985;
+
+  /* Accent palette - Bright navy */
+  --palette-accent-main: #3b5ba3;
+  --palette-accent-light: #5a7cc4;
+  --palette-accent-dark: #1e3a73;
+  --palette-on-accent: #ffffff;
+
+  /* Control palette - Teal glow */
+  --palette-control-main: #6bc4d1;
+  --palette-control-light: #8fd5de;
+  --palette-control-text: #0a1a1d;
+  --palette-control-border: #3ca6b6;
+}

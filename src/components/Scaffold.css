@@ -48,6 +48,11 @@
   border-bottom: 1px solid var(--scaffold-outline);
   box-shadow: var(--scaffold-shadow);
   z-index: 1100;
+
+  /* Fix for iOS PWA fullscreen mode bleed-through (GH-1) */
+  isolation: isolate;
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
 }
 
 .appbar-content {

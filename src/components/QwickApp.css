@@ -339,6 +339,11 @@ html[data-palette="default"][data-theme="dark"] {
   --theme-elevation-2: 0 4px 8px rgba(0, 0, 0, 0.15);
   --theme-elevation-3: 0 6px 12px rgba(0, 0, 0, 0.2);
   --theme-elevation-4: 0 8px 16px rgba(0, 0, 0, 0.25);
+
+  /* Overlay colors for semi-transparent surfaces */
+  --theme-overlay-80: color-mix(in srgb, var(--palette-surface-main) 80%, transparent);
+  --theme-overlay-90: color-mix(in srgb, var(--palette-surface-main) 90%, transparent);
+  --theme-overlay-95: color-mix(in srgb, var(--palette-surface-main) 95%, transparent);
 }
 
 /* ===== THEME-SPECIFIC ADAPTATIONS ===== */
@@ -458,4 +463,21 @@ pre code {
   color: inherit !important;
   padding: 0;
   border-radius: 0;
+}
+
+/* Global link styles using theme variables */
+a {
+  color: var(--theme-link-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--theme-link-hover);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--theme-link-color);
+  opacity: 0.8;
 }

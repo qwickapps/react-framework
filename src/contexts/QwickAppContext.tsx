@@ -28,7 +28,7 @@ export interface QwickAppProps {
   enableScaffolding?: boolean;
   /** Primary navigation items for scaffolding */
   navigationItems?: MenuItem[];
-  /** App bar configuration for scaffolding */
+  /** App bar configuration for scaffolding - use render function for actions to cross server/client boundaries safely */
   appBar?: ScaffoldProps['appBar'];
   /** Whether to show app bar when scaffolding is enabled (default: true) */
   showAppBar?: boolean;

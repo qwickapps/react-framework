@@ -1,6 +1,6 @@
 {
   "name": "@qwickapps/react-framework",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Complete React framework with responsive navigation, flexible layouts, theming system, and reusable components for building modern applications.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -73,6 +73,7 @@
   "license": "PolyForm-Shield-1.0.0",
   "dependencies": {
     "@qwickapps/schema": "^1.3.2",
+    "linkedom": "^0.18.12",
     "marked": "^4.3.0",
     "md5": "^2.3.0",
     "sanitize-html": "^2.17.0"

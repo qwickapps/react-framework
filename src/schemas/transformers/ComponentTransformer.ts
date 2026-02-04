@@ -14,6 +14,19 @@ import { SerializableConstructor } from '../types/Serializable';
 import { ReactNodeTransformer } from './ReactNodeTransformer';
 import SafeSpan from '../../components/SafeSpan';
 
+// Import linkedom for server-side HTML parsing
+let parseHTML: ((html: string) => Document) | null = null;
+if (typeof window === 'undefined') {
+  // Server-side: use linkedom
+  try {
+    const { parseHTML: parse } = require('linkedom');
+    parseHTML = (html: string) => parse(html).document;
+  } catch (e) {
+    // linkedom not available, will fall back to client-only rendering
+    console.warn('linkedom not available for SSR HTML parsing');
+  }
+}
+
 /**
  * Registry for component classes that support serialization
  */
@@ -370,13 +383,30 @@ export class ComponentTransformer {
 
   /**
    * Transform HTML string to React nodes using registered patterns
+   * Supports both server-side (linkedom) and client-side (DOMParser) rendering
    * @param html - HTML string to transform
    * @returns Array of React nodes
    */
   static transformHTML(html: string): ReactNode[] {
     if (!html.trim()) return [];
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
+
+    let doc: Document;
+
+    // Server-side: use linkedom if available
+    if (typeof window === 'undefined') {
+      if (parseHTML) {
+        doc = parseHTML(html);
+      } else {
+        // linkedom not available, return empty for client-side rendering
+        console.warn('SSR HTML parsing unavailable - content will render client-side only');
+        return [];
+      }
+    } else {
+      // Client-side: use DOMParser
+      const parser = new DOMParser();
+      doc = parser.parseFromString(html, 'text/html');
+    }
+
     return Array.from(doc.body.children).map((element, index) =>
       ComponentTransformer.transformElement(element, `element-${index}`)
     );
