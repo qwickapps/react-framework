@@ -29,7 +29,8 @@
  */
 
 import React, { useState, useCallback } from 'react';
-import { Box, IconButton, Modal, Grid, Skeleton } from '@mui/material';
+import { Box, IconButton, Modal, Skeleton } from '@mui/material';
+import { GridLayout, GridCell } from '../layout';
 import CloseIcon from '@mui/icons-material/Close';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -409,9 +410,9 @@ function ImageGalleryView({
   if (variant === 'grid') {
     return (
       <Box {...restProps}>
-        <Grid container spacing={2}>
+        <GridLayout columns={4} spacing="medium">
           {displayImages.map((image, index) => (
-            <Grid item xs={6} sm={4} md={3} key={index}>
+            <GridCell xs={6} sm={4} md={3} key={index}>
               <Box
                 onClick={() => {
                   setSelectedIndex(index);
@@ -441,9 +442,9 @@ function ImageGalleryView({
                   }}
                 />
               </Box>
-            </Grid>
+            </GridCell>
           ))}
-        </Grid>
+        </GridLayout>
         {renderZoomModal()}
       </Box>
     );

@@ -5,6 +5,23 @@ All notable changes to the QwickApps React Framework will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.1] - 2026-02-04
+
+### Fixed
+
+- **Form Components**: Resolve MUI v7 TypeScript compilation errors
+  - Exclude ViewProps (margin, padding) that conflict with MUI FormControl types
+  - Fixes: FormCheckbox, FormField, FormSelect, OptionSelector
+  - Prevents TypeScript errors when spreading props to MUI components
+
+- **ImageGallery**: Replace MUI Grid with framework's GridLayout/GridCell components
+  - Implements QwickApps website pattern for consistent component usage
+  - Removes direct MUI Grid dependency from block components
+
+- **OptionSelector**: Add TypeScript return type annotations
+  - Explicit `React.CSSProperties` return type for `getLayoutStyles()`
+  - Improves type safety and IDE autocomplete
+
 ## [1.7.0] - 2026-02-04
 
 ### Added

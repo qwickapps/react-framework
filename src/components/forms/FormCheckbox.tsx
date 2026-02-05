@@ -42,6 +42,21 @@ function FormCheckboxView({
   helperText,
   required = false,
   disabled = false,
+  // Exclude ViewProps that conflict with MUI FormControl types
+  margin: _margin,
+  marginTop: _marginTop,
+  marginRight: _marginRight,
+  marginBottom: _marginBottom,
+  marginLeft: _marginLeft,
+  marginX: _marginX,
+  marginY: _marginY,
+  padding: _padding,
+  paddingTop: _paddingTop,
+  paddingRight: _paddingRight,
+  paddingBottom: _paddingBottom,
+  paddingLeft: _paddingLeft,
+  paddingX: _paddingX,
+  paddingY: _paddingY,
   ...restProps
 }: FormCheckboxProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

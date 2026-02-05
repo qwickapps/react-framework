@@ -123,6 +123,21 @@ function OptionSelectorView({
   label = 'Select Option',
   dataSource,
   bindingOptions,
+  // Exclude ViewProps that conflict with MUI FormControl types
+  margin: _margin,
+  marginTop: _marginTop,
+  marginRight: _marginRight,
+  marginBottom: _marginBottom,
+  marginLeft: _marginLeft,
+  marginX: _marginX,
+  marginY: _marginY,
+  padding: _padding,
+  paddingTop: _paddingTop,
+  paddingRight: _paddingRight,
+  paddingBottom: _paddingBottom,
+  paddingLeft: _paddingLeft,
+  paddingX: _paddingX,
+  paddingY: _paddingY,
   ...restProps
 }: OptionSelectorProps) {
   const handleOptionClick = useCallback((optionId: string, available: boolean) => {
@@ -226,14 +241,14 @@ function OptionSelectorView({
   }
 
   // Buttons/Grid variant with visual modes
-  const getLayoutStyles = () => {
+  const getLayoutStyles = (): React.CSSProperties => {
     if (variant === 'grid') {
       const minWidth = displayMode === 'text' ? 60 : sizeInPx + 16;
       return {
         display: 'grid',
         gridTemplateColumns: `repeat(auto-fill, minmax(${minWidth}px, 1fr))`,
         gap: displayMode === 'text' ? 1 : 2,
-      };
+      } as React.CSSProperties;
     }
 
     return {
@@ -241,7 +256,7 @@ function OptionSelectorView({
       flexDirection: layout === 'vertical' ? 'column' : 'row',
       flexWrap: layout === 'wrap' ? 'wrap' : 'nowrap',
       gap: 1,
-    };
+    } as React.CSSProperties;
   };
 
   return (

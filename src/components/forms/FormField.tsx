@@ -63,6 +63,21 @@ function FormFieldView({
   startAdornment,
   endAdornment,
   inputProps,
+  // Exclude ViewProps that conflict with MUI FormControl types
+  margin: _margin,
+  marginTop: _marginTop,
+  marginRight: _marginRight,
+  marginBottom: _marginBottom,
+  marginLeft: _marginLeft,
+  marginX: _marginX,
+  marginY: _marginY,
+  padding: _padding,
+  paddingTop: _paddingTop,
+  paddingRight: _paddingRight,
+  paddingBottom: _paddingBottom,
+  paddingLeft: _paddingLeft,
+  paddingX: _paddingX,
+  paddingY: _paddingY,
   ...restProps
 }: FormFieldProps) {
   const fieldId = React.useId();

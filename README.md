@@ -4,6 +4,20 @@ A complete React framework for building modern, responsive applications with int
 
 ## What's New
 
+### February 4, 2026 - Bug Fixes (v1.7.1)
+
+- **MUI v7 TypeScript Compatibility**: Fixed compilation errors in form components by excluding conflicting ViewProps
+- **Component Pattern Compliance**: ImageGallery now uses GridLayout/GridCell instead of direct MUI Grid
+- **Type Safety**: Added explicit TypeScript return types to OptionSelector
+
+See [CHANGELOG.md](./CHANGELOG.md) for full details.
+
+### February 4, 2026 - New Palette & SSR (v1.7.0)
+
+- **PaletteBoutique**: New premium color palette with sophisticated teal, bronze, and navy for retail/fashion brands
+- **ComponentTransformer SSR**: Enhanced HTML parsing with linkedom integration for server-side rendering
+- **Theme Consistency**: Added missing palette variables and replaced hardcoded colors across all palettes
+
 ### January 25, 2026 - E-Commerce Components (v1.5.13)
 
 #### New Components
