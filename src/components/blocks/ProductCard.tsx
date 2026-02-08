@@ -13,12 +13,14 @@
 import Schedule from '@mui/icons-material/Schedule';
 import Launch from '@mui/icons-material/Launch';
 import Visibility from '@mui/icons-material/Visibility';
+import StarIcon from '@mui/icons-material/Star';
 const ComingSoonIcon = Schedule;
 const LaunchIcon = Launch;
 const PreviewIcon = Visibility;
 import {
   Box,
   Chip,
+  Rating,
   Typography,
   useTheme
 } from '@mui/material';
@@ -33,11 +35,18 @@ export interface Product {
   category: string;
   description: string;
   shortDescription?: string;
-  features: string[];
-  technologies: string[];
+  features?: string[];
+  technologies?: string[];
   status: string;
   image?: string;
   url?: string;
+  // E-commerce fields (optional)
+  price?: number;
+  salePrice?: number;
+  rating?: number;
+  reviewCount?: number;
+  isNew?: boolean;
+  featured?: boolean;
 }
 
 export interface ProductCardAction {
@@ -64,6 +73,8 @@ interface ProductCardViewProps extends WithBaseProps {
   showTechnologies?: boolean;
   /** Maximum features to show in compact mode */
   maxFeaturesCompact?: number;
+  /** Handler for adding product to cart (e-commerce products only) */
+  onAddToCart?: (product: Product) => void;
 }
 
 export interface ProductCardProps extends ProductCardViewProps, WithDataBinding {}
@@ -79,6 +90,7 @@ function ProductCardView({
   showImage = true,
   showTechnologies = true,
   maxFeaturesCompact = 3,
+  onAddToCart,
   ...restProps
 }: ProductCardViewProps) {
   const { styleProps, htmlProps } = useBaseProps(restProps);
@@ -86,6 +98,19 @@ function ProductCardView({
 
   // Return null if no product data
   if (!product) return null;
+
+  // Detect product type: e-commerce products have price field
+  const isEcommerce = product.price !== undefined;
+
+  // E-commerce helpers
+  const formatPrice = (price: number) => {
+    return `$${price.toFixed(2)}`;
+  };
+
+  const calculateDiscount = () => {
+    if (!product.price || !product.salePrice) return 0;
+    return Math.round(((product.price - product.salePrice) / product.price) * 100);
+  };
 
   const getStatusIcon = (status: Product['status']) => {
     switch (status) {
@@ -113,12 +138,30 @@ function ProductCardView({
   const handleProductClick = () => {
     if (onClick) {
       onClick();
-    } else if (product.status === 'launched' && product.url?.startsWith('http')) {
-      window.open(product.url, '_blank', 'noopener,noreferrer');
     }
+    // Note: Navigation is handled by parent wrapper (e.g., Next.js Link in BlockRenderer)
+    // For standalone usage, provide onClick prop with navigation logic
   };
 
   const getDefaultActions = (): ProductCardAction[] => {
+    // E-commerce products get "Add to Cart" action
+    if (isEcommerce) {
+      return [
+        {
+          id: 'add-to-cart',
+          label: 'Add to Cart',
+          variant: 'contained',
+          color: 'primary',
+          onClick: () => {
+            if (onAddToCart && product) {
+              onAddToCart(product);
+            }
+          }
+        }
+      ];
+    }
+
+    // Software products get status-based actions
     const actions: ProductCardAction[] = [
       {
         id: 'primary',
@@ -225,7 +268,7 @@ function ProductCardView({
     );
   })();
 
-  const technologiesSectionElement = (!showTechnologies || variant === 'compact') ? null : (
+  const technologiesSectionElement = (!showTechnologies || variant === 'compact' || !product.technologies) ? null : (
     <Box sx={{ mb: 3 }}>
       <Typography
         variant="h6"
@@ -260,57 +303,57 @@ function ProductCardView({
       className={styleProps.className || "product-card"}
       onClick={htmlProps.onClick || (variant === 'compact' ? handleProductClick : undefined)}
       sx={{
-        p: 3, // padding="large" equivalent
-        borderRadius: 3,
-        border: '1px solid',
-        borderColor: 'divider',
-        cursor: variant === 'compact' ? 'pointer' : 'default',
-        position: 'relative',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'background.paper',
-        transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+        borderRadius: isEcommerce ? 2 : 3,
+        border: '1px solid',
+        borderColor: 'divider',
+        overflow: 'hidden',
+        position: 'relative',
+        cursor: variant === 'compact' ? 'pointer' : 'default',
+        transition: 'transform 0.2s ease, box-shadow 0.2s ease',
         '&:hover': variant === 'compact' ? {
           transform: 'translateY(-4px)',
-          boxShadow: 8
+          boxShadow: 3
         } : {},
         ...(styleProps.sx || {})
       }}
       style={styleProps.style}
     >
-      {/* Status Badge */}
-      <Chip
-        icon={getStatusIcon(product.status)}
-        label={product.status.replace('-', ' ')}
-        sx={{
-          position: 'absolute',
-          top: 16,
-          right: 16,
-          backgroundColor: getStatusColor(product.status),
-          color: 'white',
-          fontSize: '0.8rem',
-          fontWeight: 500,
-          textTransform: 'capitalize',
-          zIndex: 2,
-          height: '28px',
-          px: 1.5,
-          '& .MuiChip-icon': {
-            color: 'white'
-          }
-        }}
-      />
+      {/* Status Badge - only for software products */}
+      {!isEcommerce && (
+        <Chip
+          icon={getStatusIcon(product.status)}
+          label={product.status.replace('-', ' ')}
+          sx={{
+            position: 'absolute',
+            top: 16,
+            right: 16,
+            backgroundColor: getStatusColor(product.status),
+            color: 'white',
+            fontSize: '0.8rem',
+            fontWeight: 500,
+            textTransform: 'capitalize',
+            zIndex: 2,
+            height: '28px',
+            px: 1.5,
+            '& .MuiChip-icon': {
+              color: 'white'
+            }
+          }}
+        />
+      )}
 
       {/* Product Image */}
       {showImage && product.image && (
         <Box
-          sx={{ 
-            width: '100%', 
-            height: variant === 'detailed' ? 240 : 200, 
-            mb: 2.5,
-            borderRadius: 1,
-            overflow: 'hidden',
-            backgroundColor: 'divider'
+          sx={{
+            width: '100%',
+            height: isEcommerce ? 280 : (variant === 'detailed' ? 240 : 200),
+            backgroundColor: 'divider',
+            position: 'relative'
           }}
         >
           <Box
@@ -331,56 +374,207 @@ function ProductCardView({
               }
             }}
           />
+
+          {/* E-commerce badges */}
+          {isEcommerce && (
+            <>
+              {/* Left side badges */}
+              <Box sx={{ position: 'absolute', top: 12, left: 12, display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                {product.isNew && (
+                  <Chip
+                    label="NEW"
+                    sx={{
+                      backgroundColor: 'primary.main',
+                      color: 'white',
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      height: '24px',
+                      px: 1
+                    }}
+                  />
+                )}
+                {product.featured && (
+                  <Chip
+                    label="POPULAR"
+                    sx={{
+                      backgroundColor: 'warning.main',
+                      color: 'white',
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      height: '24px',
+                      px: 1
+                    }}
+                  />
+                )}
+              </Box>
+
+              {/* Right side badges */}
+              <Box sx={{ position: 'absolute', top: 12, right: 12, display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                {product.salePrice && product.price && (
+                  <>
+                    <Chip
+                      label="ON SALE"
+                      sx={{
+                        backgroundColor: 'error.main',
+                        color: 'white',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        height: '24px',
+                        px: 1
+                      }}
+                    />
+                    <Chip
+                      label={`-${calculateDiscount()}%`}
+                      sx={{
+                        backgroundColor: 'error.dark',
+                        color: 'white',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        height: '24px',
+                        px: 1
+                      }}
+                    />
+                  </>
+                )}
+              </Box>
+            </>
+          )}
         </Box>
       )}
 
       {/* Product Info */}
-      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ mb: 3 }}>
-          <Typography
-            variant="h4"
-            component="h3"
-            sx={{
-              mb: 1,
-              fontSize: variant === 'detailed' ? '1.75rem' : '1.5rem',
-              fontWeight: 600
-            }}
-          >
-            {product.name}
-          </Typography>
-          <Typography
-            variant="overline"
-            sx={{
-              mb: 1.5,
-              color: 'primary.main',
-              fontSize: '0.9rem',
-              fontWeight: 500,
-              letterSpacing: '0.5px',
-              display: 'block'
-            }}
-          >
-            {product.category}
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              opacity: 0.8,
-              lineHeight: 1.6
-            }}
-          >
-            {variant === 'detailed' ? product.description : (product.shortDescription || product.description)}
-          </Typography>
-        </Box>
+      <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', p: isEcommerce ? 2 : 3 }}>
+        {isEcommerce ? (
+          /* E-commerce product info */
+          <Box>
+            {/* Category */}
+            {product.category && (
+              <Typography
+                variant="caption"
+                sx={{
+                  mb: 0.5,
+                  color: 'text.secondary',
+                  display: 'block'
+                }}
+              >
+                {product.category}
+              </Typography>
+            )}
 
-  {/* Features - only show if features exist */}
-  {product.features && product.features.length > 0 && featuresListElement}
+            {/* Product name */}
+            <Typography
+              variant="h6"
+              component="h3"
+              sx={{
+                mb: 1,
+                fontSize: '1rem',
+                fontWeight: 500,
+                lineHeight: 1.3,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: '-webkit-box',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical'
+              }}
+            >
+              {product.name}
+            </Typography>
 
-  {/* Technologies - only show if technologies exist */}
-  {product.technologies && product.technologies.length > 0 && technologiesSectionElement}
+            {/* Rating */}
+            {product.rating !== undefined && product.rating > 0 && (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 1 }}>
+                <Rating
+                  value={product.rating}
+                  readOnly
+                  size="small"
+                  precision={0.5}
+                  emptyIcon={<StarIcon style={{ opacity: 0.3 }} fontSize="inherit" />}
+                />
+                {product.reviewCount !== undefined && product.reviewCount > 0 && (
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: 'text.secondary'
+                    }}
+                  >
+                    ({product.reviewCount})
+                  </Typography>
+                )}
+              </Box>
+            )}
+
+            {/* Price */}
+            <Box sx={{ mt: 'auto', display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 600,
+                  color: product.salePrice ? 'primary.main' : 'inherit'
+                }}
+              >
+                {formatPrice(product.salePrice || product.price!)}
+              </Typography>
+              {product.salePrice && (
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: 'text.secondary',
+                    textDecoration: 'line-through'
+                  }}
+                >
+                  {formatPrice(product.price!)}
+                </Typography>
+              )}
+            </Box>
+          </Box>
+        ) : (
+          /* Software product info */
+          <Box sx={{ mb: 3 }}>
+            <Typography
+              variant="h4"
+              component="h3"
+              sx={{
+                mb: 1,
+                fontSize: variant === 'detailed' ? '1.75rem' : '1.5rem',
+                fontWeight: 600
+              }}
+            >
+              {product.name}
+            </Typography>
+            <Typography
+              variant="overline"
+              sx={{
+                mb: 1.5,
+                color: 'primary.main',
+                fontSize: '0.9rem',
+                fontWeight: 500,
+                letterSpacing: '0.5px',
+                display: 'block'
+              }}
+            >
+              {product.category}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                opacity: 0.8,
+                lineHeight: 1.6
+              }}
+            >
+              {variant === 'detailed' ? product.description : (product.shortDescription || product.description)}
+            </Typography>
+          </Box>
+        )}
+
+  {/* Features - only show for software products */}
+  {!isEcommerce && product.features && product.features.length > 0 && featuresListElement}
+
+  {/* Technologies - only show for software products */}
+  {!isEcommerce && product.technologies && product.technologies.length > 0 && technologiesSectionElement}
 
         {/* Action Buttons */}
-        <Box sx={{ 
-          display: 'flex', 
+        <Box sx={{
+          display: 'flex',
           gap: 1.5,
           mt: 'auto',
           ...(variant === 'compact' && { justifyContent: 'center' })
@@ -391,7 +585,12 @@ function ProductCardView({
               variant={action.variant || 'contained'}
               // color={action.color || 'primary'}
               disabled={action.disabled}
-              onClick={action.onClick}
+              onClick={(e) => {
+                // Prevent Link navigation when clicking button (e.g., Add to Cart)
+                e.stopPropagation();
+                e.preventDefault();
+                action.onClick();
+              }}
               {...(variant === 'compact' && { fullWidth: true })}
             >
               {action.label}

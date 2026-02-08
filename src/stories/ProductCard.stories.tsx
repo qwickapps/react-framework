@@ -13,7 +13,7 @@ import { ProductCard } from '../components/blocks/ProductCard';
 import { GridLayout } from '../components/layout';
 import QwickApp from '../components/QwickApp';
 
-// Sample product data
+// Sample software product data
 const sampleProducts: Product[] = [
  {
  id: 'qwickapps-react-framework',
@@ -67,6 +67,58 @@ const sampleProducts: Product[] = [
  technologies: ['Python', 'TensorFlow', 'OpenAI API', 'Docker'],
  status: 'coming-soon',
  image: 'https://via.placeholder.com/400x200/7b1fa2/ffffff?text=QwickApps+AI'
+ }
+];
+
+// Sample e-commerce product data
+const sampleEcommerceProducts: Product[] = [
+ {
+ id: 'organic-cotton-tshirt',
+ name: 'Organic Cotton T-Shirt',
+ category: 'Mens Clothing',
+ description: 'Premium organic cotton t-shirt with sustainable manufacturing',
+ status: 'launched',
+ image: 'https://via.placeholder.com/400x280/4caf50/ffffff?text=Organic+T-Shirt',
+ price: 29.99,
+ rating: 4.5,
+ reviewCount: 128,
+ isNew: true
+ },
+ {
+ id: 'denim-jacket',
+ name: 'Classic Denim Jacket',
+ category: 'Outerwear',
+ description: 'Timeless denim jacket with modern fit',
+ status: 'launched',
+ image: 'https://via.placeholder.com/400x280/2196f3/ffffff?text=Denim+Jacket',
+ price: 89.99,
+ salePrice: 67.49,
+ rating: 4.8,
+ reviewCount: 256
+ },
+ {
+ id: 'running-shoes',
+ name: 'Performance Running Shoes',
+ category: 'Footwear',
+ description: 'Lightweight running shoes with advanced cushioning',
+ status: 'launched',
+ image: 'https://via.placeholder.com/400x280/ff5722/ffffff?text=Running+Shoes',
+ price: 119.99,
+ rating: 4.6,
+ reviewCount: 89,
+ isNew: true
+ },
+ {
+ id: 'leather-wallet',
+ name: 'Genuine Leather Wallet',
+ category: 'Accessories',
+ description: 'Handcrafted leather wallet with RFID protection',
+ status: 'launched',
+ image: 'https://via.placeholder.com/400x280/795548/ffffff?text=Leather+Wallet',
+ price: 45.00,
+ salePrice: 36.00,
+ rating: 4.9,
+ reviewCount: 342
  }
 ];
 
@@ -498,6 +550,104 @@ export const EmptyAndLoadingStates: Story = {
  docs: {
  description: {
  story: 'Demonstrates empty state handling and normal product display states.',
+ },
+ },
+ },
+};
+
+// E-commerce Product Examples
+export const EcommerceProducts: Story = {
+ render: () => (
+ <QwickApp appId="productcard-ecommerce" appName='E-commerce ProductCard'>
+ <Box>
+ <Box sx={{ p: 4, backgroundColor: 'background.paper' }}>
+ <Typography variant="h5" gutterBottom>🛍️ E-commerce Products</Typography>
+ <Typography variant="body1" sx={{ mb: 3, opacity: 0.8 }}>
+ ProductCard automatically detects e-commerce products (those with price field) and renders appropriate layout with price, rating, and badges.
+ </Typography>
+ </Box>
+
+ <GridLayout columns={4} spacing="large" equalHeight>
+ {sampleEcommerceProducts.map((product) => (
+ <ProductCard
+ key={product.id}
+ product={product}
+ variant="compact"
+ />
+ ))}
+ </GridLayout>
+ </Box>
+ </QwickApp>
+ ),
+ parameters: {
+ docs: {
+ description: {
+ story: 'E-commerce products display price, rating, category badge, and NEW/discount badges automatically.',
+ },
+ },
+ },
+};
+
+export const EcommerceDetailed: Story = {
+ render: () => (
+ <QwickApp appId="productcard-ecommerce-detailed" appName='Detailed E-commerce ProductCard'>
+ <Box>
+ <Box sx={{ p: 4, backgroundColor: 'background.paper' }}>
+ <Typography variant="h5" gutterBottom>Detailed E-commerce View</Typography>
+ <Typography variant="body1" sx={{ mb: 3, opacity: 0.8 }}>
+ Detailed variant for e-commerce products.
+ </Typography>
+ </Box>
+
+ <ProductCard
+ product={sampleEcommerceProducts[1]}
+ variant="detailed"
+ />
+ </Box>
+ </QwickApp>
+ ),
+ parameters: {
+ docs: {
+ description: {
+ story: 'Detailed e-commerce product showing sale price with discount badge.',
+ },
+ },
+ },
+};
+
+export const MixedProductTypes: Story = {
+ render: () => (
+ <QwickApp appId="productcard-mixed" appName='Mixed Product Types'>
+ <Box>
+ <Box sx={{ p: 4, backgroundColor: 'background.paper' }}>
+ <Typography variant="h5" gutterBottom>🔀 Mixed Product Types</Typography>
+ <Typography variant="body1" sx={{ mb: 3, opacity: 0.8 }}>
+ ProductCard seamlessly handles both software and e-commerce products in the same grid.
+ </Typography>
+ </Box>
+
+ <GridLayout columns={3} spacing="large" equalHeight>
+ <ProductCard
+ product={sampleProducts[0]}
+ variant="compact"
+ maxFeaturesCompact={2}
+ />
+ <ProductCard
+ product={sampleEcommerceProducts[0]}
+ variant="compact"
+ />
+ <ProductCard
+ product={sampleEcommerceProducts[1]}
+ variant="compact"
+ />
+ </GridLayout>
+ </Box>
+ </QwickApp>
+ ),
+ parameters: {
+ docs: {
+ description: {
+ story: 'Software products show features/technologies while e-commerce products show price/rating - all using the same ProductCard component.',
  },
  },
  },

@@ -5,6 +5,27 @@ All notable changes to the QwickApps React Framework will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] - 2026-02-07
+
+### Added
+
+- **Unified ProductCard Component**: Complete e-commerce product card with cart integration
+  - Integrated "Add to Cart" functionality with quantity selector
+  - Support for product variants (size, color, material)
+  - Price display with sale pricing support
+  - Stock availability indicators
+  - Wishlist toggle functionality
+  - Rating and review display
+  - Responsive design for all screen sizes
+  - Theme-compliant styling using CSS custom properties
+
+### Changed
+
+- **ProductCard Architecture**: Unified component for both catalog and detail views
+  - Consolidated multiple product card variants into single flexible component
+  - Enhanced Storybook stories with comprehensive examples
+  - Improved type definitions for better TypeScript support
+
 ## [1.7.1] - 2026-02-04
 
 ### Fixed

@@ -4,6 +4,15 @@ A complete React framework for building modern, responsive applications with int
 
 ## What's New
 
+### February 7, 2026 - E-Commerce ProductCard (v1.8.0)
+
+- **Unified ProductCard Component**: Complete e-commerce product card with integrated cart functionality
+- **Variant Support**: Built-in size, color, and material variant selection with availability indicators
+- **Cart Integration**: Native "Add to Cart" with quantity selectors and wishlist toggle
+- **Enhanced UX**: Sale pricing, stock status, ratings, and responsive design for all devices
+
+See [CHANGELOG.md](./CHANGELOG.md) for full details.
+
 ### February 4, 2026 - Bug Fixes (v1.7.1)
 
 - **MUI v7 TypeScript Compatibility**: Fixed compilation errors in form components by excluding conflicting ViewProps
