@@ -420,7 +420,13 @@ export class ComponentTransformer {
    */
   private static transformElement(element: Element, key: string): ReactNode {
     const transformedNode = ComponentTransformer.transformHTMLElement(element);
-    if (transformedNode) return transformedNode;
+    if (transformedNode) {
+      // Clone the node and add the key prop
+      if (React.isValidElement(transformedNode)) {
+        return React.cloneElement(transformedNode, { key });
+      }
+      return transformedNode;
+    }
 
     const children = Array.from(element.children);
     const hasTransformableChildren = children.some(child =>
