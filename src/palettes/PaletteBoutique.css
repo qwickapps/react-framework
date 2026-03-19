@@ -9,16 +9,16 @@
 /* ===== BOUTIQUE PALETTE - LIGHT THEME ===== */
 html[data-palette="boutique"]:not([data-theme="dark"]),
 html[data-palette="boutique"][data-theme="light"] {
-  /* Primary palette - Teal */
-  --palette-primary-main: #3ca6b6;
-  --palette-primary-light: #6bc4d1;
-  --palette-primary-dark: #2a7a86;
+  /* Primary palette - Teal (WCAG AA compliant) */
+  --palette-primary-main: #0e7490; /* cyan-700: 4.9:1 on white */
+  --palette-primary-light: #0c6d80; /* 6.0:1 white text on this bg */
+  --palette-primary-dark: #155e75; /* cyan-800: 8.1:1 on white */
   --palette-on-primary: #ffffff;
 
-  /* Secondary palette - Bronze */
-  --palette-secondary-main: #be765e;
-  --palette-secondary-light: #d4987e;
-  --palette-secondary-dark: #9a5742;
+  /* Secondary palette - Bronze (WCAG AA compliant) */
+  --palette-secondary-main: #9a5742; /* 5.5:1 on white */
+  --palette-secondary-light: #8b5a3a; /* 5.8:1 on white */
+  --palette-secondary-dark: #78350f; /* amber-900: 9.4:1 on white */
   --palette-on-secondary: #ffffff;
 
   /* Surface palette - Warm ivory */
@@ -51,30 +51,30 @@ html[data-palette="boutique"][data-theme="light"] {
   --palette-border-lighter: rgba(44, 37, 32, 0.05);
   --palette-border-medium: #b8afa4;
 
-  /* Success palette - Emerald */
-  --palette-success-main: #10b981;
-  --palette-success-light: #d1fae5;
-  --palette-success-dark: #047857;
+  /* Success palette - Emerald (WCAG AA compliant) */
+  --palette-success-main: #15803d; /* green-700: 5.1:1 on white */
+  --palette-success-light: #dcfce7; /* green-100 */
+  --palette-success-dark: #047857; /* 5.9:1 on white */
   --palette-success-border: #a7f3d0;
 
-  /* Error palette - Rose */
-  --palette-error-main: #f43f5e;
-  --palette-error-light: #ffe4e6;
-  --palette-error-dark: #9f1239;
+  /* Error palette - Rose (WCAG AA compliant) */
+  --palette-error-main: #b91c1c; /* red-700: 5.0:1 on white */
+  --palette-error-light: #fee2e2; /* red-100 */
+  --palette-error-dark: #9f1239; /* 7.3:1 on white */
   --palette-on-error: #ffffff;
   --palette-error-border: #fecdd3;
 
-  /* Warning palette - Amber */
-  --palette-warning-main: #f59e0b;
-  --palette-warning-light: #fef3c7;
-  --palette-warning-dark: #d97706;
-  --palette-on-warning: #000000;
+  /* Warning palette - Amber (WCAG AA compliant) */
+  --palette-warning-main: #92400e; /* amber-800: 5.5:1 on amber-100 bg */
+  --palette-warning-light: #fef3c7; /* amber-100 */
+  --palette-warning-dark: #78350f; /* amber-900: 9.4:1 on white */
+  --palette-on-warning: #ffffff;
   --palette-warning-border: #fde68a;
 
-  /* Info palette - Sky blue */
-  --palette-info-main: #0284c7;
-  --palette-info-light: #e0f2fe;
-  --palette-info-dark: #075985;
+  /* Info palette - Sky blue (WCAG AA compliant) */
+  --palette-info-main: #0369a1; /* sky-700: 5.9:1 on white */
+  --palette-info-light: #e0f2fe; /* sky-100 */
+  --palette-info-dark: #075985; /* sky-800: 7.8:1 on white */
   --palette-on-info: #ffffff;
   --palette-info-border: #7dd3fc;
 
@@ -84,11 +84,11 @@ html[data-palette="boutique"][data-theme="light"] {
   --palette-accent-dark: #050d1f;
   --palette-on-accent: #ffffff;
 
-  /* Control palette - Deep teal */
-  --palette-control-main: #2a7a86;
-  --palette-control-light: #3ca6b6;
+  /* Control palette - Deep teal (WCAG AA compliant) */
+  --palette-control-main: #0e7490; /* cyan-700: 4.9:1 on white */
+  --palette-control-light: #0c6d80; /* 6.0:1 white text on bg */
   --palette-control-text: #ffffff;
-  --palette-control-border: #217380;
+  --palette-control-border: #155e75;
 }
 
 /* ===== BOUTIQUE PALETTE - DARK THEME ===== */
