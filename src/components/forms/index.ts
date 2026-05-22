@@ -20,3 +20,6 @@ export type { CaptchaProps, CaptchaProvider } from './Captcha';
 
 export { SchemaFormRenderer } from './SchemaFormRenderer';
 export type { SchemaFormRendererProps } from './SchemaFormRenderer';
+
+export { default as ToggleRow } from './ToggleRow';
+export type { ToggleRowProps } from './ToggleRow';

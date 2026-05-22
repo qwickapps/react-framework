@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusBadge Snapshot matches snapshot for default props 1`] = `
+<span
+  style="display: inline-flex; align-items: center; gap: 5px; height: 22px; padding-left: 8px; padding-right: 8px; border-radius: 99px; background: rgba(0, 0, 0, 0.55); border: 0.5px solid rgba(255,255,255,0.08);"
+>
+  <span
+    style="width: 6px; height: 6px; border-radius: 99px; background: rgb(34, 197, 94); box-shadow: 0 0 6px #22c55e; flex-shrink: 0;"
+  />
+  <span
+    style="font-family: var(--theme-font-family); font-size: 10px; font-weight: 700; letter-spacing: 0.6px; color: rgb(34, 197, 94); line-height: 1;"
+  >
+    Live
+  </span>
+</span>
+`;
+
+exports[`StatusBadge Snapshot matches snapshot for pulse md tinted variant 1`] = `
+<span
+  style="display: inline-flex; align-items: center; gap: 5px; height: 26px; padding-left: 8px; padding-right: 8px; border-radius: 99px; background: rgba(34, 197, 94, 0.149); border: 0.5px solid #22c55e4d;"
+>
+  <span
+    class="midnight-live-dot"
+    style="width: 7px; height: 7px; border-radius: 99px; background: rgb(34, 197, 94); box-shadow: 0 0 6px #22c55e; flex-shrink: 0;"
+  />
+  <span
+    style="font-family: var(--theme-font-family); font-size: 11px; font-weight: 700; letter-spacing: 0.6px; color: rgb(34, 197, 94); line-height: 1;"
+  >
+    Active
+  </span>
+</span>
+`;

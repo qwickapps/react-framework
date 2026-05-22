@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayer Snapshot matches snapshot for default render 1`] = `
+<div
+  style="position: relative; border-radius: var(--theme-border-radius-card, 14px); overflow: hidden; display: flex; align-items: center; justify-content: center;"
+>
+  <div
+    aria-label="Play"
+    role="button"
+    style="width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.4); cursor: pointer; z-index: 1;"
+  >
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="22"
+      viewBox="0 0 22 22"
+      width="22"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 4.5L18 11L6 17.5V4.5Z"
+        fill="white"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`VideoPlayer Snapshot matches snapshot for fully populated props 1`] = `
+<div
+  style="position: relative; border-radius: var(--theme-border-radius-card, 14px); overflow: hidden; display: flex; align-items: center; justify-content: center;"
+>
+  <div
+    style="position: absolute; top: 8px; right: 8px; background: rgba(0, 0, 0, 0.65); border-radius: 99px; padding: 3px 10px; font-size: 11px; z-index: 2;"
+  >
+    HD
+  </div>
+  <div
+    aria-label="Play"
+    role="button"
+    style="width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.4); cursor: pointer; z-index: 1;"
+  >
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="22"
+      viewBox="0 0 22 22"
+      width="22"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 4.5L18 11L6 17.5V4.5Z"
+        fill="white"
+      />
+    </svg>
+  </div>
+  <div
+    style="position: absolute; bottom: 3px; left: 0px; right: 0px; padding: 10px 14px; background: rgba(0, 0, 0, 0.75); display: flex; flex-direction: row; align-items: center; gap: 8px;"
+  >
+    <span
+      style="font-size: 13px; font-weight: 600; color: white; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+    >
+      Episode 1
+    </span>
+    <span
+      style="font-size: 12px; margin-left: auto;"
+    >
+      0:00
+    </span>
+    <span
+      style="font-size: 12px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; padding: 1px 6px;"
+    >
+      22:30
+    </span>
+  </div>
+  <div
+    style="position: absolute; bottom: 0px; left: 0px; right: 0px; height: 3px; background: rgba(255, 255, 255, 0.2);"
+  >
+    <div
+      style="height: 100%; width: 30%;"
+    />
+  </div>
+</div>
+`;

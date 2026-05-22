@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SidebarLayout Snapshot matches snapshot for default render 1`] = `
+<div
+  style="display: flex; height: 100vh; overflow: hidden; font-family: var(--theme-font-family);"
+>
+  <aside
+    style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column;"
+  >
+    <nav
+      aria-label="Sidebar navigation"
+      style="display: flex; flex-direction: column; gap: 2px; padding: 4px 12px; flex: 1; overflow-y: auto;"
+    >
+      <button
+        aria-current="page"
+        style="display: flex; align-items: center; gap: 10px; height: 38px; padding: 0px 12px; border-radius: 8px; cursor: pointer; position: relative; background: rgba(59, 130, 246, 0.15); width: 100%; text-align: left;"
+      >
+        <div
+          aria-hidden="true"
+          style="position: absolute; left: 0px; top: 8px; bottom: 8px; width: 3px; border-radius: 0 3px 3px 0; box-shadow: 0 0 8px var(--theme-primary);"
+        />
+        <span
+          style="display: flex; align-items: center; flex-shrink: 0;"
+        >
+          <svg
+            data-testid="home-icon"
+          />
+        </span>
+        <span
+          style="font-size: 14px; font-weight: 600; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+        >
+          Home
+        </span>
+      </button>
+      <button
+        style="display: flex; align-items: center; gap: 10px; height: 38px; padding: 0px 12px; border-radius: 8px; cursor: pointer; position: relative; background: transparent; width: 100%; text-align: left;"
+      >
+        <span
+          style="display: flex; align-items: center; flex-shrink: 0;"
+        >
+          <svg
+            data-testid="settings-icon"
+          />
+        </span>
+        <span
+          style="font-size: 14px; font-weight: 500; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+        >
+          Settings
+        </span>
+        <span
+          style="min-width: 18px; height: 18px; border-radius: 99px; padding: 0px 5px; font-size: 10px; font-weight: 700; color: white; display: flex; align-items: center; justify-content: center;"
+        >
+          3
+        </span>
+      </button>
+    </nav>
+  </aside>
+  <div
+    style="flex: 1; display: flex; flex-direction: column; overflow: hidden;"
+  >
+    <header
+      style="height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0px 24px; flex-shrink: 0;"
+    >
+      <div />
+      <div />
+    </header>
+    <main
+      style="flex: 1; overflow-y: auto; position: relative;"
+    >
+      <p>
+        Content
+      </p>
+    </main>
+  </div>
+</div>
+`;
