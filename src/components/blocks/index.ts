@@ -27,6 +27,15 @@ export { default as OptionSelector } from './OptionSelector';
 export { default as FeatureCard } from './FeatureCard';
 export { default as CardListGrid } from './CardListGrid';
 
+export { default as StatCard } from './StatCard';
+export type { StatCardProps, StatCardStatus, StatCardTrend, TrendDirection } from './StatCard';
+
+export { default as VideoPlayer } from './VideoPlayer';
+export type { VideoPlayerProps } from './VideoPlayer';
+
+export { default as IntegrationCard } from './IntegrationCard';
+export type { IntegrationCardProps } from './IntegrationCard';
+
 export type { HeroBlockProps } from './HeroBlock';
 export type { CodeProps } from './Code';
 export type { ArticleProps } from './Article';

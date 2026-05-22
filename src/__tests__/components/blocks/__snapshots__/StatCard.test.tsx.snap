@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatCard Snapshot matches snapshot for default render 1`] = `
+<div
+  style="border-radius: var(--theme-border-radius-card, 14px); padding: 16px;"
+>
+  <div
+    style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1px; margin-bottom: 6px;"
+  >
+    Revenue
+  </div>
+  <div
+    style="font-size: 22px; font-weight: 700; line-height: 1.2;"
+  >
+    $12,000
+  </div>
+</div>
+`;
+
+exports[`StatCard Snapshot matches snapshot for full props 1`] = `
+<div
+  style="border-radius: var(--theme-border-radius-card, 14px); padding: 16px;"
+>
+  <div
+    style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1px; margin-bottom: 6px;"
+  >
+    Revenue
+  </div>
+  <div
+    style="font-size: 22px; font-weight: 700; line-height: 1.2;"
+  >
+    $12,000
+  </div>
+  <div
+    style="display: flex; align-items: center; gap: 4px; margin-top: 6px; font-size: 11px;"
+  >
+    <span>
+      ▲
+    </span>
+    <span>
+      +12%
+    </span>
+  </div>
+  <div
+    style="margin-top: 10px; height: 4px; border-radius: 99px; overflow: hidden;"
+  >
+    <div
+      style="height: 100%; width: 80%; border-radius: 99px; transition: width 0.3s ease;"
+    />
+  </div>
+</div>
+`;

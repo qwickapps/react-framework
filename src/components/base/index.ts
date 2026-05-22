@@ -10,3 +10,6 @@
 export { ModelView, createModelViewClass } from './ModelView';
 export { default as Container} from './Container';
 export type { ContainerProps } from './Container';
+
+export { default as StatusBadge, StatusBadge as StatusBadgeComponent } from './StatusBadge';
+export type { StatusBadgeProps } from './StatusBadge';
