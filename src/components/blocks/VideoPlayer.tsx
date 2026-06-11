@@ -22,6 +22,7 @@ export interface VideoPlayerProps {
   showControls?: boolean;
   /** Scrubber fill 0-100 */
   progress?: number;
+  onPlay?: () => void;
   className?: string;
 }
 
@@ -48,6 +49,7 @@ export function VideoPlayer({
   badge,
   showControls = false,
   progress,
+  onPlay,
   className,
 }: VideoPlayerProps): React.ReactElement {
   const wrapperStyle: React.CSSProperties = {
@@ -123,9 +125,9 @@ export function VideoPlayer({
     <div style={wrapperStyle} className={className}>
       {badge && <div style={badgeStyle}>{badge}</div>}
 
-      <div style={playButtonStyle} role="button" aria-label="Play">
+      <button style={playButtonStyle} onClick={onPlay} aria-label="Play">
         <PlayIcon />
-      </div>
+      </button>
 
       {hasInfoBar && (
         <div style={infoBarStyle}>

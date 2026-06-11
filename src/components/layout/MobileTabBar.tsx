@@ -36,7 +36,7 @@ export function MobileTabBar({
   className,
 }: MobileTabBarProps): React.ReactElement {
   const barStyle: React.CSSProperties = {
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,

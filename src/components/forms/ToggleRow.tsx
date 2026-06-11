@@ -73,7 +73,7 @@ export function ToggleRow({
       ? '1px solid var(--theme-primary)'
       : '1px solid var(--theme-border)',
     boxShadow: checked
-      ? '0 0 0 3px rgba(59,130,246,0.15)'
+      ? '0 0 0 3px var(--palette-primary-light, rgba(59,130,246,0.15))'
       : 'none',
   };
 
@@ -84,7 +84,7 @@ export function ToggleRow({
     borderRadius: '50%',
     background: 'white',
     top: 2,
-    left: checked ? 20 : 2,
+    left: checked ? 22 : 2,
     transition: 'left 150ms',
     boxShadow: '0 1px 3px rgba(0,0,0,0.25)',
   };

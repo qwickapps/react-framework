@@ -3,7 +3,7 @@
 exports[`MobileTabBar Snapshot matches snapshot for default render 1`] = `
 <nav
   aria-label="Tab navigation"
-  style="position: absolute; bottom: 0px; left: 0px; right: 0px; display: flex; z-index: 40; padding: 10px 8px 28px 8px;"
+  style="position: fixed; bottom: 0px; left: 0px; right: 0px; display: flex; z-index: 40; padding: 10px 8px 28px 8px;"
 >
   <button
     aria-current="page"
@@ -61,7 +61,7 @@ exports[`MobileTabBar Snapshot matches snapshot for default render 1`] = `
 exports[`MobileTabBar Snapshot matches snapshot with search active and badge 1`] = `
 <nav
   aria-label="Tab navigation"
-  style="position: absolute; bottom: 0px; left: 0px; right: 0px; display: flex; z-index: 40; padding: 10px 8px 28px 8px;"
+  style="position: fixed; bottom: 0px; left: 0px; right: 0px; display: flex; z-index: 40; padding: 10px 8px 28px 8px;"
 >
   <button
     aria-label="Home"

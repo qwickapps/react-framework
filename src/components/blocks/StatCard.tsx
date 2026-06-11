@@ -104,6 +104,10 @@ export function StatCard({
 
       {progress !== undefined && (
         <div
+          role="progressbar"
+          aria-valuenow={Math.min(100, Math.max(0, progress))}
+          aria-valuemin={0}
+          aria-valuemax={100}
           style={{
             marginTop: 10,
             height: 4,
