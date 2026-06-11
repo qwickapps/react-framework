@@ -11,6 +11,7 @@ export { default as PaletteOcean } from './PaletteOcean';
 export { default as PaletteSpring } from './PaletteSpring';
 export { default as PaletteWinter } from './PaletteWinter';
 export { default as PaletteCosmic } from './PaletteCosmic';
+export { default as PaletteMidnight } from './PaletteMidnight';
 
 // Export all palette configs as an array
 import PaletteDefault from './PaletteDefault';
@@ -20,12 +21,14 @@ import PaletteOcean from './PaletteOcean';
 import PaletteSpring from './PaletteSpring';
 import PaletteWinter from './PaletteWinter';
 import PaletteCosmic from './PaletteCosmic';
+import PaletteMidnight from './PaletteMidnight';
 
 export const AllPalettes = [
   PaletteDefault,
   PaletteBoutique,
   PaletteOcean,
   PaletteCosmic,
+  PaletteMidnight,
   PaletteWinter,
   PaletteAutumn,
   PaletteSpring,

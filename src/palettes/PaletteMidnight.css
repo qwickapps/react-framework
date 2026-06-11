@@ -1,0 +1,106 @@
+/**
+ * Midnight Color Palette
+ *
+ * Copyright (c) 2025 QwickApps.com. All rights reserved.
+ *
+ * Dark navy background with electric blue accent for dark-mode SaaS products
+ */
+
+/* ===== MIDNIGHT PALETTE - DARK ONLY ===== */
+html[data-palette="midnight"],
+html[data-palette="midnight"][data-theme="dark"] {
+  /* Background palette - Deep navy */
+  --palette-background-main: #0F172A;
+  --palette-background-dark: #090E1A;
+  --palette-background-overlay: rgba(15, 23, 42, 0.95);
+  --palette-on-background: #F8FAFC;
+
+  /* Header background with transparency */
+  --palette-header-bg-start: rgba(15, 23, 42, 0.98);
+  --palette-header-bg-end: rgba(15, 23, 42, 0.95);
+  --palette-header-collapsed-bg-start: rgba(15, 23, 42, 0.99);
+  --palette-header-collapsed-bg-end: rgba(15, 23, 42, 0.96);
+
+  /* Surface palette - Slate */
+  --palette-surface-main: #1E293B;
+  --palette-surface-variant: #263549;
+  --palette-surface-elevated: #1E2F49;
+  --palette-on-surface: #F8FAFC;
+
+  /* Primary palette - Electric blue */
+  --palette-primary-main: #3B82F6;
+  --palette-primary-light: #60A5FA;
+  --palette-primary-dark: #1D4ED8;
+  --palette-on-primary: #ffffff;
+
+  /* Secondary palette - Navy */
+  --palette-secondary-main: #1E3A5F;
+  --palette-secondary-light: #263549;
+  --palette-secondary-dark: #131E33;
+  --palette-on-secondary: #F8FAFC;
+
+  /* Accent palette - Electric blue */
+  --palette-accent-main: #3B82F6;
+  --palette-accent-light: #60A5FA;
+  --palette-accent-dark: #1D4ED8;
+  --palette-on-accent: #ffffff;
+
+  /* Text palette - Slate light */
+  --palette-text-primary: #F8FAFC;
+  --palette-text-secondary: #94A3B8;
+  --palette-text-disabled: #475569;
+  --palette-text-inverted: #0F172A;
+
+  /* Border palette - Slate */
+  --palette-border-main: #334155;
+  --palette-border-light: rgba(248, 250, 252, 0.08);
+  --palette-border-lighter: rgba(248, 250, 252, 0.04);
+  --palette-border-medium: #1E293B;
+
+  /* Success palette */
+  --palette-success-main: #22C55E;
+  --palette-success-light: rgba(34, 197, 94, 0.15);
+  --palette-success-dark: #15803D;
+  --palette-on-success: #ffffff;
+  --palette-success-border: rgba(34, 197, 94, 0.30);
+
+  /* Warning palette */
+  --palette-warning-main: #F59E0B;
+  --palette-warning-light: rgba(245, 158, 11, 0.15);
+  --palette-warning-dark: #B45309;
+  --palette-on-warning: #ffffff;
+  --palette-warning-border: rgba(245, 158, 11, 0.30);
+
+  /* Error palette */
+  --palette-error-main: #EF4444;
+  --palette-error-light: rgba(239, 68, 68, 0.15);
+  --palette-error-dark: #B91C1C;
+  --palette-on-error: #ffffff;
+  --palette-error-border: rgba(239, 68, 68, 0.30);
+
+  /* Info palette */
+  --palette-info-main: #3B82F6;
+  --palette-info-light: rgba(59, 130, 246, 0.15);
+  --palette-info-dark: #1D4ED8;
+  --palette-on-info: #ffffff;
+  --palette-info-border: rgba(59, 130, 246, 0.30);
+
+  /* Control palette */
+  --palette-control-main: #1E293B;
+  --palette-control-light: #263549;
+  --palette-control-text: #F8FAFC;
+  --palette-control-border: #334155;
+}
+
+/* ===== MIDNIGHT PALETTE - ANIMATIONS ===== */
+@keyframes midnight-live-dot  { 0%,100%{opacity:1} 50%{opacity:0.4} }
+@keyframes midnight-top-edge  { 0%,100%{opacity:0.7} 50%{opacity:1} }
+@keyframes midnight-skeleton  { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+
+html[data-palette="midnight"] .midnight-live-dot       { animation: midnight-live-dot 1.6s ease-in-out infinite; }
+html[data-palette="midnight"] .midnight-recording-edge { animation: midnight-top-edge 2s ease-in-out infinite; }
+html[data-palette="midnight"] .midnight-skeleton {
+  background: linear-gradient(90deg, #1E293B 0px, #263549 80px, #1E293B 160px);
+  background-size: 400px 100%;
+  animation: midnight-skeleton 1.4s ease-in-out infinite;
+}

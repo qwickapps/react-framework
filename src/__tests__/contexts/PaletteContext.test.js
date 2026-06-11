@@ -50,12 +50,14 @@ describe('PaletteContext', () => {
   test('provides all available palettes', () => {
     renderWithPaletteProvider(<TestComponent />);
     
-    expect(screen.getByTestId('available-count')).toHaveTextContent('6');
+    expect(screen.getByTestId('available-count')).toHaveTextContent('8');
     expect(screen.getByTestId('palette-default')).toHaveTextContent('Default');
     expect(screen.getByTestId('palette-winter')).toHaveTextContent('Winter');
     expect(screen.getByTestId('palette-autumn')).toHaveTextContent('Autumn');
     expect(screen.getByTestId('palette-spring')).toHaveTextContent('Spring');
     expect(screen.getByTestId('palette-ocean')).toHaveTextContent('Ocean');
+    expect(screen.getByTestId('palette-cosmic')).toHaveTextContent('Cosmic');
+    expect(screen.getByTestId('palette-midnight')).toHaveTextContent('Midnight');
   });
 
   test('switches palette correctly', async () => {
