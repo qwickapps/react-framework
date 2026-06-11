@@ -12,7 +12,6 @@
 import React from 'react';
 
 export interface VideoPlayerProps {
-  src?: string;
   /** CSS gradient string or color for the placeholder background */
   background?: string;
   label?: string;

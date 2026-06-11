@@ -115,9 +115,7 @@ export function SidebarLayout({
               borderRadius: 8,
               cursor: 'pointer',
               position: 'relative',
-              background: isActive
-                ? 'rgba(59,130,246,0.15)'
-                : 'transparent',
+              background: isActive ? 'var(--palette-primary-light, rgba(59,130,246,0.15))' : 'transparent',
               border: 'none',
               width: '100%',
               textAlign: 'left',
