@@ -145,7 +145,7 @@ export function IntegrationCard({
     <StatusBadge
       color="var(--palette-success-main)"
       label="Connected"
-      variant="tinted"
+      variant="overlay"
       size="sm"
     />
   ) : (

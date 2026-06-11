@@ -42,6 +42,10 @@ exports[`StatCard Snapshot matches snapshot for full props 1`] = `
     </span>
   </div>
   <div
+    aria-valuemax="100"
+    aria-valuemin="0"
+    aria-valuenow="80"
+    role="progressbar"
     style="margin-top: 10px; height: 4px; border-radius: 99px; overflow: hidden;"
   >
     <div

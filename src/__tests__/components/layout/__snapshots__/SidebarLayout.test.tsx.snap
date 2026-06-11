@@ -13,7 +13,7 @@ exports[`SidebarLayout Snapshot matches snapshot for default render 1`] = `
     >
       <button
         aria-current="page"
-        style="display: flex; align-items: center; gap: 10px; height: 38px; padding: 0px 12px; border-radius: 8px; cursor: pointer; position: relative; background: rgba(59, 130, 246, 0.15); width: 100%; text-align: left;"
+        style="display: flex; align-items: center; gap: 10px; height: 38px; padding: 0px 12px; border-radius: 8px; cursor: pointer; position: relative; width: 100%; text-align: left;"
       >
         <div
           aria-hidden="true"

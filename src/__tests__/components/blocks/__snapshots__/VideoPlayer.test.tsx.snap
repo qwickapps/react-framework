@@ -4,9 +4,8 @@ exports[`VideoPlayer Snapshot matches snapshot for default render 1`] = `
 <div
   style="position: relative; border-radius: var(--theme-border-radius-card, 14px); overflow: hidden; display: flex; align-items: center; justify-content: center;"
 >
-  <div
+  <button
     aria-label="Play"
-    role="button"
     style="width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.4); cursor: pointer; z-index: 1;"
   >
     <svg
@@ -22,7 +21,7 @@ exports[`VideoPlayer Snapshot matches snapshot for default render 1`] = `
         fill="white"
       />
     </svg>
-  </div>
+  </button>
 </div>
 `;
 
@@ -35,9 +34,8 @@ exports[`VideoPlayer Snapshot matches snapshot for fully populated props 1`] = `
   >
     HD
   </div>
-  <div
+  <button
     aria-label="Play"
-    role="button"
     style="width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.4); cursor: pointer; z-index: 1;"
   >
     <svg
@@ -53,7 +51,7 @@ exports[`VideoPlayer Snapshot matches snapshot for fully populated props 1`] = `
         fill="white"
       />
     </svg>
-  </div>
+  </button>
   <div
     style="position: absolute; bottom: 3px; left: 0px; right: 0px; padding: 10px 14px; background: rgba(0, 0, 0, 0.75); display: flex; flex-direction: row; align-items: center; gap: 8px;"
   >
