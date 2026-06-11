@@ -7,8 +7,8 @@
  * @packageDocumentation
  */
 
-export { StatCard } from './StatCard.js';
-export type { StatCardProps } from './StatCard.js';
+export { StatCard as PluginStatCard } from './StatCard.js';
+export type { StatCardProps as PluginStatCardProps } from './StatCard.js';
 
 export { DataTable } from './DataTable.js';
 export type { DataTableProps, Column } from './DataTable.js';

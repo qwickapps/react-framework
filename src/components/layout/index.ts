@@ -14,3 +14,9 @@ export type { GridCellProps } from './GridCell';
 
 export { CollapsibleLayout, CollapsibleLayoutView, useCollapsibleState } from './CollapsibleLayout';
 export type { CollapsibleLayoutProps, CollapsibleLayoutViewProps, UseCollapsibleLayoutState } from './CollapsibleLayout';
+
+export { default as SidebarLayout } from './SidebarLayout';
+export type { SidebarLayoutProps, SidebarNavItem } from './SidebarLayout';
+
+export { default as MobileTabBar } from './MobileTabBar';
+export type { MobileTabBarProps, MobileTabItem } from './MobileTabBar';
