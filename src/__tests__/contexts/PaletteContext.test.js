@@ -54,6 +54,7 @@ describe('PaletteContext', () => {
     expect(screen.getByTestId('palette-default')).toHaveTextContent('Default');
     expect(screen.getByTestId('palette-winter')).toHaveTextContent('Winter');
     expect(screen.getByTestId('palette-autumn')).toHaveTextContent('Autumn');
+    expect(screen.getByTestId('palette-boutique')).toHaveTextContent('Boutique');
     expect(screen.getByTestId('palette-spring')).toHaveTextContent('Spring');
     expect(screen.getByTestId('palette-ocean')).toHaveTextContent('Ocean');
     expect(screen.getByTestId('palette-cosmic')).toHaveTextContent('Cosmic');

@@ -7,8 +7,8 @@
  */
 
 /* ===== MIDNIGHT PALETTE - DARK ONLY ===== */
-html[data-palette="midnight"],
-html[data-palette="midnight"][data-theme="dark"] {
+html[data-palette="midnight"][data-theme="dark"],
+html[data-palette="midnight"]:not([data-theme="light"]) {
   /* Background palette - Deep navy */
   --palette-background-main: #0F172A;
   --palette-background-dark: #090E1A;
@@ -68,7 +68,7 @@ html[data-palette="midnight"][data-theme="dark"] {
   --palette-warning-main: #F59E0B;
   --palette-warning-light: rgba(245, 158, 11, 0.15);
   --palette-warning-dark: #B45309;
-  --palette-on-warning: #ffffff;
+  --palette-on-warning: #000000;
   --palette-warning-border: rgba(245, 158, 11, 0.30);
 
   /* Error palette */
@@ -100,7 +100,7 @@ html[data-palette="midnight"][data-theme="dark"] {
 html[data-palette="midnight"] .midnight-live-dot       { animation: midnight-live-dot 1.6s ease-in-out infinite; }
 html[data-palette="midnight"] .midnight-recording-edge { animation: midnight-top-edge 2s ease-in-out infinite; }
 html[data-palette="midnight"] .midnight-skeleton {
-  background: linear-gradient(90deg, #1E293B 0px, #263549 80px, #1E293B 160px);
+  background: linear-gradient(90deg, var(--palette-surface-main) 0px, var(--palette-surface-variant) 80px, var(--palette-surface-main) 160px);
   background-size: 400px 100%;
   animation: midnight-skeleton 1.4s ease-in-out infinite;
 }
