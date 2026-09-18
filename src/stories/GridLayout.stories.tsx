@@ -117,6 +117,56 @@ export const ThreeColumnsEqual: Story = {
   ),
 };
 
+// Health-coach / Meera: 2 columns at sm (~768) and 4 at lg (≥1200). Do not use columns={4}
+// (auto-distribute caps md at 3 → tablet 3+1).
+export const FourEqualCards: Story = {
+  args: {
+    spacing: 'large',
+    equalHeight: true,
+    width: '100%',
+  },
+  render: (args) => (
+    <GridLayout {...args}>
+      <GridCell xs={12} sm={6} md={6} lg={3}>
+        <div style={{ padding: '16px', backgroundColor: '#ecfeff', borderRadius: '8px' }}>
+          <strong>Card 1</strong>
+          <br />
+          <small>xs=12 sm=6 md=6 lg=3</small>
+        </div>
+      </GridCell>
+      <GridCell xs={12} sm={6} md={6} lg={3}>
+        <div style={{ padding: '16px', backgroundColor: '#e0f2fe', borderRadius: '8px' }}>
+          <strong>Card 2</strong>
+          <br />
+          <small>xs=12 sm=6 md=6 lg=3</small>
+        </div>
+      </GridCell>
+      <GridCell xs={12} sm={6} md={6} lg={3}>
+        <div style={{ padding: '16px', backgroundColor: '#fef9c3', borderRadius: '8px' }}>
+          <strong>Card 3</strong>
+          <br />
+          <small>xs=12 sm=6 md=6 lg=3</small>
+        </div>
+      </GridCell>
+      <GridCell xs={12} sm={6} md={6} lg={3}>
+        <div style={{ padding: '16px', backgroundColor: '#fee2e2', borderRadius: '8px' }}>
+          <strong>Card 4</strong>
+          <br />
+          <small>xs=12 sm=6 md=6 lg=3</small>
+        </div>
+      </GridCell>
+    </GridLayout>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Four equal cells with Storybook breakpoint attrs (xs=12 sm=6 md=6 lg=3). Expect 2 columns at ~768 and 4 at MUI lg (≥1200). GridLayout must map these onto MUI Grid `size` (v7) or `item`+`xs` (v6). Do not set columns={4}.',
+      },
+    },
+  },
+};
+
 // GridCell integration examples
 export const WithGridCells: Story = {
   args: {
