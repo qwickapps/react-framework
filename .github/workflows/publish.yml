@@ -86,9 +86,21 @@ jobs:
 
       - name: Publish to npm
         if: steps.version.outputs.should_publish == 'true'
-        run: npm publish --access public --ignore-scripts
+        # Self-hosted mac/Linux runners often have a user ~/.npmrc that
+        # overrides setup-node's project auth and yields npm E404 on scoped PUT.
+        # Force a job-local npmrc with only the repo NPM_TOKEN.
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          NPMRC="$(pwd)/.npmrc.publish"
+          umask 077
+          printf '%s\n' \
+            'registry=https://registry.npmjs.org/' \
+            '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}' \
+            'always-auth=true' > "$NPMRC"
+          NPM_CONFIG_USERCONFIG="$NPMRC" npm publish --access public --ignore-scripts
+          rm -f "$NPMRC"
 
       - name: Create GitHub Release
         if: steps.version.outputs.should_publish == 'true'
