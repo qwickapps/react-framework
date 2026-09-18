@@ -5,6 +5,16 @@ All notable changes to the QwickApps React Framework will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.10.1] - 2026-09-18
+
+### Fixed
+
+- **GridLayout / GridCellWrapper**: Apply cell breakpoints on both MUI Grid APIs
+  - `createSerializableView` / `useBaseProps` nest `xs`/`sm`/`md`/`lg` under `gridProps` and stamp `data-grid-*` on the rendered Box; GridLayout now reads those as well as top-level `xs`
+  - Spread **legacy** `item` + `xs`/`sm`/`md`/`lg` **and** Grid2 `size={{ ... }}` so MUI v6 `Grid` (health-coach) and MUI v7 `Grid` (Storybook) both size cells
+  - Without `item`/`xs`, MUI v6 Grid ignores `size` → content-sized cards, tablet 3+1, desktop left-cluster
+  - Do not use `columns={4}` for a 2×2→4 layout: auto-distribute still caps `md` at 3
+
 ## [1.8.0] - 2026-02-07
 
 ### Added

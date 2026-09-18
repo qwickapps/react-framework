@@ -15,6 +15,7 @@
 
 import React from 'react';
 import { Grid, GridProps } from '@mui/material';
+import { toMuiGridItemProps } from '../../utils/muiGridItem';
 
 /**
  * Props for GridCellWrapper
@@ -54,29 +55,13 @@ const GridCellWrapper: React.FC<GridCellWrapperProps> = ({
   fullWidth = false,
   ...gridProps
 }) => {
-  // If fullWidth is true, force size=12; otherwise build responsive size object for MUI v6
-  const responsiveSizing = fullWidth 
-    ? { size: 12 }
-    : (() => {
-        const sizeConfig: unknown = {};
-        if (xs !== undefined) sizeConfig.xs = xs;
-        if (sm !== undefined) sizeConfig.sm = sm;
-        if (md !== undefined) sizeConfig.md = md;
-        if (lg !== undefined) sizeConfig.lg = lg;
-        if (xl !== undefined) sizeConfig.xl = xl;
-        
-        // If only one value provided, use it as a simple size value
-        const definedBreakpoints = Object.keys(sizeConfig);
-        if (definedBreakpoints.length === 1 && xs !== undefined && sm === undefined && md === undefined && lg === undefined && xl === undefined) {
-          return { size: xs };
-        }
-        
-        return { size: sizeConfig };
-      })();
+  const responsiveSizing = fullWidth
+    ? toMuiGridItemProps({ span: 12 })
+    : toMuiGridItemProps({ xs, sm, md, lg, xl });
 
   return (
     <Grid 
-      {...responsiveSizing}
+      {...(responsiveSizing ?? {})}
       {...gridProps}
     >
       {children}

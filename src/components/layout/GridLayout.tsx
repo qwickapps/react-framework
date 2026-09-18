@@ -19,6 +19,11 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import { resolveSpacing } from '../../utils/spacing';
 import { resolveDimension } from '../../utils/dimensions';
+import {
+  autoDistributeGridItemProps,
+  readChildGridBreakpoints,
+  toMuiGridItemProps,
+} from '../../utils/muiGridItem';
 import { createSerializableView, SerializableComponent } from '../shared/createSerializableView';
 import { ViewProps } from '../shared/viewProps';
 
@@ -82,50 +87,15 @@ function GridLayoutView({
         return child;
       }
 
-      // Extract grid props from data attributes or props
-      let childGridProps: Record<string, unknown> = {};
-
-      // Extract grid props from both data attributes (QwickApp) and direct props (regular)
       const childProps = child.props as Record<string, unknown>;
-      const span = childProps['data-grid-span'] || childProps.span;
-      const xs = childProps['data-grid-xs'] || childProps.xs;
-      const sm = childProps['data-grid-sm'] || childProps.sm;
-      const md = childProps['data-grid-md'] || childProps.md;
-      const lg = childProps['data-grid-lg'] || childProps.lg;
-      const xl = childProps['data-grid-xl'] || childProps.xl;
-
-      if (span || xs || sm || md || lg || xl) {
-        // Use span if available, otherwise use breakpoint values
-        if (span) {
-          childGridProps = {
-            size: span,
-          };
-        } else {
-          // Build responsive size object for MUI v6
-          const sizeConfig: Record<string, unknown> = {};
-          if (xs) sizeConfig.xs = xs;
-          if (sm) sizeConfig.sm = sm;
-          if (md) sizeConfig.md = md;
-          if (lg) sizeConfig.lg = lg;
-          if (xl) sizeConfig.xl = xl;
-
-          childGridProps = {
-            size: sizeConfig,
-          };
-        }
-      }
+      // Direct xs/sm/md/lg, data-grid-* (rendered Box), or nested gridProps
+      // from createSerializableView/useBaseProps.
+      let childGridProps =
+        toMuiGridItemProps(readChildGridBreakpoints(childProps)) ?? {};
 
       // If columns prop is set and no grid props, auto-distribute responsively
       if (columns && Object.keys(childGridProps).length === 0) {
-        // Make responsive: single column on mobile, fewer columns on tablet, full columns on desktop
-        childGridProps = {
-          size: {
-            xs: 12, // Single column on mobile
-            sm: columns >= 3 ? 6 : 12 / Math.min(columns, 2), // 2 columns max on small screens
-            md: 12 / Math.min(columns, 3), // 3 columns max on medium screens
-            lg: 12 / columns, // Full columns on large screens
-          },
-        };
+        childGridProps = autoDistributeGridItemProps(columns);
       }
 
       // If has grid props, wrap in Grid
@@ -138,6 +108,13 @@ function GridLayoutView({
         delete cleanedProps['data-grid-md'];
         delete cleanedProps['data-grid-lg'];
         delete cleanedProps['data-grid-xl'];
+        delete cleanedProps.gridProps;
+        delete cleanedProps.span;
+        delete cleanedProps.xs;
+        delete cleanedProps.sm;
+        delete cleanedProps.md;
+        delete cleanedProps.lg;
+        delete cleanedProps.xl;
 
         return (
           <Grid key={child.key || index} {...childGridProps}>
