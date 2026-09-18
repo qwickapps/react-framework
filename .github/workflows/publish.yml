@@ -97,7 +97,7 @@ jobs:
           umask 077
           printf '%s\n' \
             'registry=https://registry.npmjs.org/' \
-            '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}' \
+            "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" \
             'always-auth=true' > "$NPMRC"
           NPM_CONFIG_USERCONFIG="$NPMRC" npm publish --access public --ignore-scripts
           rm -f "$NPMRC"
