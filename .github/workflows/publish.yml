@@ -19,7 +19,11 @@ on:
 
 jobs:
   publish:
-    runs-on: [self-hosted, Linux]
+    # Temporary: oci-fallback Linux runners do not include this repo yet
+    # (health-coach Linux jobs run on critical-oci-dev / oci-fallback).
+    # Use macmini self-hosted until react-framework is allowlisted; then
+    # restore [self-hosted, Linux].
+    runs-on: [self-hosted, macmini]
     permissions:
       contents: write
     steps:
