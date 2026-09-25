@@ -34,6 +34,8 @@ export type { DataTableProps, Column } from './plugins';
 export { default as Scaffold } from './Scaffold';
 export type { ScaffoldProps, AppBarProps } from './Scaffold';
 export type { MenuItem } from './menu/MenuItem';
+export { ActionMenu } from './menu/ActionMenu';
+export type { ActionMenuProps, ActionMenuItem } from './menu/ActionMenu';
 export { default as ResponsiveMenu } from './ResponsiveMenu';
 export type { ResponsiveMenuProps } from './ResponsiveMenu';
 export * from './QwickApp';
