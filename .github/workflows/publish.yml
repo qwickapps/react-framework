@@ -99,7 +99,7 @@ jobs:
             'registry=https://registry.npmjs.org/' \
             "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" \
             'always-auth=true' > "$NPMRC"
-          NPM_CONFIG_USERCONFIG="$NPMRC" npm publish --access public --ignore-scripts
+          NPM_CONFIG_USERCONFIG="$NPMRC" npx -y npm@11 stage publish --access public --ignore-scripts
           rm -f "$NPMRC"
 
       - name: Create GitHub Release
