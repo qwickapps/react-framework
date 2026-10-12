@@ -43,6 +43,8 @@ import { LogoVariant, LogoSize, LogoBadgeShape, PositionType, BadgeOffset } from
 import './Logo.css';
 
 type LogoViewProps = SchemaProps<LogoModel> & {
+  /** Preserve whitespace in the rendered name instead of joining text parts. */
+  preserveWhitespace?: boolean;
   /** Click handler for the logo */
   onClick?: (event: React.MouseEvent<SVGSVGElement | HTMLDivElement>) => void;
   /** Additional inline styles */
@@ -56,6 +58,7 @@ interface LogoProps extends LogoViewProps, WithDataBinding {}
 // View component - handles the actual rendering
 function LogoView({
   name = 'Qwick Apps',
+  preserveWhitespace = false,
   variant = 'default',
   size = 'medium',
   badge = 'top-right',
@@ -95,7 +98,25 @@ function LogoView({
       return {
         firstPart: first.replace(/\\s/g, ' '),
         secondPart: rest.join('\\n').replace(/\\s/g, ' '),
-        isNewLine: true
+        isNewLine: true,
+        separator: ''
+      };
+    }
+
+    // Product lockups need their supplied name to remain readable verbatim.
+    // Preserve the first whitespace run while retaining the two-part styling.
+    if (preserveWhitespace) {
+      const whitespaceIndex = text.search(/\s/);
+      if (whitespaceIndex === -1) {
+        return { firstPart: text, secondPart: '', isNewLine: false, separator: '' };
+      }
+
+      const whitespace = text.slice(whitespaceIndex).match(/^\s+/)?.[0] || '';
+      return {
+        firstPart: text.slice(0, whitespaceIndex),
+        secondPart: text.slice(whitespaceIndex + whitespace.length),
+        isNewLine: false,
+        separator: whitespace
       };
     }
     
@@ -107,10 +128,11 @@ function LogoView({
         return {
           firstPart: parts[0],
           secondPart: parts.slice(1).join(' '), // Join remaining parts with spaces
-          isNewLine: false
+          isNewLine: false,
+          separator: ' '
         };
       } else {
-        return { firstPart: parts[0], secondPart: '', isNewLine: false };
+        return { firstPart: parts[0], secondPart: '', isNewLine: false, separator: '' };
       }
     }
     
@@ -118,20 +140,21 @@ function LogoView({
     const nameParts = text.trim().split(/\s+/);
     
     if (nameParts.length === 1) {
-      return { firstPart: nameParts[0], secondPart: '', isNewLine: false };
+      return { firstPart: nameParts[0], secondPart: '', isNewLine: false, separator: '' };
     } else if (nameParts.length === 2) {
-      return { firstPart: nameParts[0], secondPart: nameParts[1], isNewLine: false };
+      return { firstPart: nameParts[0], secondPart: nameParts[1], isNewLine: false, separator: '' };
     } else {
       // More than 2 words: everything except last word goes to first part
       return {
         firstPart: nameParts.slice(0, -1).join(' '),
         secondPart: nameParts[nameParts.length - 1],
-        isNewLine: false
+        isNewLine: false,
+        separator: ''
       };
     }
-  }, []);
+  }, [preserveWhitespace]);
 
-  const { firstPart, secondPart, isNewLine } = parseNameParts(name);
+  const { firstPart, secondPart, isNewLine, separator } = parseNameParts(name);
   
   // Check if original name contained explicit spaces
   const hasExplicitSpaces = name.includes('\\s');
@@ -354,8 +377,9 @@ function LogoView({
               x={isNewLine ? "15" : undefined}
               dy={isNewLine ? fontSize * 1.2 : undefined}
               className={secondPartClass}
+              xmlSpace={preserveWhitespace ? 'preserve' : undefined}
             >
-              {isNewLine ? secondPart : (hasExplicitSpaces ? ` ${secondPart}` : secondPart)}
+              {isNewLine ? secondPart : (preserveWhitespace ? `${separator}${secondPart}` : (hasExplicitSpaces ? ` ${secondPart}` : secondPart))}
             </tspan>
           )}
         </text>

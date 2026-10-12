@@ -6,7 +6,7 @@
  * styling to create consistent product logos across the QwickApps suite.
  *
  * Features:
- * - Automatically positions the icon close to the product name
+ * - Uses a consistent icon/text lockup without positional offsets
  * - Consistent styling across all QwickApps products
  * - Simple API: just provide icon and name
  * - Supports all Logo component features (size, variant, badge, etc.)
@@ -64,6 +64,7 @@ const ProductLogo: React.FC<ProductLogoProps> = ({
   icon,
   name,
   size = 'small',
+  badge = 'none',
   onClick,
   style,
   className,
@@ -84,28 +85,25 @@ const ProductLogo: React.FC<ProductLogoProps> = ({
   // Use QwickIcon as default if no icon provided
   const iconElement = icon || <QwickIcon />;
 
-  // Clone the icon element and apply positioning styles
+  // Clone the icon only to apply the size. Layout belongs to Logo's flex
+  // container; pixel offsets make lockups inconsistent across consumers.
   const styledIcon = isValidElement(iconElement)
     ? cloneElement(iconElement, {
         size: (iconElement.props as Record<string, unknown>).size || getIconSize(size as string),
-        style: {
-          position: 'relative',
-          left: '25px',
-          zIndex: 999,
-          ...((iconElement.props as Record<string, unknown>).style as React.CSSProperties | undefined)
-        }
+        style: (iconElement.props as Record<string, unknown>).style as React.CSSProperties | undefined
       } as Record<string, unknown>)
     : iconElement;
 
   return (
     <Logo
       name={name}
+      preserveWhitespace
       size={size}
       image={styledIcon}
       imagePosition="start"
+      badge={badge}
       style={{
         cursor: onClick ? 'pointer' : 'default',
-        zIndex: 1000,
         ...style
       }}
       className={className}
