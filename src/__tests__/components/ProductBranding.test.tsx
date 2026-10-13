@@ -37,6 +37,17 @@ describe('ProductLogo', () => {
     expect(icon).not.toHaveStyle({ left: '25px' });
   });
 
+  it('does not expose whitespace preservation as a consumer override', () => {
+    // @ts-expect-error ProductLogo always preserves its product-name separator.
+    renderProductLogo(<ProductLogo name="wick FM" preserveWhitespace={false} />);
+
+    const logo = screen.getByRole('img', { name: 'wick FM Logo' });
+    const secondPart = logo.querySelector('.logo-second-part');
+
+    expect(secondPart).toHaveAttribute('xml:space', 'preserve');
+    expect(secondPart?.textContent).toBe(' FM');
+  });
+
   it('does not render an animated badge by default', () => {
     renderProductLogo(<ProductLogo name="wick FM" />);
 

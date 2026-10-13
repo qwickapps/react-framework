@@ -41,7 +41,7 @@ import Logo from './Logo';
 import type { LogoProps } from './Logo';
 import QwickIcon from './QwickIcon';
 
-export interface ProductLogoProps extends Omit<LogoProps, 'image' | 'imagePosition'> {
+export interface ProductLogoProps extends Omit<LogoProps, 'image' | 'imagePosition' | 'preserveWhitespace'> {
   /** The icon element (defaults to QwickIcon) */
   icon?: React.ReactElement;
   /** The product name (e.g., "wick Press", "wick Forge") */
@@ -96,6 +96,7 @@ const ProductLogo: React.FC<ProductLogoProps> = ({
 
   return (
     <Logo
+      {...restProps}
       name={name}
       preserveWhitespace
       size={size}
@@ -108,7 +109,6 @@ const ProductLogo: React.FC<ProductLogoProps> = ({
       }}
       className={className}
       onClick={onClick}
-      {...restProps}
     />
   );
 };
