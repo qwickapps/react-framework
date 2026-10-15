@@ -1,119 +1,64 @@
-# NPM Publish Workflow for Public Repos
-# Copy this file to .github/workflows/publish.yml in each public repo
-#
-# Required secrets:
-#   NPM_TOKEN - npm automation token with publish permissions
-
 name: Publish to npm
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
-      - 'package.json'
-      - 'src/**'
-
-  # Allow manual publish
+      - package.json
+      - src/**
+      - scripts/**
+      - rollup.config.*
+      - .github/workflows/publish.yml
+  pull_request:
+    paths:
+      - package.json
+      - src/**
+      - scripts/**
+      - rollup.config.*
+      - .github/workflows/publish.yml
   workflow_dispatch:
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
-  publish:
-    # Temporary: oci-fallback Linux runners do not include this repo yet
-    # (health-coach Linux jobs run on critical-oci-dev / oci-fallback).
-    # Use macmini self-hosted until react-framework is allowlisted; then
-    # restore [self-hosted, Linux].
-    runs-on: [self-hosted, macmini]
-    permissions:
-      contents: write
+  verify:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
       - name: Install dependencies
         run: npm install --legacy-peer-deps
-
-      - name: Check if build needed
-        id: check-build
-        run: |
-          # Check if pre-built dist artifacts exist
-          if [ -d "dist" ] || [ -d "dist-ui" ] || [ -d "dist-ui-lib" ]; then
-            echo "needs_build=false" >> $GITHUB_OUTPUT
-            echo "✓ Pre-built artifacts found, skipping build"
-          else
-            echo "needs_build=true" >> $GITHUB_OUTPUT
-            echo "→ No dist artifacts found, will build from source"
-          fi
-
       - name: Build
-        if: steps.check-build.outputs.needs_build == 'true'
         run: npm run build
 
-      - name: Run validation
-        run: |
-          if grep -q '"validate"' package.json; then
-            echo "Running validation..."
-            npm run validate
-          else
-            echo "No validation script found, skipping"
-          fi
-
-      - name: Check if version changed
+  publish:
+    needs: verify
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment: npm-publish
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+      - name: Check version
         id: version
         run: |
-          PACKAGE_NAME=$(node -p "require('./package.json').name")
-          LOCAL_VERSION=$(node -p "require('./package.json').version")
-
-          # Get published version (returns empty if not published)
-          PUBLISHED_VERSION=$(npm view "$PACKAGE_NAME" version 2>/dev/null || echo "")
-
-          echo "Package: $PACKAGE_NAME"
-          echo "Local version: $LOCAL_VERSION"
-          echo "Published version: $PUBLISHED_VERSION"
-
-          if [ "$LOCAL_VERSION" != "$PUBLISHED_VERSION" ]; then
-            echo "should_publish=true" >> $GITHUB_OUTPUT
-            echo "version=$LOCAL_VERSION" >> $GITHUB_OUTPUT
+          package_name=$(node -p "require('./package.json').name")
+          local_version=$(node -p "require('./package.json').version")
+          published_version=$(npm view "$package_name" version 2>/dev/null || true)
+          if [ "$local_version" = "$published_version" ]; then
+            echo "should_publish=false" >> "$GITHUB_OUTPUT"
+            echo "Version $local_version is already published"
           else
-            echo "should_publish=false" >> $GITHUB_OUTPUT
-            echo "Version $LOCAL_VERSION already published"
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
           fi
-
       - name: Publish to npm
         if: steps.version.outputs.should_publish == 'true'
-        # Self-hosted mac/Linux runners often have a user ~/.npmrc that
-        # overrides setup-node's project auth and yields npm E404 on scoped PUT.
-        # Force a job-local npmrc with only the repo NPM_TOKEN.
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          set -euo pipefail
-          NPMRC="$(pwd)/.npmrc.publish"
-          umask 077
-          printf '%s\n' \
-            'registry=https://registry.npmjs.org/' \
-            "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" \
-            'always-auth=true' > "$NPMRC"
-          NPM_CONFIG_USERCONFIG="$NPMRC" npm publish --access public --ignore-scripts
-          rm -f "$NPMRC"
-
-      - name: Create GitHub Release
-        if: steps.version.outputs.should_publish == 'true'
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ steps.version.outputs.version }}
-          name: v${{ steps.version.outputs.version }}
-          body: |
-            Published to npm: https://www.npmjs.com/package/${{ github.repository }}
-
-            Install:
-            ```bash
-            npm install @qwickapps/${{ github.event.repository.name }}@${{ steps.version.outputs.version }}
-            ```
-          draft: false
-          prerelease: false
+        run: npm publish --access public --provenance --ignore-scripts
