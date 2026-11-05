@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
-import SafeSpan from '../../SafeSpan';
+import SafeSpan from '../../components/SafeSpan';
 import { DataProvider } from '../../../contexts/DataContext';
 import { JsonDataProvider } from '@qwickapps/schema';
 

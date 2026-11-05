@@ -8,7 +8,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TextInputField from '../../input/TextInputField';
+import TextInputField from '../../components/input/TextInputField';
 import { DataProvider } from '../../../contexts/DataContext';
 import { JsonDataProvider } from '@qwickapps/schema';
 import { ThemeProvider, PaletteProvider } from '../../../contexts';

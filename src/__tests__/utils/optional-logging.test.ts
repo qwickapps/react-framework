@@ -2,7 +2,7 @@
  * Test for optional logging dependency fallback
  */
 
-import { getLogger, loggers } from '../logger';
+import { getLogger, loggers } from '../../utils/logger';
 
 // Mock the require function to simulate missing @qwickapps/logging package
 const originalRequire = require;

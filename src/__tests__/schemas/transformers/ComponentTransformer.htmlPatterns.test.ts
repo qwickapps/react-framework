@@ -8,8 +8,8 @@
  */
 
 import React from 'react';
-import { ComponentTransformer, PatternHandler } from '../ComponentTransformer';
-import { Code } from '../../../../schemas/transformers/components/blocks/Code';
+import { ComponentTransformer, PatternHandler } from '../../../schemas/transformers/ComponentTransformer';
+import { Code } from '../../../components/blocks/Code';
 
 // Mock DOM environment for Node.js testing
 Object.defineProperty(global, 'DOMParser', {

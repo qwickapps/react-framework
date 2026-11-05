@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
-import HeroBlock from '../../blocks/HeroBlock';
+import HeroBlock from '../../components/blocks/HeroBlock';
 import { DataProvider } from '../../../contexts/DataContext';
 import { JsonDataProvider } from '@qwickapps/schema';
 

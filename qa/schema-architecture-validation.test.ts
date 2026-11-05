@@ -23,7 +23,7 @@ import SafeSpanSchema from '../src/schemas/SafeSpanSchema';
 import { Code } from '../src/components/blocks/Code';
 import { Container } from '../src/components/base/Container';
 import { HeroBlock } from '../src/components/blocks/HeroBlock';
-import { Button } from '../src/components/inputs/Button';
+import { Button } from '../src/components/buttons/Button';
 
 describe('Schema Architecture Validation', () => {
   

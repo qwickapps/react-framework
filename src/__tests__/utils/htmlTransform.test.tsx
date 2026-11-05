@@ -10,7 +10,7 @@ import {
   stripHeaderFromContent,
   defaultArticleRules,
   defaultMarkdownRules
-} from '../htmlTransform';
+} from '../../utils/htmlTransform';
 
 // Helper function to create DOM elements for testing
 function createElementFromHTML(html: string): Element {

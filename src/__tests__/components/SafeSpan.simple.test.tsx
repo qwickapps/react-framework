@@ -6,7 +6,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SafeSpan from '../../SafeSpan';
+import SafeSpan from '../../components/SafeSpan';
 
 describe('SafeSpan Simple Tests', () => {
   

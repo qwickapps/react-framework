@@ -7,7 +7,7 @@
  * Copyright (c) 2025 QwickApps.com. All rights reserved.
  */
 
-import { ComponentTransformer } from '../ComponentTransformer';
+import { ComponentTransformer } from '../../../schemas/transformers/ComponentTransformer';
 
 /**
  * QA Execution Summary Generator

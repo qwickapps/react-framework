@@ -23,9 +23,9 @@ import { QWICKAPP_COMPONENT } from '../src/hooks';
 import { Code } from '../src/components/blocks/Code';
 import { Container } from '../src/components/base/Container';
 import { HeroBlock } from '../src/components/blocks/HeroBlock';
-import { Button } from '../src/components/inputs/Button';
+import { Button } from '../src/components/buttons/Button';
 import { Text } from '../src/components/blocks/Text';
-import { SafeSpan } from '../src/components/blocks/SafeSpan';
+import { SafeSpan } from '../src/components/SafeSpan';
 import { Section } from '../src/components/blocks/Section';
 
 describe('Component Factory Pattern Validation', () => {

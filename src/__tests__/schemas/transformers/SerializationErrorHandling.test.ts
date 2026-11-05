@@ -9,7 +9,7 @@
  */
 
 import React, { ReactElement } from 'react';
-import { ComponentTransformer } from '../ComponentTransformer';
+import { ComponentTransformer } from '../../../schemas/transformers/ComponentTransformer';
 import { Serializable, SerializableConstructor } from '../../types/Serializable';
 
 // Mock components for error testing

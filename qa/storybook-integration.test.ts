@@ -25,7 +25,7 @@ import { registerSerializableComponents } from '../src/schemas/transformers/regi
 import { Code } from '../src/components/blocks/Code';
 import { Container } from '../src/components/base/Container';
 import { Text } from '../src/components/blocks/Text';
-import { Button } from '../src/components/inputs/Button';
+import { Button } from '../src/components/buttons/Button';
 import { HeroBlock } from '../src/components/blocks/HeroBlock';
 
 // Create a theme for testing

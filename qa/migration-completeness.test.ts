@@ -19,10 +19,10 @@ import * as path from 'path';
 import { Code } from '../src/components/blocks/Code';
 import { Container } from '../src/components/base/Container';
 import { Text } from '../src/components/blocks/Text';
-import { SafeSpan } from '../src/components/blocks/SafeSpan';
+import { SafeSpan } from '../src/components/SafeSpan';
 import { HeroBlock } from '../src/components/blocks/HeroBlock';
 import { Section } from '../src/components/blocks/Section';
-import { Button } from '../src/components/inputs/Button';
+import { Button } from '../src/components/buttons/Button';
 
 // Import registry for completeness check
 import { getRegisteredComponents } from '../src/schemas/transformers/registry';

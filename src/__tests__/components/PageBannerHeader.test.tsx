@@ -8,7 +8,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import PageBannerHeader from '../../blocks/PageBannerHeader';
+import PageBannerHeader from '../../components/blocks/PageBannerHeader';
 import { JsonDataProvider } from '@qwickapps/schema';
 import { ThemeProvider, PaletteProvider } from '../../../contexts';
 import QwickApp from '../../QwickApp';

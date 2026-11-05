@@ -165,10 +165,12 @@
       "tsx"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(.*\\.mjs$))"
+      "node_modules/(?!(.*\\.mjs$|htmlparser2|entities|domhandler|domutils|dom-serializer|domelementtype)/)"
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
+      "/dist/",
+      "MockSerializableComponent\\.ts$",
       "\\.performance\\.test\\.(ts|tsx)$",
       "\\.serialization\\.test\\.(ts|tsx)$",
       "HeroBlock\\.test\\.(ts|tsx)$",

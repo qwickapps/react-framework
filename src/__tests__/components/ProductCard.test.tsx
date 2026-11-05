@@ -8,8 +8,8 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { ProductCard } from '../../blocks/ProductCard';
-import type { Product } from '../../blocks/ProductCard';
+import { ProductCard } from '../../components/blocks/ProductCard';
+import type { Product } from '../../components/blocks/ProductCard';
 import { DataProvider } from '../../../contexts/DataContext';
 import { JsonDataProvider } from '@qwickapps/schema';
 import { ThemeProvider, PaletteProvider } from '../../../contexts';
