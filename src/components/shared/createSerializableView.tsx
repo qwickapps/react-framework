@@ -16,6 +16,7 @@
 import React, { ComponentType, ReactElement, ReactNode } from 'react';
 // SerializableConstructor type is defined inline below
 import { useBaseProps, useDataBinding, QWICKAPP_COMPONENT } from '../../hooks';
+import { ComponentTransformer } from '../../schemas/transformers/ComponentTransformer';
 import { normalizeViewProps, ViewProps } from './viewProps';
 
 /**

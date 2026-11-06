@@ -84,7 +84,7 @@ describe('SchemaFormRenderer', () => {
     expect(screen.getByDisplayValue('test value')).toBeInTheDocument();
     expect(screen.getByDisplayValue('test@example.com')).toBeInTheDocument();
     expect(screen.getByDisplayValue('42')).toBeInTheDocument();
-    expect(screen.getByRole('checkbox', { name: /Boolean Field/i })).toBeChecked();
+    expect(screen.getByRole('switch', { name: /Boolean Field/i })).toBeChecked();
   });
 
   it('calls onChange when text field changes', () => {
@@ -141,7 +141,7 @@ describe('SchemaFormRenderer', () => {
       />
     );
 
-    const booleanField = screen.getByRole('checkbox', { name: /Boolean Field/i });
+    const booleanField = screen.getByRole('switch', { name: /Boolean Field/i });
     fireEvent.click(booleanField);
 
     expect(mockOnChange).toHaveBeenCalledWith({ booleanField: true });
@@ -194,7 +194,7 @@ describe('SchemaFormRenderer', () => {
     expect(screen.getByLabelText(/Text Field/i)).toBeDisabled();
     expect(screen.getByLabelText(/Email Field/i)).toBeDisabled();
     expect(screen.getByLabelText(/Number Field/i)).toBeDisabled();
-    expect(screen.getByRole('checkbox', { name: /Boolean Field/i })).toBeDisabled();
+    expect(screen.getByRole('switch', { name: /Boolean Field/i })).toBeDisabled();
   });
 
   it('displays field descriptions as helper text', () => {

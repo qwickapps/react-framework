@@ -13,10 +13,34 @@
  */
 
 import { Editor, Field, FieldType, Model, Schema } from '@qwickapps/schema';
-import { IsIn, IsInt, IsOptional, IsString, Min, ValidateIf } from 'class-validator';
+import { IsIn, IsOptional, IsString, registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
 import type { SxProps, Theme } from '@mui/material/styles';
 import 'reflect-metadata';
 import type { FocusEventHandler, MouseEventHandler } from 'react';
+
+function IsGridSpan(allowGrow: boolean, validationOptions?: ValidationOptions) {
+  return (object: object, propertyName: string): void => {
+    registerDecorator({
+      name: 'isGridSpan',
+      target: object.constructor,
+      propertyName,
+      options: validationOptions,
+      validator: {
+        validate(value: unknown): boolean {
+          if (value === 'auto' || (allowGrow && value === 'grow')) return true;
+          const numericValue = typeof value === 'string' ? Number(value) : value;
+          return typeof numericValue === 'number'
+            && Number.isInteger(numericValue)
+            && numericValue >= 1
+            && numericValue <= 12;
+        },
+        defaultMessage(args: ValidationArguments): string {
+          return `${args.property} must be an integer from 1 to 12${allowGrow ? ", 'auto', or 'grow'" : " or 'auto'"}`;
+        }
+      }
+    });
+  };
+}
 
 @Schema('ViewSchema', '1.0.0')
 export class ViewSchema extends Model {
@@ -32,11 +56,7 @@ export class ViewSchema extends Model {
     description: 'Column span for grid layouts (number, auto, or grow)'
   })
   @IsOptional()
-  @ValidateIf((_, v) => typeof v === 'string')
-  @IsIn(['auto', 'grow'])
-  @ValidateIf((_, v) => typeof v === 'number')
-  @IsInt()
-  @Min(1)
+  @IsGridSpan(true)
   span?: number | 'auto' | 'grow';
 
   @Field()
@@ -46,11 +66,7 @@ export class ViewSchema extends Model {
     description: 'Column span for extra small screens'
   })
   @IsOptional()
-  @ValidateIf((_, v) => typeof v === 'string')
-  @IsIn(['auto'])
-  @ValidateIf((_, v) => typeof v === 'number')
-  @IsInt()
-  @Min(1)
+  @IsGridSpan(false)
   xs?: number | 'auto';
 
   @Field()
@@ -60,11 +76,7 @@ export class ViewSchema extends Model {
     description: 'Column span for small screens'
   })
   @IsOptional()
-  @ValidateIf((_, v) => typeof v === 'string')
-  @IsIn(['auto'])
-  @ValidateIf((_, v) => typeof v === 'number')
-  @IsInt()
-  @Min(1)
+  @IsGridSpan(false)
   sm?: number | 'auto';
 
   @Field()
@@ -74,11 +86,7 @@ export class ViewSchema extends Model {
     description: 'Column span for medium screens'
   })
   @IsOptional()
-  @ValidateIf((_, v) => typeof v === 'string')
-  @IsIn(['auto'])
-  @ValidateIf((_, v) => typeof v === 'number')
-  @IsInt()
-  @Min(1)
+  @IsGridSpan(false)
   md?: number | 'auto';
 
   @Field()
@@ -88,11 +96,7 @@ export class ViewSchema extends Model {
     description: 'Column span for large screens'
   })
   @IsOptional()
-  @ValidateIf((_, v) => typeof v === 'string')
-  @IsIn(['auto'])
-  @ValidateIf((_, v) => typeof v === 'number')
-  @IsInt()
-  @Min(1)
+  @IsGridSpan(false)
   lg?: number | 'auto';
 
   @Field()
@@ -102,11 +106,7 @@ export class ViewSchema extends Model {
     description: 'Column span for extra large screens'
   })
   @IsOptional()
-  @ValidateIf((_, v) => typeof v === 'string')
-  @IsIn(['auto'])
-  @ValidateIf((_, v) => typeof v === 'number')
-  @IsInt()
-  @Min(1)
+  @IsGridSpan(false)
   xl?: number | 'auto';
 
   // ========================================

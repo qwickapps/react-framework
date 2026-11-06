@@ -205,7 +205,7 @@ describe('AppConfigBuilder', () => {
     });
 
     it('should skip validation when skipValidation option is true', () => {
-      jest.spyOn(console, 'warn').mockImplementation();
+      const consoleWarn = jest.spyOn(console, 'warn').mockImplementation();
 
       AppConfigBuilder.create()
         .withOptions({ skipValidation: true })
@@ -240,7 +240,7 @@ describe('AppConfigBuilder', () => {
     });
 
     it('should accept named colors', () => {
-      jest.spyOn(console, 'warn').mockImplementation();
+      const consoleWarn = jest.spyOn(console, 'warn').mockImplementation();
 
       AppConfigBuilder.create()
         .withName('Test App')

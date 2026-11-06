@@ -6,7 +6,7 @@
  */
 
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { Image } from '../components/blocks/Image';
 
 describe('Image Accessibility', () => {
@@ -95,7 +95,9 @@ describe('Image Accessibility', () => {
         />
       );
       
-      // Should render an error state that's accessible
+      fireEvent.error(screen.getByRole('img'));
+
+      // Should render an error state that's accessible after the browser signals a load error.
       const errorElement = screen.getByText(/Failed to load image/i);
       expect(errorElement).toBeInTheDocument();
     });
