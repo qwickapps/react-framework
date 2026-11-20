@@ -79,6 +79,7 @@ Comprehensive implementation and usage guides:
 API documentation and technical references:
 
 - **[Build Configurations](./examples/build-configs.md)** - Build and deployment configurations
+- **[CI and npm publishing](./CI_AND_PUBLISHING.md)** - Release workflow on push to main, local checks, and CI logs
 
 ## 🚀 Quick Start
 

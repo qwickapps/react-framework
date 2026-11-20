@@ -2864,6 +2864,9 @@ npm test
 npm run build
 ```
 
+For the CI verification and npm release workflow, including local commands and
+how to retrieve failed Actions logs, see [CI and npm publishing](./docs/CI_AND_PUBLISHING.md).
+
 ## Framework Best Practices
 
 ### Logging and Debugging
